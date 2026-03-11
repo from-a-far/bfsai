@@ -1,0 +1,212 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="doc-layout">
+  <div class="panel viewer-panel">
+    <div class="panel-heading">
+      <h2>{{ document.id }}</h2>
+      <span class="status status-{{ document.status }}">{{ document.status }}</span>
+    </div>
+    {% if not resolved_file_path %}
+    <div class="missing-file">
+      <strong>Source file unavailable</strong>
+      <p>The document record exists, but the underlying file is not present on disk.</p>
+    </div>
+    {% elif resolved_file_path.endswith(".pdf") %}
+    <iframe class="doc-frame" src="/files/{{ document.id }}"></iframe>
+    {% else %}
+    <img class="doc-image" src="/files/{{ document.id }}" alt="{{ document.id }}" />
+    {% endif %}
+  </div>
+
+  <div class="panel form-panel">
+    <div class="panel-heading">
+      <h2>Review and confirm</h2>
+      <span>PO Box {{ document.po_box }}</span>
+    </div>
+    <div class="meta-grid">
+      <article>
+        <strong>Ingestion</strong>
+        <span class="status status-{{ document.ingestion_status }}">{{ document.ingestion_status }}</span>
+      </article>
+      <article>
+        <strong>Attempts</strong>
+        <span>{{ document.ingestion_attempts }}</span>
+      </article>
+      <article>
+        <strong>Last attempt</strong>
+        <span>{{ document.last_ingestion_attempt_at or "n/a" }}</span>
+      </article>
+      <article>
+        <strong>Approved</strong>
+        <span>{{ document.confirmed_at or "n/a" }}</span>
+      </article>
+      <article>
+        <strong>Review path</strong>
+        <span>{{ document.current_file_path }}</span>
+      </article>
+      <article>
+        <strong>Retained copy</strong>
+        <span>{{ document.alignment.archived_file_path or "n/a" }}</span>
+      </article>
+    </div>
+
+    {% if document.verification.issues %}
+    <div class="issues-list">
+      {% for issue in document.verification.issues %}
+      <div class="issue issue-{{ issue.severity }}">
+        <strong>{{ issue.field }}</strong>
+        <span>{{ issue.message }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if resolved_file_path %}
+    <div class="action-row">
+      <button type="button" id="open-review-modal" class="secondary-button">Review extraction</button>
+    </div>
+    {% endif %}
+
+    <form method="post" action="/documents/{{ document.id }}/note" class="review-form">
+      <label>Reviewer notes<textarea name="review_notes" rows="4">{{ document.review_notes or "" }}</textarea></label>
+      <button type="submit" class="secondary-button">Save note</button>
+    </form>
+
+    <div class="compact-fields">
+      {% for field in field_specs %}
+      <article>
+        <strong>{{ field.label }}</strong>
+        <span>{{ extraction_value_for_form(document.extraction, field.name) or "n/a" }}</span>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="action-row">
+      <form method="post" action="/documents/{{ document.id }}/reprocess">
+        <button type="submit" class="secondary-button">Re-run extraction</button>
+      </form>
+      {% if document.status == "approved" %}
+      <form method="post" action="/documents/{{ document.id }}/ingest">
+        <button type="submit" class="secondary-button">Send to Rails</button>
+      </form>
+      {% endif %}
+    </div>
+
+    <div class="panel alignment-panel">
+      <div class="panel-heading">
+        <h3>Field alignment</h3>
+        <span>Page and bounding box traceability</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Field</th>
+            <th>Page</th>
+            <th>Match</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for name, match in field_alignments.items() if name != "line_items" %}
+          <tr>
+            <td>{{ name }}</td>
+            <td>{{ match.page_number if match else "n/a" }}</td>
+            <td>{{ match.match_text if match else "n/a" }}</td>
+            <td>{{ match.confidence if match else "n/a" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="json-grid">
+      <article>
+        <h3>Verification</h3>
+        <pre>{{ verification_json }}</pre>
+      </article>
+      <article>
+        <h3>Extraction</h3>
+        <pre>{{ extraction_json }}</pre>
+      </article>
+    </div>
+
+    <div class="history-grid">
+      <article class="panel">
+        <div class="panel-heading">
+          <h3>Review history</h3>
+          <span>{{ review_events|length }} events</span>
+        </div>
+        <ul class="history-list">
+          {% for event in review_events %}
+          <li><strong>{{ event.action }}</strong><span>{{ event.created_at }}</span><p>{{ event.notes or "" }}</p></li>
+          {% else %}
+          <li>No review events yet.</li>
+          {% endfor %}
+        </ul>
+      </article>
+      <article class="panel">
+        <div class="panel-heading">
+          <h3>Ingestion history</h3>
+          <span>{{ ingestion_events|length }} attempts</span>
+        </div>
+        <ul class="history-list">
+          {% for event in ingestion_events %}
+          <li><strong>{{ event.status }}</strong><span>{{ event.created_at }}</span><p>{{ event.error_message or event.response_body or "" }}</p></li>
+          {% else %}
+          <li>No ingestion attempts yet.</li>
+          {% endfor %}
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% if resolved_file_path %}
+<section class="review-modal" id="review-modal" hidden>
+  <div class="review-modal-backdrop" data-close-review></div>
+  <div class="review-modal-dialog">
+    <div class="review-modal-header">
+      <div>
+        <h2>Review extraction</h2>
+        <p>Select a field on the right, then drag a box on the document to update the extracted value.</p>
+      </div>
+      <button type="button" class="icon-button" data-close-review title="Close review">&times;</button>
+    </div>
+    <div class="review-modal-body">
+      <div class="review-document-pane">
+        <div class="review-instructions" id="review-instructions">Select a field to highlight its box or draw a new one.</div>
+        <div class="review-pages" id="review-pages"></div>
+      </div>
+      <div class="review-fields-pane">
+        <form method="post" action="/documents/{{ document.id }}/approve" class="review-form" id="review-approve-form">
+          {% for field in field_specs %}
+            {% if field.name in ["remittance_address", "billing_address", "physical_billing_address", "service_address"] %}
+            <label data-field-label="{{ field.name }}">
+              {{ field.label }}
+              <textarea name="{{ field.name }}" rows="3" data-field-name="{{ field.name }}" data-field-kind="{{ field.kind }}">{{ extraction_value_for_form(document.extraction, field.name) }}</textarea>
+            </label>
+            {% else %}
+            <label data-field-label="{{ field.name }}">
+              {{ field.label }}
+              <input type="text" name="{{ field.name }}" value="{{ extraction_value_for_form(document.extraction, field.name) }}" data-field-name="{{ field.name }}" data-field-kind="{{ field.kind }}" />
+            </label>
+            {% endif %}
+          {% endfor %}
+          <label>Line items JSON<textarea name="line_items_json" rows="8">{{ line_items_json }}</textarea></label>
+          <label>Reviewer notes<textarea name="review_notes" rows="4">{{ document.review_notes or "" }}</textarea></label>
+          <input type="hidden" name="field_alignments_json" id="field-alignments-json" value="{{ field_alignments_json|e }}" />
+          <div class="review-modal-actions">
+            <button type="submit">Approve and learn</button>
+            <button type="button" class="secondary-button" data-close-review>Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<script id="review-field-specs" type="application/json">{{ field_specs_json|safe }}</script>
+<script id="review-pages-data" type="application/json">{{ document_pages_json|safe }}</script>
+<script id="review-alignments-data" type="application/json">{{ field_alignments_json|safe }}</script>
+<script src="/static/review.js"></script>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,272 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "BFSAI" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - paragraph [ref=e5]: Local invoice extraction, review, and feedback loop
+  - main [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e9]:
+          - heading "inv_nxzepgesofbinppr" [level=2] [ref=e10]
+          - generic [ref=e11]: review
+        - iframe [ref=e12]:
+          
+      - generic [ref=e13]:
+        - generic [ref=e14]:
+          - heading "Review and confirm" [level=2] [ref=e15]
+          - generic [ref=e16]: PO Box 5010095
+        - generic [ref=e17]:
+          - article [ref=e18]:
+            - strong [ref=e19]: Ingestion
+            - generic [ref=e20]: pending
+          - article [ref=e21]:
+            - strong [ref=e22]: Attempts
+            - generic [ref=e23]: "0"
+          - article [ref=e24]:
+            - strong [ref=e25]: Last attempt
+            - generic [ref=e26]: n/a
+          - article [ref=e27]:
+            - strong [ref=e28]: Approved
+            - generic [ref=e29]: n/a
+          - article [ref=e30]:
+            - strong [ref=e31]: Review path
+            - generic [ref=e32]: /Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_nxzepgesofbinppr.pdf
+          - article [ref=e33]:
+            - strong [ref=e34]: Retained copy
+            - generic [ref=e35]: storage/document_files/5010095/inv_nxzepgesofbinppr.pdf
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - strong [ref=e38]: invoice_number
+            - text: Invoice number is missing
+          - generic [ref=e39]:
+            - strong [ref=e40]: line_items
+            - text: Line-item total differs from invoice total by 658.80
+        - button "Review extraction" [active] [ref=e42] [cursor=pointer]
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - text: Reviewer notes
+            - textbox "Reviewer notes" [ref=e45]
+          - button "Save note" [ref=e46] [cursor=pointer]
+        - generic [ref=e47]:
+          - article [ref=e48]:
+            - strong [ref=e49]: Payee/Vendor Name
+            - generic [ref=e50]: ROGERS&MARNEY, INC.
+          - article [ref=e51]:
+            - strong [ref=e52]: Payable To
+            - generic [ref=e53]: n/a
+          - article [ref=e54]:
+            - strong [ref=e55]: Remittance Address
+            - generic [ref=e56]: n/a
+          - article [ref=e57]:
+            - strong [ref=e58]: Billing Address
+            - generic [ref=e59]: n/a
+          - article [ref=e60]:
+            - strong [ref=e61]: Physical Billing Address
+            - generic [ref=e62]: n/a
+          - article [ref=e63]:
+            - strong [ref=e64]: Service Address
+            - generic [ref=e65]: n/a
+          - article [ref=e66]:
+            - strong [ref=e67]: Account Number
+            - generic [ref=e68]: n/a
+          - article [ref=e69]:
+            - strong [ref=e70]: Friendly Name
+            - generic [ref=e71]: n/a
+          - article [ref=e72]:
+            - strong [ref=e73]: Name On Account
+            - generic [ref=e74]: n/a
+          - article [ref=e75]:
+            - strong [ref=e76]: Invoice Number
+            - generic [ref=e77]: n/a
+          - article [ref=e78]:
+            - strong [ref=e79]: Invoice Date
+            - generic [ref=e80]: 8/23/19
+          - article [ref=e81]:
+            - strong [ref=e82]: Due Date
+            - generic [ref=e83]: n/a
+          - article [ref=e84]:
+            - strong [ref=e85]: Subtotal
+            - generic [ref=e86]: n/a
+          - article [ref=e87]:
+            - strong [ref=e88]: Tax
+            - generic [ref=e89]: n/a
+          - article [ref=e90]:
+            - strong [ref=e91]: Total
+            - generic [ref=e92]: "329.40"
+          - article [ref=e93]:
+            - strong [ref=e94]: Amount Due
+            - generic [ref=e95]: n/a
+          - article [ref=e96]:
+            - strong [ref=e97]: Currency
+            - generic [ref=e98]: USD
+          - article [ref=e99]:
+            - strong [ref=e100]: Payment Terms
+            - generic [ref=e101]: NET 10
+          - article [ref=e102]:
+            - strong [ref=e103]: Previous Amount Due
+            - generic [ref=e104]: n/a
+          - article [ref=e105]:
+            - strong [ref=e106]: Previous Payment Date
+            - generic [ref=e107]: n/a
+          - article [ref=e108]:
+            - strong [ref=e109]: Previous Payment Amount
+            - generic [ref=e110]: n/a
+        - button "Re-run extraction" [ref=e113] [cursor=pointer]
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - heading "Field alignment" [level=3] [ref=e116]
+            - generic [ref=e117]: Page and bounding box traceability
+          - table [ref=e118]:
+            - rowgroup [ref=e119]:
+              - row "Field Page Match Confidence" [ref=e120]:
+                - columnheader "Field" [ref=e121]
+                - columnheader "Page" [ref=e122]
+                - columnheader "Match" [ref=e123]
+                - columnheader "Confidence" [ref=e124]
+            - rowgroup [ref=e125]:
+              - row "invoice_date 1 8/23/19 1.0" [ref=e126]:
+                - cell "invoice_date" [ref=e127]
+                - cell "1" [ref=e128]
+                - cell "8/23/19" [ref=e129]
+                - cell "1.0" [ref=e130]
+              - row "invoice_number n/a n/a n/a" [ref=e131]:
+                - cell "invoice_number" [ref=e132]
+                - cell "n/a" [ref=e133]
+                - cell "n/a" [ref=e134]
+                - cell "n/a" [ref=e135]
+              - row "payment_terms 1 NET 10 1.0" [ref=e136]:
+                - cell "payment_terms" [ref=e137]
+                - cell "1" [ref=e138]
+                - cell "NET 10" [ref=e139]
+                - cell "1.0" [ref=e140]
+              - row "subtotal n/a n/a n/a" [ref=e141]:
+                - cell "subtotal" [ref=e142]
+                - cell "n/a" [ref=e143]
+                - cell "n/a" [ref=e144]
+                - cell "n/a" [ref=e145]
+              - row "tax n/a n/a n/a" [ref=e146]:
+                - cell "tax" [ref=e147]
+                - cell "n/a" [ref=e148]
+                - cell "n/a" [ref=e149]
+                - cell "n/a" [ref=e150]
+              - row "total 1 329.40 1.0" [ref=e151]:
+                - cell "total" [ref=e152]
+                - cell "1" [ref=e153]
+                - cell "329.40" [ref=e154]
+                - cell "1.0" [ref=e155]
+              - row "vendor n/a n/a n/a" [ref=e156]:
+                - cell "vendor" [ref=e157]
+                - cell "n/a" [ref=e158]
+                - cell "n/a" [ref=e159]
+                - cell "n/a" [ref=e160]
+        - generic [ref=e161]:
+          - article [ref=e162]:
+            - heading "Verification" [level=3] [ref=e163]
+            - generic [ref=e164]: "{ \"issues\": [ { \"field\": \"invoice_number\", \"message\": \"Invoice number is missing\", \"severity\": \"medium\" }, { \"field\": \"line_items\", \"message\": \"Line-item total differs from invoice total by 658.80\", \"severity\": \"medium\" } ], \"score\": 0.34, \"status\": \"review\" }"
+          - article [ref=e165]:
+            - heading "Extraction" [level=3] [ref=e166]
+            - generic [ref=e167]: "{ \"confidence\": 0.5, \"currency\": \"USD\", \"invoice_date\": \"8/23/19\", \"invoice_number\": null, \"learning_hints\": {}, \"line_items\": [ { \"amount\": 329.4, \"description\": \"CMC ELEVATOR CORPORATION 275 08/05/19 ELEVATOR SERVICE/ POWER OUTAGE\", \"quantity\": null, \"unit_price\": null }, { \"amount\": 329.4, \"description\": \"Subcontract sub-total\", \"quantity\": null, \"unit_price\": null }, { \"amount\": 329.4, \"description\": \"Amount due this invoice\", \"quantity\": null, \"unit_price\": null } ], \"model_source\": \"heuristic\", \"payment_terms\": \"NET 10\", \"po_box\": \"5010095\", \"raw_text_excerpt\": \"& ROGERS&MARNEY, INC. BUILDERS MR. & MRS. MICHAEL WHITE DRAW PO BOX 5010 NUMBER MONROE, CT 06468 NUMBER 18740 8/23/19 1243-HS00234 LOCATION: CONTRACT ID: 1243-HS 577 SEA VIEW AVENUE WHITE- 577 SEAVIEW- HOUSE OSTERVILLE, MA 02655 Subcontract Name Reference Date Description Amount CMC ELEVATOR CORPORATION 275 08/05/19 ELEVATOR SERVICE/ POWER OUTAGE 329.40 Subcontract sub-total 329.40 Amount due this invoice $329.40 TERMS: NET 10 DAYS PO Box 310. Osterville, Massachusetts 02655 . Phone: 508.428.6106 . Fax: 508.420.3550 . rogersandmarneybuilders.com\", \"subtotal\": null, \"tax\": null, \"total\": 329.4, \"vendor\": \"ROGERS&MARNEY, INC.\" }"
+        - generic [ref=e168]:
+          - article [ref=e169]:
+            - generic [ref=e170]:
+              - heading "Review history" [level=3] [ref=e171]
+              - generic [ref=e172]: 0 events
+            - list [ref=e173]:
+              - listitem [ref=e174]: No review events yet.
+          - article [ref=e175]:
+            - generic [ref=e176]:
+              - heading "Ingestion history" [level=3] [ref=e177]
+              - generic [ref=e178]: 0 attempts
+            - list [ref=e179]:
+              - listitem [ref=e180]: No ingestion attempts yet.
+    - generic [ref=e183]:
+      - generic [ref=e184]:
+        - generic [ref=e185]:
+          - heading "Review extraction" [level=2] [ref=e186]
+          - paragraph [ref=e187]: Select a field on the right, then drag a box on the document to update the extracted value.
+        - button "×" [ref=e188] [cursor=pointer]
+      - generic [ref=e189]:
+        - generic [ref=e190]:
+          - generic [ref=e191]: Select a field to highlight its box or draw a new one.
+          - generic [ref=e193]:
+            - generic [ref=e194]: Page 1
+            - generic [ref=e195]:
+              - img "Page 1" [ref=e196]
+              - generic [ref=e197]:
+                - 'generic "invoice_date: 8/23/19" [ref=e198]'
+                - 'generic "payment_terms: NET 10" [ref=e199]'
+                - 'generic "total: 329.40" [ref=e200]'
+        - generic [ref=e202]:
+          - generic [ref=e203]:
+            - text: Payee/Vendor Name
+            - textbox "Payee/Vendor Name" [ref=e204]: ROGERS&MARNEY, INC.
+          - generic [ref=e205]:
+            - text: Payable To
+            - textbox "Payable To" [ref=e206]
+          - generic [ref=e207]:
+            - text: Remittance Address
+            - textbox "Remittance Address" [ref=e208]
+          - generic [ref=e209]:
+            - text: Billing Address
+            - textbox "Billing Address" [ref=e210]
+          - generic [ref=e211]:
+            - text: Physical Billing Address
+            - textbox "Physical Billing Address" [ref=e212]
+          - generic [ref=e213]:
+            - text: Service Address
+            - textbox "Service Address" [ref=e214]
+          - generic [ref=e215]:
+            - text: Account Number
+            - textbox "Account Number" [ref=e216]
+          - generic [ref=e217]:
+            - text: Friendly Name
+            - textbox "Friendly Name" [ref=e218]
+          - generic [ref=e219]:
+            - text: Name On Account
+            - textbox "Name On Account" [ref=e220]
+          - generic [ref=e221]:
+            - text: Invoice Number
+            - textbox "Invoice Number" [ref=e222]
+          - generic [ref=e223]:
+            - text: Invoice Date
+            - textbox "Invoice Date" [ref=e224]: 8/23/19
+          - generic [ref=e225]:
+            - text: Due Date
+            - textbox "Due Date" [ref=e226]
+          - generic [ref=e227]:
+            - text: Subtotal
+            - textbox "Subtotal" [ref=e228]
+          - generic [ref=e229]:
+            - text: Tax
+            - textbox "Tax" [ref=e230]
+          - generic [ref=e231]:
+            - text: Total
+            - textbox "Total" [ref=e232]: "329.40"
+          - generic [ref=e233]:
+            - text: Amount Due
+            - textbox "Amount Due" [ref=e234]
+          - generic [ref=e235]:
+            - text: Currency
+            - textbox "Currency" [ref=e236]: USD
+          - generic [ref=e237]:
+            - text: Payment Terms
+            - textbox "Payment Terms" [ref=e238]: NET 10
+          - generic [ref=e239]:
+            - text: Previous Amount Due
+            - textbox "Previous Amount Due" [ref=e240]
+          - generic [ref=e241]:
+            - text: Previous Payment Date
+            - textbox "Previous Payment Date" [ref=e242]
+          - generic [ref=e243]:
+            - text: Previous Payment Amount
+            - textbox "Previous Payment Amount" [ref=e244]
+          - generic [ref=e245]:
+            - text: Line items JSON
+            - textbox "Line items JSON" [ref=e246]: "[ { \"amount\": 329.4, \"description\": \"CMC ELEVATOR CORPORATION 275 08/05/19 ELEVATOR SERVICE/ POWER OUTAGE\", \"quantity\": null, \"unit_price\": null }, { \"amount\": 329.4, \"description\": \"Subcontract sub-total\", \"quantity\": null, \"unit_price\": null }, { \"amount\": 329.4, \"description\": \"Amount due this invoice\", \"quantity\": null, \"unit_price\": null } ]"
+          - generic [ref=e247]:
+            - text: Reviewer notes
+            - textbox "Reviewer notes" [ref=e248]
+          - generic [ref=e249]:
+            - button "Approve and learn" [ref=e250] [cursor=pointer]
+            - button "Close" [ref=e251] [cursor=pointer]

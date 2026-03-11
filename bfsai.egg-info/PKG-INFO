@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: bfsai
+Version: 0.1.0
+Summary: Local Docker-based invoice extraction and review system.
+Requires-Python: >=3.12
+Requires-Dist: fastapi>=0.116.0
+Requires-Dist: httpx>=0.28.0
+Requires-Dist: jinja2>=3.1.6
+Requires-Dist: pillow>=11.3.0
+Requires-Dist: pydantic>=2.11.0
+Requires-Dist: pydantic-settings>=2.10.0
+Requires-Dist: pypdfium2>=4.30.0
+Requires-Dist: pytesseract>=0.3.13
+Requires-Dist: python-multipart>=0.0.20
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: uvicorn[standard]>=0.35.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.4.0; extra == "dev"

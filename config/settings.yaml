@@ -1,0 +1,19 @@
+watch_root: /Users/ajfarren/Projects/aq/bfscdx/server/clients/
+database_path: ./storage/bfsai.db
+poll_seconds: 3
+ollama:
+  enabled: false
+  base_url: http://127.0.0.1:11434
+  model: llama3.2:3b
+  timeout_seconds: 90
+thresholds:
+  verified_confidence: 0.9
+  flagged_amount: 50000
+  total_delta_tolerance: 1.0
+rails:
+  enabled: true
+  base_url: http://127.0.0.1:3000
+  endpoint_path: /api/invoice_ingestions
+  api_token: ""
+  timeout_seconds: 30
+  auto_ingest_approved: false

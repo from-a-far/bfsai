@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <h1>Admin dashboard</h1>
+    <p>Review queue, extraction performance, live config, and feedback-driven learning in one place.</p>
+  </div>
+  <div class="config-box">
+    <div><strong>Watch root</strong><span>{{ config.watch_root }}</span></div>
+    <div><strong>Database</strong><span>{{ config.database_path }}</span></div>
+    <div><strong>Poll</strong><span>{{ config.poll_seconds }}s</span></div>
+    <div><strong>Model</strong><span>{{ config.model }}</span></div>
+    <div><strong>Ollama</strong><span>{{ config.ollama_base_url }}</span></div>
+    <div><strong>Rails</strong><span>{{ "Enabled" if config.rails_enabled else "Disabled" }}</span></div>
+    <div><strong>Rails endpoint</strong><span>{{ config.rails_endpoint }}</span></div>
+    <div class="po-box-collapsible">
+      <button class="po-box-toggle" aria-expanded="false" onclick="let l=this.nextElementSibling;let open=l.classList.toggle('open');this.setAttribute('aria-expanded',open)">
+        <span><strong>PO Boxes</strong> <span style="color:var(--muted)">({{ config.po_boxes|length }})</span></span>
+      </button>
+      <div class="po-box-list">
+        {% if config.po_boxes %}
+          {% for box in config.po_boxes %}
+          <span class="po-box-chip">{{ box }}</span>
+          {% endfor %}
+        {% else %}
+          <span style="color:var(--muted)">None discovered</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-grid">
+  <article class="stat-card"><span>Total</span><strong>{{ stats.total }}</strong></article>
+  <article class="stat-card"><span>Review</span><strong>{{ stats.review_count }}</strong></article>
+  <article class="stat-card"><span>Verified</span><strong>{{ stats.verified_count }}</strong></article>
+  <article class="stat-card"><span>Approved</span><strong>{{ stats.approved_count }}</strong></article>
+  <article class="stat-card"><span>Errors</span><strong>{{ stats.error_count }}</strong></article>
+  <article class="stat-card"><span>Corrections</span><strong>{{ stats.correction_count }}</strong></article>
+  <article class="stat-card"><span>Ingested</span><strong>{{ stats.ingested_count }}</strong></article>
+  <article class="stat-card"><span>Ingest Failures</span><strong>{{ stats.failed_ingestion_count }}</strong></article>
+</section>
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Recent documents</h2>
+    <span>Average confidence: {{ stats.avg_confidence }}</span>
+  </div>
+  <form method="get" class="filters">
+    <input type="text" name="search" placeholder="Search vendor, invoice, filename" value="{{ filters.search }}" />
+    <input type="text" name="po_box" placeholder="PO Box" value="{{ filters.po_box }}" />
+    <select name="status">
+      <option value="">All statuses</option>
+      {% for value in ["review", "verified", "approved", "error"] %}
+      <option value="{{ value }}" {% if filters.status == value %}selected{% endif %}>{{ value }}</option>
+      {% endfor %}
+    </select>
+    <select name="ingestion_status">
+      <option value="">All ingestion states</option>
+      {% for value in ["pending", "ingested", "failed"] %}
+      <option value="{{ value }}" {% if filters.ingestion_status == value %}selected{% endif %}>{{ value }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>PO Box</th>
+        <th>Status</th>
+        <th>Ingestion</th>
+        <th>Vendor</th>
+        <th>Total</th>
+        <th>Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for document in documents %}
+      <tr>
+        <td><a href="/documents/{{ document.id }}">{{ document.id }}</a></td>
+        <td>{{ document.po_box }}</td>
+        <td><span class="status status-{{ document.status }}">{{ document.status }}</span></td>
+        <td><span class="status status-{{ document.ingestion_status }}">{{ document.ingestion_status }}</span></td>
+        <td>{{ document.vendor or "Unknown" }}</td>
+        <td>{{ document.total if document.total is not none else "n/a" }}</td>
+        <td>{{ document.updated_at }}</td>
+        <td class="actions-cell">
+          {% if document.status != "approved" %}
+          <form method="post" action="/documents/{{ document.id }}/quick-approve" class="table-action">
+            <button type="submit" class="icon-button approve-button" title="Quick approve without training">&#10003;</button>
+          </form>
+          {% endif %}
+          <form method="post" action="/documents/{{ document.id }}/delete" class="table-action" onsubmit="return confirm('Delete this document and its JSON output?');">
+            <button type="submit" class="icon-button delete-button" title="Delete document">&#10005;</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="8">No documents processed yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

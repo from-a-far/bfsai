@@ -1,0 +1,38 @@
+services:
+  api:
+    build:
+      context: .
+    command: uvicorn app.main:create_app --factory --host 0.0.0.0 --port 8000
+    environment:
+      BFSAI_CONFIG: /app/config/settings.yaml
+    ports:
+      - "8001:8000"
+    volumes:
+      - ./config/settings.yaml:/app/config/settings.yaml:ro
+      - ./sample_data:/app/sample_data
+      - ./storage:/app/storage
+    depends_on:
+      - ollama
+
+  worker:
+    build:
+      context: .
+    command: python -m app.worker
+    environment:
+      BFSAI_CONFIG: /app/config/settings.yaml
+    volumes:
+      - ./config/settings.yaml:/app/config/settings.yaml:ro
+      - ./sample_data:/app/sample_data
+      - ./storage:/app/storage
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+
+volumes:
+  ollama_data:

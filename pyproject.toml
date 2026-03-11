@@ -1,0 +1,36 @@
+[project]
+name = "bfsai"
+version = "0.1.0"
+description = "Local Docker-based invoice extraction and review system."
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.116.0",
+  "httpx>=0.28.0",
+  "jinja2>=3.1.6",
+  "pillow>=11.3.0",
+  "pydantic>=2.11.0",
+  "pydantic-settings>=2.10.0",
+  "pypdfium2>=4.30.0",
+  "pytesseract>=0.3.13",
+  "python-multipart>=0.0.20",
+  "pyyaml>=6.0.2",
+  "uvicorn[standard]>=0.35.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.4.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["setuptools>=80.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.setuptools.package-data]
+app = ["templates/*.html", "static/*.css"]
