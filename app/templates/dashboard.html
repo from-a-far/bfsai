@@ -51,7 +51,7 @@
     <input type="text" name="po_box" placeholder="PO Box" value="{{ filters.po_box }}" />
     <select name="status">
       <option value="">All statuses</option>
-      {% for value in ["review", "verified", "approved", "error"] %}
+      {% for value in ["review", "verified", "approved", "routed", "error"] %}
       <option value="{{ value }}" {% if filters.status == value %}selected{% endif %}>{{ value }}</option>
       {% endfor %}
     </select>

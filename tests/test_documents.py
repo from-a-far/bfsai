@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from app.config import OllamaSettings, RailsSettings, Settings, ThresholdSettings
-from app.documents import archive_document_path, resolve_document_file_path, retain_document_copy
+from app.documents import DOCUMENT_TYPE_PATHS, archive_document_path, po_box_layout, resolve_document_file_path, retain_document_copy
 
 
 def build_settings(tmp_path: Path) -> Settings:
@@ -47,3 +47,16 @@ def test_resolve_document_file_path_falls_back_to_archived_copy(tmp_path: Path) 
     resolved = resolve_document_file_path(settings, document)
 
     assert resolved == archived_path
+
+
+def test_po_box_layout_creates_processing_and_document_type_folders(tmp_path: Path) -> None:
+    settings = build_settings(tmp_path)
+    layout = po_box_layout(settings, "1001")
+
+    assert layout.new.exists()
+    assert layout.review.exists()
+    assert layout.processed.exists()
+    assert layout.output.exists()
+    assert layout.other.exists()
+    assert set(layout.document_types) == set(DOCUMENT_TYPE_PATHS)
+    assert all(path.exists() for path in layout.document_types.values())

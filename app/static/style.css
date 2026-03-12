@@ -394,6 +394,11 @@ a {
   color: var(--accent);
 }
 
+.status-routed {
+  background: rgba(148, 163, 184, 0.16);
+  color: #cbd5e1;
+}
+
 .status-error {
   background: rgba(239, 68, 68, 0.15);
   color: #ef4444;

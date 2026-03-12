@@ -20,6 +20,7 @@ class RailsIngestionService:
         payload = {
             "document_id": document["id"],
             "po_box": document["po_box"],
+            "document_type": (document.get("alignment") or {}).get("document_type", "b"),
             "status": document["status"],
             "source_file_path": document["current_file_path"],
             "json_file_path": document.get("current_json_path"),

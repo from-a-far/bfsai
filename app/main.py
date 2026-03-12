@@ -374,6 +374,8 @@ def create_app() -> FastAPI:
         for candidate in (
             (document.get("alignment") or {}).get("archived_file_path"),
             (document.get("alignment") or {}).get("approved_file_path"),
+            (document.get("alignment") or {}).get("routed_copy_path"),
+            (document.get("alignment") or {}).get("routed_file_path"),
         ):
             if not candidate:
                 continue

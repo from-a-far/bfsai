@@ -18,10 +18,27 @@ class FolderLayout:
     processed: Path
     output: Path
     other: Path
+    document_types: dict[str, Path]
+
+
+DOCUMENT_TYPE_PATHS = {
+    "b": "bills",
+    "cc": "credit_card_statements",
+    "s": "statments",
+    "d": "deposits",
+    "i": "insurances",
+    "t": "taxes",
+    "c": "client_documents",
+    "m": "mai_documents",
+    "p": "payroll_documents",
+    "ci": "credit_card_images",
+    "r": "reports",
+}
 
 
 def po_box_layout(settings: Settings, po_box: str) -> FolderLayout:
     root = settings.watch_root / po_box
+    document_types = {dtype: root / folder for dtype, folder in DOCUMENT_TYPE_PATHS.items()}
     layout = FolderLayout(
         root=root,
         new=root / "new",
@@ -29,8 +46,17 @@ def po_box_layout(settings: Settings, po_box: str) -> FolderLayout:
         processed=root / "processed",
         output=root / "output",
         other=root / "other",
+        document_types=document_types,
     )
-    for path in (layout.root, layout.new, layout.review, layout.processed, layout.output, layout.other):
+    for path in (
+        layout.root,
+        layout.new,
+        layout.review,
+        layout.processed,
+        layout.output,
+        layout.other,
+        *layout.document_types.values(),
+    ):
         path.mkdir(parents=True, exist_ok=True)
     return layout
 
@@ -39,6 +65,7 @@ def discover_po_boxes(settings: Settings) -> list[str]:
     candidates = []
     for path in sorted(settings.watch_root.iterdir() if settings.watch_root.exists() else []):
         if path.is_dir() and path.name.isdigit():
+            po_box_layout(settings, path.name)
             candidates.append(path.name)
     return candidates
 
@@ -54,6 +81,22 @@ def move_to_other(settings: Settings, po_box: str, source_path: Path, document_i
     layout = po_box_layout(settings, po_box)
     destination = layout.other / f"{document_id}{source_path.suffix.lower()}"
     shutil.move(str(source_path), destination)
+    return destination
+
+
+def move_to_document_type(settings: Settings, po_box: str, source_path: Path, document_id: str, dtype: str) -> Path:
+    layout = po_box_layout(settings, po_box)
+    destination_dir = layout.document_types[dtype]
+    destination = destination_dir / f"{document_id}{source_path.suffix.lower()}"
+    shutil.move(str(source_path), destination)
+    return destination
+
+
+def copy_to_document_type(settings: Settings, po_box: str, source_path: Path, document_id: str, dtype: str) -> Path:
+    layout = po_box_layout(settings, po_box)
+    destination_dir = layout.document_types[dtype]
+    destination = destination_dir / f"{document_id}{source_path.suffix.lower()}"
+    shutil.copy2(source_path, destination)
     return destination
 
 
@@ -115,7 +158,7 @@ def resolve_document_file_path(settings: Settings, document: dict) -> Path | Non
             checked.add(archived_candidate)
             if archived_candidate.exists():
                 return archived_candidate
-        for folder in (layout.review, layout.processed, layout.other, layout.new):
+        for folder in (layout.review, layout.processed, layout.other, layout.new, *layout.document_types.values()):
             for candidate in (folder / f"{document_id}{suffix}", folder / f"{document_id}_c{suffix}"):
                 if candidate in checked:
                     continue
