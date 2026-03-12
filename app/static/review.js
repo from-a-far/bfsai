@@ -25,6 +25,20 @@
     alignmentsInput.value = JSON.stringify(fieldAlignments);
   }
 
+  function fieldLabel(fieldName) {
+    return fieldName.replaceAll("_", " ");
+  }
+
+  function setFieldLoading(fieldName, loading) {
+    const input = fieldInputs.get(fieldName);
+    const label = modal.querySelector(`[data-field-label="${fieldName}"]`);
+    if (!input || !label) {
+      return;
+    }
+    label.classList.toggle("loading-field", loading);
+    input.setAttribute("aria-busy", loading ? "true" : "false");
+  }
+
   function openModal() {
     modal.hidden = false;
     document.body.classList.add("modal-open");
@@ -43,9 +57,9 @@
     const match = fieldAlignments[fieldName];
     if (match && pageElements.has(match.page_number)) {
       pageElements.get(match.page_number).scrollIntoView({ block: "center", behavior: "smooth" });
-      instructions.textContent = `Drag on page ${match.page_number} to replace the box for ${fieldName.replaceAll("_", " ")}.`;
+      instructions.textContent = `Drag on page ${match.page_number} to replace the box for ${fieldLabel(fieldName)}.`;
     } else {
-      instructions.textContent = `Draw a box on the document to extract ${fieldName.replaceAll("_", " ")}.`;
+      instructions.textContent = `Draw a box on the document to extract ${fieldLabel(fieldName)}.`;
     }
     renderBoxes();
   }
@@ -69,6 +83,23 @@
         box.style.width = `${bbox.width * 100}%`;
         box.style.height = `${bbox.height * 100}%`;
         box.title = `${fieldName}: ${match.match_text || match.value || ""}`;
+        const removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.className = "field-box-remove";
+        removeButton.title = `Remove ${fieldLabel(fieldName)} highlight`;
+        removeButton.textContent = "×";
+        removeButton.addEventListener("pointerdown", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        });
+        removeButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          delete fieldAlignments[fieldName];
+          instructions.textContent = `Removed ${fieldLabel(fieldName)} highlight.`;
+          renderBoxes();
+        });
+        box.appendChild(removeButton);
         overlay.appendChild(box);
       });
     });
@@ -119,8 +150,9 @@
       width: +(width / overlayRect.width).toFixed(4),
       height: +(height / overlayRect.height).toFixed(4),
     };
-    instructions.textContent = `Extracting ${activeField.replaceAll("_", " ")} from page ${pageNumber}...`;
+    instructions.textContent = `Extracting ${fieldLabel(activeField)} from page ${pageNumber}...`;
     isExtracting = true;
+    setFieldLoading(activeField, true);
     try {
       const response = await fetch(`/api/documents/${documentId}/extract-box`, {
         method: "POST",
@@ -128,7 +160,7 @@
         body: JSON.stringify({ field_name: activeField, page_number: pageNumber, bbox }),
       });
       if (!response.ok) {
-        instructions.textContent = `Extraction failed for ${activeField.replaceAll("_", " ")}.`;
+        instructions.textContent = `Extraction failed for ${fieldLabel(activeField)}.`;
         return;
       }
       const payload = await response.json();
@@ -145,11 +177,12 @@
         input.value = payload.value ?? "";
         input.dispatchEvent(new Event("input", { bubbles: true }));
       }
-      instructions.textContent = `Updated ${activeField.replaceAll("_", " ")} from page ${pageNumber}.`;
+      instructions.textContent = `Updated ${fieldLabel(activeField)} from page ${pageNumber}.`;
       renderBoxes();
     } catch (error) {
-      instructions.textContent = `Extraction failed for ${activeField.replaceAll("_", " ")}.`;
+      instructions.textContent = `Extraction failed for ${fieldLabel(activeField)}.`;
     } finally {
+      setFieldLoading(activeField, false);
       isExtracting = false;
     }
   }

@@ -65,6 +65,15 @@ def create_app() -> FastAPI:
             return f"{float(value):.2f}"
         return str(value)
 
+    def review_queue_navigation(document_id: str) -> dict[str, Any]:
+        queue_ids = repository.review_queue_ids()
+        if document_id not in queue_ids:
+            return {"previous_id": None, "next_id": None, "position": None, "total": len(queue_ids)}
+        index = queue_ids.index(document_id)
+        previous_id = queue_ids[index - 1] if index > 0 else None
+        next_id = queue_ids[index + 1] if index < len(queue_ids) - 1 else None
+        return {"previous_id": previous_id, "next_id": next_id, "position": index + 1, "total": len(queue_ids)}
+
     def persist_approved_document(
         document: dict[str, Any],
         extraction_payload: dict[str, Any],
@@ -215,6 +224,7 @@ def create_app() -> FastAPI:
                 "field_alignments_json": json_dumps(document["alignment"].get("field_alignments", {})),
                 "field_specs": FIELD_SPECS,
                 "extraction_value_for_form": extraction_value_for_form,
+                "queue_navigation": review_queue_navigation(document_id),
                 "field_alignments": document["alignment"].get("field_alignments", {}),
             },
         )
@@ -344,6 +354,7 @@ def create_app() -> FastAPI:
         document = repository.get_document(document_id)
         if not document:
             raise HTTPException(status_code=404, detail="Document not found")
+        queue_navigation = review_queue_navigation(document_id)
         extraction_payload = dict(document["extraction"])
         extraction_payload["po_box"] = document["po_box"]
         extraction_payload["confidence"] = max(float(document.get("confidence") or 0), 0.99)
@@ -358,7 +369,8 @@ def create_app() -> FastAPI:
             review_notes=review_notes,
             event_action="quick_approve",
         )
-        return RedirectResponse(url="/", status_code=303)
+        redirect_url = f"/documents/{queue_navigation['next_id']}" if queue_navigation["next_id"] else "/"
+        return RedirectResponse(url=redirect_url, status_code=303)
 
     @app.post("/documents/{document_id}/delete")
     def delete_document(document_id: str) -> RedirectResponse:
@@ -416,6 +428,7 @@ def create_app() -> FastAPI:
         document = repository.get_document(document_id)
         if not document:
             raise HTTPException(status_code=404, detail="Document not found")
+        queue_navigation = review_queue_navigation(document_id)
 
         try:
             line_items_payload = json.loads(line_items_json or "[]")
@@ -471,10 +484,10 @@ def create_app() -> FastAPI:
             review_notes=review_notes,
             event_action="approve",
         )
-        if settings.rails.auto_ingest_approved:
-            refreshed = repository.get_document(document_id)
-            result = ingestion.ingest_document(refreshed)
-            repository.record_review_event(document_id, action="auto_ingest", notes=result.get("status", "unknown"), payload=result)
-        return RedirectResponse(url=f"/documents/{document_id}", status_code=303)
+        refreshed = repository.get_document(document_id)
+        result = ingestion.ingest_document(refreshed)
+        repository.record_review_event(document_id, action="auto_ingest", notes=result.get("status", "unknown"), payload=result)
+        redirect_url = f"/documents/{queue_navigation['next_id']}" if queue_navigation["next_id"] else "/"
+        return RedirectResponse(url=redirect_url, status_code=303)
 
     return app

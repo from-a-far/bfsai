@@ -240,6 +240,18 @@ class Repository:
             rows = connection.execute(query, params).fetchall()
         return [self._row_to_document(row) for row in rows]
 
+    def review_queue_ids(self) -> list[str]:
+        with self._connect() as connection:
+            rows = connection.execute(
+                """
+                SELECT id
+                FROM documents
+                WHERE status IN ('review', 'verified', 'error')
+                ORDER BY updated_at DESC, created_at DESC, id DESC
+                """
+            ).fetchall()
+        return [row["id"] for row in rows]
+
     def record_correction(
         self,
         document_id: str,

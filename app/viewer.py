@@ -13,6 +13,7 @@ from .utils import as_float
 
 
 PNG_SCALE = 1.75
+MULTILINE_FIELDS = {"remittance_address", "billing_address", "physical_billing_address", "service_address"}
 
 
 def describe_document_pages(file_path: Path) -> list[dict[str, Any]]:
@@ -78,6 +79,7 @@ def extract_text_from_box(file_path: Path, page_number: int, bbox: dict[str, flo
 
 
 def normalize_extracted_value(field_name: str, text: str) -> str | float:
+    multiline = "\n".join(line.strip() for line in text.splitlines() if line.strip())
     cleaned = " ".join(text.split())
     if field_name in AMOUNT_FIELDS:
         amount = as_float(cleaned)
@@ -86,4 +88,6 @@ def normalize_extracted_value(field_name: str, text: str) -> str | float:
         for token in cleaned.replace("|", " ").split():
             if "/" in token or "-" in token:
                 return token.strip(".,;:")
+    if field_name in MULTILINE_FIELDS:
+        return multiline or cleaned
     return cleaned

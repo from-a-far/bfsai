@@ -21,7 +21,19 @@
   <div class="panel form-panel">
     <div class="panel-heading">
       <h2>Review and confirm</h2>
-      <span>PO Box {{ document.po_box }}</span>
+      <div class="queue-nav">
+        {% if queue_navigation.previous_id %}
+        <a href="/documents/{{ queue_navigation.previous_id }}" class="icon-button" title="Previous document">&larr;</a>
+        {% endif %}
+        {% if queue_navigation.position %}
+        <span>{{ queue_navigation.position }}/{{ queue_navigation.total }}</span>
+        {% else %}
+        <span>PO Box {{ document.po_box }}</span>
+        {% endif %}
+        {% if queue_navigation.next_id %}
+        <a href="/documents/{{ queue_navigation.next_id }}" class="icon-button" title="Next document">&rarr;</a>
+        {% endif %}
+      </div>
     </div>
     <div class="meta-grid">
       <article>
@@ -174,8 +186,21 @@
     </div>
     <div class="review-modal-body">
       <div class="review-document-pane">
-        <div class="review-instructions" id="review-instructions">Select a field to highlight its box or draw a new one.</div>
+        <div class="review-viewer-nav">
+          {% if queue_navigation.previous_id %}
+          <a href="/documents/{{ queue_navigation.previous_id }}" class="icon-button" title="Previous document in queue">&larr;</a>
+          {% endif %}
+          {% if queue_navigation.position %}
+          <span>{{ queue_navigation.position }}/{{ queue_navigation.total }}</span>
+          {% else %}
+          <span>PO Box {{ document.po_box }}</span>
+          {% endif %}
+          {% if queue_navigation.next_id %}
+          <a href="/documents/{{ queue_navigation.next_id }}" class="icon-button" title="Next document in queue">&rarr;</a>
+          {% endif %}
+        </div>
         <div class="review-pages" id="review-pages"></div>
+        <div class="review-instructions" id="review-instructions">Select a field to highlight its box or draw a new one.</div>
       </div>
       <div class="review-fields-pane">
         <form method="post" action="/documents/{{ document.id }}/approve" class="review-form" id="review-approve-form">
