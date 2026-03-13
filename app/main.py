@@ -50,6 +50,7 @@ def create_app() -> FastAPI:
             except json.JSONDecodeError as error:
                 raise HTTPException(status_code=400, detail=f"Invalid field_alignments_json: {error}") from error
             if isinstance(updates, dict):
+                field_alignments = {}
                 for field_name, payload in updates.items():
                     if field_name not in {field.name for field in FIELD_SPECS}:
                         continue
@@ -473,9 +474,13 @@ def create_app() -> FastAPI:
             model_source=f'{document["extraction"].get("model_source", "heuristic")}+confirmed',
             learning_hints=document["extraction"].get("learning_hints", {}),
         )
-        correction_count = app.state.learning.record_confirmation(document, corrected_extraction.model_dump())
-        verification = app.state.verifier.verify(corrected_extraction, corrected_extraction.learning_hints)
         document["alignment"] = merge_field_alignments(document, field_alignments_json)
+        correction_count = app.state.learning.record_confirmation(
+            document,
+            corrected_extraction.model_dump(),
+            field_alignments=document["alignment"].get("field_alignments", {}),
+        )
+        verification = app.state.verifier.verify(corrected_extraction, corrected_extraction.learning_hints)
 
         persist_approved_document(
             document=document,

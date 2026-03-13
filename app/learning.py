@@ -26,17 +26,24 @@ class LearningService:
                 best_match = profile
         if not best_match:
             return {}
+        field_profiles = self.repository.get_vendor_field_profiles(po_box, best_match["normalized_vendor"])
+        if not field_profiles:
+            self._backfill_vendor_field_profiles(po_box, best_match["normalized_vendor"])
+            field_profiles = self.repository.get_vendor_field_profiles(po_box, best_match["normalized_vendor"])
         return {
             "matched_vendor": best_match["display_vendor"],
+            "matched_vendor_normalized": best_match["normalized_vendor"],
             "confirmed_fields": best_match["confirmed_fields"],
             "approved_count": best_match["approved_count"],
             "correction_count": best_match["correction_count"],
+            "field_alignment_profiles": field_profiles,
         }
 
     def record_confirmation(
         self,
         document: dict[str, Any],
         corrected_extraction: dict[str, Any],
+        field_alignments: dict[str, Any] | None = None,
     ) -> int:
         previous = document["extraction"]
         po_box = document["po_box"]
@@ -77,4 +84,58 @@ class LearningService:
                 correction_count=total_corrections,
                 confirmed_fields=confirmed_fields,
             )
+            alignments = field_alignments
+            if alignments is None:
+                alignments = (document.get("alignment") or {}).get("field_alignments") or {}
+            page_count = int((document.get("alignment") or {}).get("page_count") or 1)
+            for field_name in TRACKED_FIELDS:
+                match = (alignments or {}).get(field_name)
+                if not isinstance(match, dict):
+                    continue
+                normalized_bbox = match.get("normalized_bbox") or {}
+                if not isinstance(normalized_bbox, dict):
+                    continue
+                if any(normalized_bbox.get(key) in (None, "") for key in ("left", "top", "width", "height")):
+                    continue
+                page_number = int(match.get("page_number") or 1)
+                sample_value = corrected_extraction.get(field_name)
+                self.repository.upsert_vendor_field_profile(
+                    po_box=po_box,
+                    normalized_vendor=vendor_norm,
+                    field_name=field_name,
+                    page_number=page_number,
+                    page_count=page_count,
+                    normalized_bbox=normalized_bbox,
+                    sample_value=sample_value,
+                )
         return correction_count
+
+    def _backfill_vendor_field_profiles(self, po_box: str, normalized_vendor: str) -> None:
+        for document in self.repository.list_documents_for_learning(po_box, statuses=("approved",)):
+            document_vendor = (
+                document.get("vendor")
+                or (document.get("extraction") or {}).get("vendor")
+                or (document.get("extraction") or {}).get("payable_to")
+            )
+            if normalize_vendor(document_vendor) != normalized_vendor:
+                continue
+            alignment = document.get("alignment") or {}
+            field_alignments = alignment.get("field_alignments") or {}
+            page_count = int(alignment.get("page_count") or 1)
+            extraction = document.get("extraction") or {}
+            for field_name in TRACKED_FIELDS:
+                match = field_alignments.get(field_name)
+                if not isinstance(match, dict):
+                    continue
+                normalized_bbox = match.get("normalized_bbox") or {}
+                if any(normalized_bbox.get(key) in (None, "") for key in ("left", "top", "width", "height")):
+                    continue
+                self.repository.upsert_vendor_field_profile(
+                    po_box=po_box,
+                    normalized_vendor=normalized_vendor,
+                    field_name=field_name,
+                    page_number=int(match.get("page_number") or 1),
+                    page_count=page_count,
+                    normalized_bbox=normalized_bbox,
+                    sample_value=extraction.get(field_name),
+                )

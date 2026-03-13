@@ -82,6 +82,8 @@ class Extractor:
                 if self.has_tesseract:
                     bitmap = page.render(scale=2).to_pil()
                     ocr_page = self._ocr_image(bitmap, page_number + 1)
+                    width = ocr_page.width
+                    height = ocr_page.height
                     words = ocr_page.words
                 pages.append(
                     OcrPage(
@@ -224,16 +226,17 @@ class Extractor:
     ) -> InvoiceExtraction:
         lines = [line.strip() for line in text.splitlines() if line.strip()]
         vendor = next((line for line in lines[:6] if len(line) > 3 and not any(ch.isdigit() for ch in line[:4])), None)
+        hinted_vendor = self._hinted_text(hints, "vendor") or hints.get("matched_vendor")
         payable_to = self._label_text(text, TEXT_LABELS["payable_to"])
         if payable_to:
             vendor = payable_to
-        if hints.get("matched_vendor"):
-            vendor = vendor or hints["matched_vendor"]
-        if not payable_to:
-            payable_to = hints.get("confirmed_fields", {}).get("payable_to")
+        else:
+            vendor = hinted_vendor or vendor
+        payable_to = payable_to or self._hinted_text(hints, "payable_to")
         account_number = self._label_text(text, TEXT_LABELS["account_number"])
-        friendly_name = self._label_text(text, TEXT_LABELS["friendly_name"])
-        name_on_account = self._label_text(text, TEXT_LABELS["name_on_account"])
+        account_number = account_number or self._hinted_text(hints, "account_number")
+        friendly_name = self._label_text(text, TEXT_LABELS["friendly_name"]) or self._hinted_text(hints, "friendly_name")
+        name_on_account = self._label_text(text, TEXT_LABELS["name_on_account"]) or self._hinted_text(hints, "name_on_account")
         invoice_number = self._match_first(
             text,
             [
@@ -241,15 +244,26 @@ class Extractor:
                 r"inv\s*#\s*([A-Z0-9\-\/]+)",
             ],
         )
-        invoice_date = self._label_date(text, DATE_LABELS["invoice_date"]) or self._extract_date(text)
-        due_date = self._label_date(text, DATE_LABELS["due_date"])
+        invoice_number = invoice_number or self._hinted_text(hints, "invoice_number")
+        invoice_date = self._label_date(text, DATE_LABELS["invoice_date"]) or self._extract_date(text) or self._hinted_text(hints, "invoice_date")
+        due_date = self._label_date(text, DATE_LABELS["due_date"]) or self._hinted_text(hints, "due_date")
         subtotal = self._label_amount(text, AMOUNT_LABELS["subtotal"])
         tax = self._label_amount(text, AMOUNT_LABELS["tax"])
         total = self._label_amount(text, AMOUNT_LABELS["total"])
         amount_due = self._label_amount(text, AMOUNT_LABELS["amount_due"])
         previous_amount_due = self._label_amount(text, AMOUNT_LABELS["previous_amount_due"])
-        previous_payment_date = self._label_date(text, DATE_LABELS["previous_payment_date"])
+        previous_payment_date = self._label_date(text, DATE_LABELS["previous_payment_date"]) or self._hinted_text(hints, "previous_payment_date")
         previous_payment_amount = self._label_amount(text, AMOUNT_LABELS["previous_payment_amount"])
+        subtotal = subtotal if subtotal is not None else self._hinted_amount(hints, "subtotal")
+        tax = tax if tax is not None else self._hinted_amount(hints, "tax")
+        total = total if total is not None else self._hinted_amount(hints, "total")
+        amount_due = amount_due if amount_due is not None else self._hinted_amount(hints, "amount_due")
+        previous_amount_due = previous_amount_due if previous_amount_due is not None else self._hinted_amount(hints, "previous_amount_due")
+        previous_payment_amount = (
+            previous_payment_amount
+            if previous_payment_amount is not None
+            else self._hinted_amount(hints, "previous_payment_amount")
+        )
         if total is None:
             numbers = [as_float(match) for match in re.findall(r"\$?\d[\d,]*\.\d{2}", text)]
             totals = [number for number in numbers if number is not None]
@@ -262,15 +276,19 @@ class Extractor:
             currency = "EUR"
         elif "gbp" in text.lower() or "£" in text:
             currency = "GBP"
+        currency = self._hinted_text(hints, "currency") or currency
 
         payment_terms = self._match_first(text, [r"(net\s+\d+)", r"(due on receipt)"])
         if not payment_terms:
-            payment_terms = hints.get("confirmed_fields", {}).get("payment_terms")
+            payment_terms = self._hinted_text(hints, "payment_terms")
 
-        remittance_address = self._label_address_block(lines, ADDRESS_LABELS["remittance_address"])
-        billing_address = self._label_address_block(lines, ADDRESS_LABELS["billing_address"])
-        physical_billing_address = self._label_address_block(lines, ADDRESS_LABELS["physical_billing_address"])
-        service_address = self._label_address_block(lines, ADDRESS_LABELS["service_address"])
+        remittance_address = self._label_address_block(lines, ADDRESS_LABELS["remittance_address"]) or self._hinted_text(hints, "remittance_address")
+        billing_address = self._label_address_block(lines, ADDRESS_LABELS["billing_address"]) or self._hinted_text(hints, "billing_address")
+        physical_billing_address = (
+            self._label_address_block(lines, ADDRESS_LABELS["physical_billing_address"])
+            or self._hinted_text(hints, "physical_billing_address")
+        )
+        service_address = self._label_address_block(lines, ADDRESS_LABELS["service_address"]) or self._hinted_text(hints, "service_address")
 
         line_items = self._extract_line_items(lines)
 
@@ -318,6 +336,25 @@ class Extractor:
             model_source="heuristic",
             learning_hints=hints,
         )
+
+    def _hinted_text(self, hints: dict[str, Any], field_name: str) -> str | None:
+        learned = (hints.get("learned_field_candidates") or {}).get(field_name)
+        if isinstance(learned, dict):
+            value = learned.get("value")
+            if value not in (None, "", []):
+                return str(value)
+        confirmed = (hints.get("confirmed_fields") or {}).get(field_name)
+        if confirmed in (None, "", []):
+            return None
+        return str(confirmed)
+
+    def _hinted_amount(self, hints: dict[str, Any], field_name: str) -> float | None:
+        learned = (hints.get("learned_field_candidates") or {}).get(field_name)
+        if isinstance(learned, dict):
+            learned_value = as_float(learned.get("value"))
+            if learned_value is not None:
+                return learned_value
+        return as_float((hints.get("confirmed_fields") or {}).get(field_name))
 
     def _label_amount(self, text: str, labels: list[str]) -> float | None:
         for label in labels:

@@ -61,6 +61,19 @@ CREATE TABLE IF NOT EXISTS vendor_profiles (
   PRIMARY KEY (po_box, normalized_vendor)
 );
 
+CREATE TABLE IF NOT EXISTS vendor_field_profiles (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  po_box TEXT NOT NULL,
+  normalized_vendor TEXT NOT NULL,
+  field_name TEXT NOT NULL,
+  page_number INTEGER NOT NULL,
+  page_count INTEGER NOT NULL DEFAULT 1,
+  normalized_bbox_json TEXT NOT NULL,
+  sample_value TEXT,
+  sample_count INTEGER NOT NULL DEFAULT 1,
+  updated_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS review_events (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   document_id TEXT NOT NULL,
@@ -103,6 +116,12 @@ class Repository:
             self._ensure_column(connection, "documents", "ingestion_error_message", "TEXT")
             self._ensure_column(connection, "documents", "last_ingestion_attempt_at", "TEXT")
             self._ensure_column(connection, "documents", "ingested_at", "TEXT")
+            connection.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_vendor_field_profiles_lookup
+                ON vendor_field_profiles (po_box, normalized_vendor, field_name, page_count, updated_at DESC)
+                """
+            )
 
     def _ensure_column(self, connection: sqlite3.Connection, table_name: str, column_name: str, definition: str) -> None:
         columns = {
@@ -238,6 +257,23 @@ class Repository:
         params.append(limit)
         with self._connect() as connection:
             rows = connection.execute(query, params).fetchall()
+        return [self._row_to_document(row) for row in rows]
+
+    def list_documents_for_learning(
+        self,
+        po_box: str,
+        statuses: tuple[str, ...] = ("approved",),
+    ) -> list[dict[str, Any]]:
+        placeholders = ",".join("?" for _ in statuses)
+        with self._connect() as connection:
+            rows = connection.execute(
+                f"""
+                SELECT * FROM documents
+                WHERE po_box = ? AND status IN ({placeholders})
+                ORDER BY updated_at DESC, created_at DESC, id DESC
+                """,
+                (po_box, *statuses),
+            ).fetchall()
         return [self._row_to_document(row) for row in rows]
 
     def review_queue_ids(self) -> list[str]:
@@ -421,6 +457,94 @@ class Repository:
                     approved_count,
                     correction_count,
                     json_dumps(confirmed_fields),
+                    utcnow(),
+                ),
+            )
+
+    def get_vendor_field_profiles(
+        self,
+        po_box: str,
+        normalized_vendor: str,
+    ) -> list[dict[str, Any]]:
+        with self._connect() as connection:
+            rows = connection.execute(
+                """
+                SELECT * FROM vendor_field_profiles
+                WHERE po_box = ? AND normalized_vendor = ?
+                ORDER BY sample_count DESC, updated_at DESC, id DESC
+                """,
+                (po_box, normalized_vendor),
+            ).fetchall()
+        return [
+            dict(row)
+            | {
+                "normalized_bbox": json.loads(row["normalized_bbox_json"] or "{}"),
+                "sample_value": json.loads(row["sample_value"]) if row["sample_value"] else None,
+            }
+            for row in rows
+        ]
+
+    def upsert_vendor_field_profile(
+        self,
+        po_box: str,
+        normalized_vendor: str,
+        field_name: str,
+        page_number: int,
+        page_count: int,
+        normalized_bbox: dict[str, Any],
+        sample_value: Any,
+    ) -> None:
+        bbox_json = json_dumps(normalized_bbox)
+        sample_value_json = json.dumps(sample_value, default=str) if sample_value not in (None, "") else None
+        with self._connect() as connection:
+            existing = connection.execute(
+                """
+                SELECT id, sample_count
+                FROM vendor_field_profiles
+                WHERE po_box = ?
+                  AND normalized_vendor = ?
+                  AND field_name = ?
+                  AND page_number = ?
+                  AND page_count = ?
+                  AND normalized_bbox_json = ?
+                ORDER BY id DESC
+                LIMIT 1
+                """,
+                (po_box, normalized_vendor, field_name, page_number, page_count, bbox_json),
+            ).fetchone()
+            if existing:
+                connection.execute(
+                    """
+                    UPDATE vendor_field_profiles
+                    SET sample_count = ?,
+                        sample_value = ?,
+                        updated_at = ?
+                    WHERE id = ?
+                    """,
+                    (
+                        int(existing["sample_count"] or 0) + 1,
+                        sample_value_json,
+                        utcnow(),
+                        existing["id"],
+                    ),
+                )
+                return
+            connection.execute(
+                """
+                INSERT INTO vendor_field_profiles (
+                  po_box, normalized_vendor, field_name, page_number, page_count,
+                  normalized_bbox_json, sample_value, sample_count, updated_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    po_box,
+                    normalized_vendor,
+                    field_name,
+                    page_number,
+                    page_count,
+                    bbox_json,
+                    sample_value_json,
+                    1,
                     utcnow(),
                 ),
             )

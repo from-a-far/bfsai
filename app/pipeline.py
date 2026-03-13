@@ -147,9 +147,18 @@ class PipelineProcessor:
                 return
 
             hints = self.learning.build_hints(po_box, ocr_result.text)
+            learned_field_candidates = self.alignment.extract_from_profiles(
+                hints.get("field_alignment_profiles", []),
+                ocr_result,
+            )
+            if learned_field_candidates:
+                hints = {**hints, "learned_field_candidates": learned_field_candidates}
             extraction = self.extractor.extract(po_box, ocr_result.text, hints)
             verification = self.verifier.verify(extraction, hints)
             field_alignments = self.alignment.align_extraction(extraction.model_dump(), ocr_result)
+            for field_name, payload in learned_field_candidates.items():
+                if field_name not in field_alignments or field_alignments[field_name] is None:
+                    field_alignments[field_name] = payload
             alignment = {
                 "source_filename": original_filename,
                 "review_file_path": str(review_path),
