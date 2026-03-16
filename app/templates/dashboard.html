@@ -11,6 +11,7 @@
     <div><strong>Poll</strong><span>{{ config.poll_seconds }}s</span></div>
     <div><strong>Model</strong><span>{{ config.model }}</span></div>
     <div><strong>Ollama</strong><span>{{ config.ollama_base_url }}</span></div>
+    <div><strong>Strategy</strong><span>{{ config.active_strategy }}</span></div>
     <div><strong>Rails</strong><span>{{ "Enabled" if config.rails_enabled else "Disabled" }}</span></div>
     <div><strong>Rails endpoint</strong><span>{{ config.rails_endpoint }}</span></div>
     <div class="po-box-collapsible">
@@ -37,6 +38,8 @@
   <article class="stat-card"><span>Approved</span><strong>{{ stats.approved_count }}</strong></article>
   <article class="stat-card"><span>Errors</span><strong>{{ stats.error_count }}</strong></article>
   <article class="stat-card"><span>Corrections</span><strong>{{ stats.correction_count }}</strong></article>
+  <article class="stat-card"><span>Corpus</span><strong>{{ stats.corpus_count }}</strong></article>
+  <article class="stat-card"><span>Training Runs</span><strong>{{ stats.training_run_count }}</strong></article>
   <article class="stat-card"><span>Ingested</span><strong>{{ stats.ingested_count }}</strong></article>
   <article class="stat-card"><span>Ingest Failures</span><strong>{{ stats.failed_ingestion_count }}</strong></article>
 </section>

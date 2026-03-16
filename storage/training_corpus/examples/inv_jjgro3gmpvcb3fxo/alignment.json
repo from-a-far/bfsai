@@ -1,0 +1,308 @@
+{
+  "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_jjgro3gmpvcb3fxo_c.pdf",
+  "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_jjgro3gmpvcb3fxo_c.json",
+  "archived_file_path": "storage/document_files/5010095/inv_jjgro3gmpvcb3fxo.pdf",
+  "document_type": "b",
+  "field_alignments": {
+    "account_number": {
+      "bbox": {
+        "height": 17,
+        "left": 228,
+        "top": 83,
+        "width": 137
+      },
+      "confidence": 1,
+      "match_text": "1421 503 0033",
+      "normalized_bbox": {
+        "height": 0.0108,
+        "left": 0.1872,
+        "top": 0.0527,
+        "width": 0.1125
+      },
+      "page_number": 1,
+      "value": "1421 503 0033"
+    },
+    "amount_due": {
+      "bbox": {
+        "height": 9,
+        "left": 308,
+        "top": 629,
+        "width": 16
+      },
+      "confidence": 1,
+      "match_text": "37\"",
+      "normalized_bbox": {
+        "height": 0.0057,
+        "left": 0.2529,
+        "top": 0.3996,
+        "width": 0.0131
+      },
+      "page_number": 1,
+      "value": 1553.37
+    },
+    "billing_address": {
+      "bbox": {
+        "height": 86,
+        "left": 110,
+        "top": 1219,
+        "width": 211
+      },
+      "confidence": 1,
+      "match_text": "MICHAEL D WHITE\nSUSAN L WHITE\n\nPO BOX 5010\n\nMONROE CT 06468-8200",
+      "normalized_bbox": {
+        "height": 0.0625,
+        "left": 0.1032,
+        "top": 0.8853,
+        "width": 0.1979
+      },
+      "page_number": 1,
+      "value": "MICHAEL D WHITE\nSUSAN L WHITE\nPO BOX 5010\nMONROE CT 06468-8200"
+    },
+    "currency": {
+      "bbox": {
+        "height": 17,
+        "left": 131,
+        "top": 161,
+        "width": 11
+      },
+      "confidence": 1,
+      "match_text": "D",
+      "normalized_bbox": {
+        "height": 0.0108,
+        "left": 0.1076,
+        "top": 0.1023,
+        "width": 0.009
+      },
+      "page_number": 1,
+      "value": "USD"
+    },
+    "due_date": {
+      "bbox": {
+        "height": 21,
+        "left": 416,
+        "top": 784,
+        "width": 19
+      },
+      "confidence": 1,
+      "match_text": "9",
+      "normalized_bbox": {
+        "height": 0.0133,
+        "left": 0.3415,
+        "top": 0.4981,
+        "width": 0.0156
+      },
+      "page_number": 1,
+      "value": "09/15/19"
+    },
+    "friendly_name": null,
+    "invoice_date": {
+      "bbox": {
+        "height": 18,
+        "left": 216,
+        "top": 106,
+        "width": 81
+      },
+      "confidence": 1,
+      "match_text": "08/21/19",
+      "normalized_bbox": {
+        "height": 0.0114,
+        "left": 0.1773,
+        "top": 0.0673,
+        "width": 0.0665
+      },
+      "page_number": 1,
+      "value": "08/21/19"
+    },
+    "invoice_number": null,
+    "name_on_account": {
+      "bbox": {
+        "height": 17,
+        "left": 44,
+        "top": 161,
+        "width": 160
+      },
+      "confidence": 1,
+      "match_text": "MICHAEL D WHITE",
+      "normalized_bbox": {
+        "height": 0.0108,
+        "left": 0.0361,
+        "top": 0.1023,
+        "width": 0.1314
+      },
+      "page_number": 1,
+      "value": "MICHAEL D WHITE"
+    },
+    "payable_to": {
+      "bbox": {
+        "height": 58,
+        "left": 32,
+        "top": 958,
+        "width": 310
+      },
+      "confidence": 1,
+      "match_text": "EVERSSURCE",
+      "normalized_bbox": {
+        "height": 0.0421,
+        "left": 0.03,
+        "top": 0.6957,
+        "width": 0.2908
+      },
+      "page_number": 1,
+      "value": "EVERSSURCE"
+    },
+    "payment_terms": null,
+    "physical_billing_address": {
+      "bbox": {
+        "height": 38,
+        "left": 200,
+        "top": 1022,
+        "width": 136
+      },
+      "confidence": 1,
+      "match_text": "1421 503 0033",
+      "normalized_bbox": {
+        "height": 0.0276,
+        "left": 0.1876,
+        "top": 0.7422,
+        "width": 0.1276
+      },
+      "page_number": 1,
+      "value": "1421 503 0033"
+    },
+    "previous_amount_due": {
+      "bbox": {
+        "height": 21,
+        "left": 416,
+        "top": 784,
+        "width": 19
+      },
+      "confidence": 1,
+      "match_text": "9",
+      "normalized_bbox": {
+        "height": 0.0133,
+        "left": 0.3415,
+        "top": 0.4981,
+        "width": 0.0156
+      },
+      "page_number": 1,
+      "value": 1118.29
+    },
+    "previous_payment_amount": {
+      "bbox": {
+        "height": 21,
+        "left": 416,
+        "top": 784,
+        "width": 19
+      },
+      "confidence": 1,
+      "match_text": "9",
+      "normalized_bbox": {
+        "height": 0.0133,
+        "left": 0.3415,
+        "top": 0.4981,
+        "width": 0.0156
+      },
+      "page_number": 1,
+      "value": -1118.29
+    },
+    "previous_payment_date": {
+      "bbox": {
+        "height": 16,
+        "left": 684,
+        "top": 112,
+        "width": 68
+      },
+      "confidence": 1,
+      "match_text": "08/17/19",
+      "normalized_bbox": {
+        "height": 0.0102,
+        "left": 0.5616,
+        "top": 0.0712,
+        "width": 0.0558
+      },
+      "page_number": 1,
+      "value": "08/17/19"
+    },
+    "remittance_address": {
+      "bbox": {
+        "height": 24,
+        "left": 433,
+        "top": 904,
+        "width": 322
+      },
+      "confidence": 1,
+      "match_text": "Eversource, PO Box 56007, Boston, MA 02205-6007",
+      "normalized_bbox": {
+        "height": 0.0174,
+        "left": 0.4062,
+        "top": 0.6565,
+        "width": 0.3021
+      },
+      "page_number": 1,
+      "value": "Eversource, PO Box 56007, Boston, MA 02205-6007"
+    },
+    "service_address": {
+      "bbox": {
+        "height": 52,
+        "left": 188,
+        "top": 195,
+        "width": 160
+      },
+      "confidence": 1,
+      "match_text": "",
+      "normalized_bbox": {
+        "height": 0.0378,
+        "left": 0.176,
+        "top": 0.1417,
+        "width": 0.1498
+      },
+      "page_number": 2,
+      "value": ""
+    },
+    "subtotal": null,
+    "tax": null,
+    "total": {
+      "bbox": {
+        "height": 9,
+        "left": 308,
+        "top": 629,
+        "width": 16
+      },
+      "confidence": 1,
+      "match_text": "37\"",
+      "normalized_bbox": {
+        "height": 0.0057,
+        "left": 0.2529,
+        "top": 0.3996,
+        "width": 0.0131
+      },
+      "page_number": 1,
+      "value": 1553.37
+    },
+    "vendor": {
+      "bbox": {
+        "height": 49,
+        "left": 35,
+        "top": 965,
+        "width": 303
+      },
+      "confidence": 1,
+      "match_text": "EVERSSURCE",
+      "normalized_bbox": {
+        "height": 0.0356,
+        "left": 0.0328,
+        "top": 0.7008,
+        "width": 0.2842
+      },
+      "page_number": 1,
+      "value": "EVERSSURCE"
+    }
+  },
+  "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_jjgro3gmpvcb3fxo.json",
+  "page_count": 2,
+  "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_jjgro3gmpvcb3fxo.pdf",
+  "routed_copy_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/bills/inv_jjgro3gmpvcb3fxo.pdf",
+  "routing_reason": "matched s keyword",
+  "sha256": "5bf3f69a63734cbf97a951272c14771ea0ba667b0051fa84bbdadaf05cc54422",
+  "source_filename": "evsc.pdf"
+}

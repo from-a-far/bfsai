@@ -1,15 +1,26 @@
 from __future__ import annotations
 
+import base64
 import json
+import re
 import shutil
+import subprocess
+import sys
 from pathlib import Path
 from typing import Any
+from urllib.parse import quote
 
-from fastapi import FastAPI, Form, HTTPException, Query, Request
+from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+from .bill_splitter import (
+    default_register_keywords_text,
+    parse_register_keywords,
+    sanitize_upload_filename,
+    split_batch_file,
+)
 from .config import Settings, load_settings
 from .documents import approve_paths, discover_po_boxes, output_json_path, resolve_document_file_path
 from .fields import AMOUNT_FIELDS, FIELD_SPECS, serialize_field_specs
@@ -17,7 +28,10 @@ from .ingestion import RailsIngestionService
 from .learning import LearningService
 from .pipeline import PipelineProcessor
 from .repository import Repository
+from .service_manager import ServiceManager
 from .schemas import DocumentBundle, InvoiceExtraction, InvoiceLineItem
+from .strategy import StrategyService
+from .training import TrainingService
 from .utils import as_float, json_dumps, utcnow
 from .verifier import Verifier
 from .viewer import describe_document_pages, extract_text_from_box, render_page_png
@@ -28,8 +42,11 @@ def create_app() -> FastAPI:
     settings = load_settings()
     repository = Repository(settings.database_path)
     templates = Jinja2Templates(directory="app/templates")
+    strategy = StrategyService(settings, repository)
     pipeline = PipelineProcessor(settings, repository)
     ingestion = RailsIngestionService(settings, repository)
+    training = TrainingService(settings, repository, strategy)
+    service_manager = ServiceManager(settings, Path(__file__).resolve().parents[1])
 
     app.state.settings = settings
     app.state.repository = repository
@@ -38,6 +55,9 @@ def create_app() -> FastAPI:
     app.state.templates = templates
     app.state.pipeline = pipeline
     app.state.ingestion = ingestion
+    app.state.strategy = strategy
+    app.state.training = training
+    app.state.service_manager = service_manager
 
     app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
@@ -158,7 +178,67 @@ def create_app() -> FastAPI:
                 "confirmed_at": utcnow(),
             }
         )
+        approved_document = repository.get_document(document_id)
+        if approved_document:
+            app.state.training.sync_training_example(approved_document)
         repository.record_review_event(document_id, action=event_action, notes=review_notes, payload={"bypass_training": event_action == "quick_approve"})
+
+    def render_bill_splitter_page(
+        request: Request,
+        *,
+        results: list[dict[str, Any]] | None = None,
+        errors: list[str] | None = None,
+        source_directory: str = "",
+        register_keywords: str | None = None,
+        status_code: int = 200,
+    ) -> HTMLResponse:
+        return templates.TemplateResponse(
+            "bill_splitter.html",
+            {
+                "request": request,
+                "results": results or [],
+                "errors": errors or [],
+                "form": {
+                    "source_directory": source_directory,
+                    "register_keywords": register_keywords or default_register_keywords_text(),
+                },
+            },
+            status_code=status_code,
+        )
+
+    def serialize_split_result(result: Any, source_note: str | None = None) -> dict[str, Any]:
+        return {
+            "source_path": str(result.source_path),
+            "output_dir": str(result.output_dir),
+            "register_pages": result.register_pages,
+            "ignored_pages": result.ignored_pages,
+            "register_keywords": result.register_keywords,
+            "notes": [*result.notes, *([source_note] if source_note else [])],
+            "outputs": [
+                {
+                    "bill_index": output.bill_index,
+                    "path": str(output.path),
+                    "page_numbers": output.page_numbers,
+                    "thumbnail_data_uri": f"data:image/png;base64,{base64.b64encode(output.thumbnail_path.read_bytes()).decode('ascii')}",
+                    "download_url": f"/bill-splitter/files?path={quote(str(output.path))}",
+                }
+                for output in result.outputs
+            ],
+        }
+
+    def output_root_for_split_path(path: Path) -> Path | None:
+        resolved = path.expanduser().resolve()
+        if not resolved.exists() or resolved.suffix.lower() != ".pdf":
+            return None
+        parent = resolved.parent
+        return parent if parent.name.endswith("_split") else None
+
+    def upload_staging_path(settings: Settings, filename: str) -> Path:
+        upload_dir = settings.scan_root / "bill_split_uploads"
+        upload_dir.mkdir(parents=True, exist_ok=True)
+        safe_name = sanitize_upload_filename(filename)
+        token = re.sub(r"[^a-z0-9]+", "", utcnow().lower())[:14]
+        return upload_dir / f"{token}_{safe_name}"
 
     @app.get("/", response_class=HTMLResponse)
     def dashboard(
@@ -187,17 +267,188 @@ def create_app() -> FastAPI:
                 "ingestion_status": ingestion_status or "",
             },
             "config": {
+                "scan_root": str(settings.scan_root),
                 "watch_root": str(settings.watch_root),
                 "database_path": str(settings.database_path),
                 "poll_seconds": settings.poll_seconds,
                 "model": settings.ollama.model,
                 "ollama_base_url": settings.ollama.base_url,
+                "active_strategy": app.state.strategy.active_strategy_name(),
+                "strategy_profiles": app.state.strategy.list_profiles(),
                 "rails_enabled": settings.rails.enabled,
                 "rails_endpoint": f"{settings.rails.base_url.rstrip('/')}{settings.rails.endpoint_path}",
                 "po_boxes": discover_po_boxes(settings),
             },
         }
         return templates.TemplateResponse("dashboard.html", context)
+
+    @app.get("/training", response_class=HTMLResponse)
+    def training_dashboard(
+        request: Request,
+        po_box: str | None = Query(default=None),
+        vendor: str | None = Query(default=None),
+    ) -> HTMLResponse:
+        app.state.training.backfill_from_approved(limit=500)
+        examples = repository.list_training_examples(po_box=po_box, vendor=vendor, limit=500)
+        runs = repository.list_training_runs(limit=100)
+        context = {
+            "request": request,
+            "examples": examples,
+            "runs": runs,
+            "filters": {"po_box": po_box or "", "vendor": vendor or ""},
+            "strategies": app.state.strategy.list_profiles(),
+            "active_strategy": app.state.strategy.active_strategy_name(),
+            "activations": repository.list_strategy_activations(limit=25),
+        }
+        return templates.TemplateResponse("training.html", context)
+
+    @app.post("/training/runs")
+    def create_training_run(
+        name: str = Form(""),
+        strategy_name: str = Form("ppstruct_layoutlm_qwen"),
+        selected_document_ids: list[str] = Form(default=[]),
+        notes: str = Form(""),
+    ) -> RedirectResponse:
+        document_ids = [document_id for document_id in selected_document_ids if document_id]
+        if not document_ids:
+            raise HTTPException(status_code=400, detail="Select at least one approved document")
+        run_name = name.strip() or f"Training run {utcnow()}"
+        try:
+            training_run = app.state.training.create_training_run(
+                name=run_name,
+                strategy_name=strategy_name,
+                document_ids=document_ids,
+                notes=notes,
+            )
+        except ValueError as error:
+            raise HTTPException(status_code=400, detail=str(error)) from error
+        return RedirectResponse(url=f"/training?run_id={training_run['id']}", status_code=303)
+
+    @app.post("/training/runs/{run_id}/activate")
+    def activate_training_run(run_id: str) -> RedirectResponse:
+        try:
+            app.state.training.activate_training_run(run_id)
+        except ValueError as error:
+            raise HTTPException(status_code=404, detail=str(error)) from error
+        return RedirectResponse(url="/training", status_code=303)
+
+    @app.post("/strategies/activate")
+    def activate_strategy(strategy_name: str = Form(...)) -> RedirectResponse:
+        app.state.strategy.activate_strategy(strategy_name, notes="Manual activation from admin UI")
+        return RedirectResponse(url="/training", status_code=303)
+
+    @app.get("/services", response_class=HTMLResponse)
+    def services_dashboard(request: Request) -> HTMLResponse:
+        context = {
+            "request": request,
+            "services": app.state.service_manager.status(),
+            "strategy_status": app.state.strategy.status(),
+            "script_paths": {
+                "manage_services": str(Path(__file__).resolve().parents[1] / "scripts" / "manage_services.py"),
+                "switch_strategy": str(Path(__file__).resolve().parents[1] / "scripts" / "switch_strategy.py"),
+            },
+        }
+        return templates.TemplateResponse("services.html", context)
+
+    @app.post("/services/{service_name}/{action}")
+    def service_action(service_name: str, action: str) -> RedirectResponse:
+        if service_name not in {"api", "worker", "all"}:
+            raise HTTPException(status_code=400, detail="Unknown service")
+        if action not in {"start", "stop", "restart"}:
+            raise HTTPException(status_code=400, detail="Unknown action")
+        script_path = Path(__file__).resolve().parents[1] / "scripts" / "manage_services.py"
+        subprocess.Popen(
+            [sys.executable, str(script_path), action, service_name],
+            cwd=Path(__file__).resolve().parents[1],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            stdin=subprocess.DEVNULL,
+            start_new_session=True,
+        )
+        return RedirectResponse(url="/services", status_code=303)
+
+    @app.get("/bill-splitter", response_class=HTMLResponse)
+    def bill_splitter_page(request: Request) -> HTMLResponse:
+        return render_bill_splitter_page(request)
+
+    @app.post("/bill-splitter", response_class=HTMLResponse)
+    async def bill_splitter_upload(
+        request: Request,
+        files: list[UploadFile] = File(default=[]),
+        source_directory: str = Form(""),
+        register_keywords: str = Form(default_register_keywords_text()),
+    ) -> HTMLResponse:
+        selected_files = [upload for upload in files if upload.filename]
+        if not selected_files:
+            return render_bill_splitter_page(
+                request,
+                errors=["Select at least one batch PDF or scan image to split."],
+                source_directory=source_directory,
+                register_keywords=register_keywords,
+                status_code=400,
+            )
+
+        source_root: Path | None = None
+        if source_directory.strip():
+            source_root = Path(source_directory).expanduser()
+            if not source_root.exists() or not source_root.is_dir():
+                return render_bill_splitter_page(
+                    request,
+                    errors=[f"Original folder not found: {source_root}"],
+                    source_directory=source_directory,
+                    register_keywords=register_keywords,
+                    status_code=400,
+                )
+
+        results: list[dict[str, Any]] = []
+        errors: list[str] = []
+        active_keywords = parse_register_keywords(register_keywords)
+
+        for upload in selected_files:
+            try:
+                original_name = Path(upload.filename or "batch.pdf").name
+                staged_name = sanitize_upload_filename(original_name)
+                source_note = None
+                if source_root is not None:
+                    candidate_source = (source_root / original_name).resolve()
+                    if candidate_source.exists():
+                        source_path = candidate_source
+                        source_note = "Processed the on-disk source file so the split PDFs were written beside it."
+                    else:
+                        staged_path = upload_staging_path(settings, staged_name)
+                        staged_path.write_bytes(await upload.read())
+                        source_path = staged_path
+                        source_note = f"{original_name} was not found in {source_root}, so an uploaded copy was staged under {staged_path.parent}."
+                else:
+                    staged_path = upload_staging_path(settings, staged_name)
+                    staged_path.write_bytes(await upload.read())
+                    source_path = staged_path
+                    source_note = f"Processed an uploaded copy staged under {staged_path.parent}."
+
+                result = split_batch_file(source_path, register_keywords=active_keywords)
+                results.append(serialize_split_result(result, source_note))
+            except Exception as error:
+                errors.append(f"{upload.filename or 'batch'}: {error}")
+            finally:
+                await upload.close()
+
+        status_code = 200 if results else 400
+        return render_bill_splitter_page(
+            request,
+            results=results,
+            errors=errors,
+            source_directory=source_directory,
+            register_keywords=register_keywords,
+            status_code=status_code,
+        )
+
+    @app.get("/bill-splitter/files")
+    def bill_splitter_file(path: str = Query(...)) -> FileResponse:
+        file_path = Path(path).expanduser().resolve()
+        output_root = output_root_for_split_path(file_path)
+        if output_root is None or file_path.parent != output_root:
+            raise HTTPException(status_code=404, detail="Split PDF not found")
+        return FileResponse(str(file_path), media_type="application/pdf", filename=file_path.name)
 
     @app.get("/documents/{document_id}", response_class=HTMLResponse)
     def document_detail(request: Request, document_id: str) -> HTMLResponse:

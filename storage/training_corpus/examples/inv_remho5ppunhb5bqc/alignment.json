@@ -1,0 +1,253 @@
+{
+  "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_remho5ppunhb5bqc_c.pdf",
+  "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_remho5ppunhb5bqc_c.json",
+  "archived_file_path": "storage/document_files/5010095/inv_remho5ppunhb5bqc.pdf",
+  "document_type": "b",
+  "field_alignments": {
+    "account_number": null,
+    "amount_due": {
+      "bbox": {
+        "height": 30,
+        "left": 912,
+        "top": 1263,
+        "width": 84
+      },
+      "confidence": 1,
+      "match_text": "$2,633.41",
+      "normalized_bbox": {
+        "height": 0.0218,
+        "left": 0.8555,
+        "top": 0.9185,
+        "width": 0.0788
+      },
+      "page_number": 1,
+      "value": 2633.41
+    },
+    "billing_address": {
+      "bbox": {
+        "height": 57,
+        "left": 131,
+        "top": 297,
+        "width": 137
+      },
+      "confidence": 1,
+      "match_text": "White Residence PO Box 5010 Monroe, Ct 06468",
+      "normalized_bbox": {
+        "height": 0.0363,
+        "left": 0.1076,
+        "top": 0.1891,
+        "width": 0.1125
+      },
+      "page_number": 1,
+      "value": "White Residence, PO Box 5010, Monroe, Ct 06468"
+    },
+    "currency": null,
+    "due_date": null,
+    "friendly_name": {
+      "bbox": {
+        "height": 22,
+        "left": 62,
+        "top": 53,
+        "width": 178
+      },
+      "confidence": 1,
+      "match_text": "HOOD LAND SVC",
+      "normalized_bbox": {
+        "height": 0.016,
+        "left": 0.0582,
+        "top": 0.0385,
+        "width": 0.167
+      },
+      "page_number": 1,
+      "value": "HOOD LAND SVC"
+    },
+    "invoice_date": {
+      "bbox": {
+        "height": 13,
+        "left": 908,
+        "top": 179,
+        "width": 72
+      },
+      "confidence": 1,
+      "match_text": "8/15/2019",
+      "normalized_bbox": {
+        "height": 0.0083,
+        "left": 0.7455,
+        "top": 0.1139,
+        "width": 0.0591
+      },
+      "page_number": 1,
+      "value": "8/15/2019"
+    },
+    "invoice_number": {
+      "bbox": {
+        "height": 24,
+        "left": 920,
+        "top": 149,
+        "width": 50
+      },
+      "confidence": 1,
+      "match_text": "3798",
+      "normalized_bbox": {
+        "height": 0.0175,
+        "left": 0.863,
+        "top": 0.1084,
+        "width": 0.0469
+      },
+      "page_number": 1,
+      "value": "3798"
+    },
+    "name_on_account": {
+      "bbox": {
+        "height": 13,
+        "left": 131,
+        "top": 297,
+        "width": 122
+      },
+      "confidence": 1,
+      "match_text": "White Residence",
+      "normalized_bbox": {
+        "height": 0.0083,
+        "left": 0.1076,
+        "top": 0.1891,
+        "width": 0.1002
+      },
+      "page_number": 1,
+      "value": "White Residence"
+    },
+    "payable_to": {
+      "bbox": {
+        "height": 17,
+        "left": 76,
+        "top": 68,
+        "width": 194
+      },
+      "confidence": 1,
+      "match_text": "HOOD LAND SVC",
+      "normalized_bbox": {
+        "height": 0.0108,
+        "left": 0.0624,
+        "top": 0.0433,
+        "width": 0.1593
+      },
+      "page_number": 1,
+      "value": "HOOD LAND SVC"
+    },
+    "payment_terms": null,
+    "physical_billing_address": {
+      "confidence": 0.7000000000000001,
+      "match_text": "White Residence\nPO Box 5010\nCt 06468 Monroe,",
+      "normalized_bbox": {
+        "height": 0.0495,
+        "left": 0.1041,
+        "top": 0.1825,
+        "width": 0.1323
+      },
+      "page_number": 1,
+      "sample_count": 1,
+      "source": "vendor_field_profile",
+      "value": "White Residence\nPO Box 5010\nCt 06468 Monroe,"
+    },
+    "previous_amount_due": null,
+    "previous_payment_amount": null,
+    "previous_payment_date": null,
+    "remittance_address": {
+      "bbox": {
+        "height": 91,
+        "left": 76,
+        "top": 68,
+        "width": 194
+      },
+      "confidence": 1,
+      "match_text": "HOOD LAND SVC P.O. Box 701058 Wabasso, FL 32970",
+      "normalized_bbox": {
+        "height": 0.0579,
+        "left": 0.0624,
+        "top": 0.0433,
+        "width": 0.1593
+      },
+      "page_number": 1,
+      "value": "HOOD LAND SVC\nP.O. Box 701058\nWabasso, FL 32970"
+    },
+    "service_address": null,
+    "subtotal": {
+      "bbox": {
+        "height": 26,
+        "left": 921,
+        "top": 1062,
+        "width": 79
+      },
+      "confidence": 1,
+      "match_text": "$2,630.50",
+      "normalized_bbox": {
+        "height": 0.0189,
+        "left": 0.864,
+        "top": 0.7724,
+        "width": 0.0741
+      },
+      "page_number": 1,
+      "value": 2630.5
+    },
+    "tax": {
+      "bbox": {
+        "height": 28,
+        "left": 942,
+        "top": 1112,
+        "width": 56
+      },
+      "confidence": 1,
+      "match_text": "$2.91",
+      "normalized_bbox": {
+        "height": 0.0204,
+        "left": 0.8837,
+        "top": 0.8087,
+        "width": 0.0525
+      },
+      "page_number": 1,
+      "value": 2.91
+    },
+    "total": {
+      "bbox": {
+        "height": 27,
+        "left": 924,
+        "top": 1164,
+        "width": 74
+      },
+      "confidence": 1,
+      "match_text": "$2,633.41",
+      "normalized_bbox": {
+        "height": 0.0196,
+        "left": 0.8668,
+        "top": 0.8465,
+        "width": 0.0694
+      },
+      "page_number": 1,
+      "value": 2633.41
+    },
+    "vendor": {
+      "bbox": {
+        "height": 17,
+        "left": 76,
+        "top": 68,
+        "width": 194
+      },
+      "confidence": 1,
+      "match_text": "HOOD LAND SVC",
+      "normalized_bbox": {
+        "height": 0.0108,
+        "left": 0.0624,
+        "top": 0.0433,
+        "width": 0.1593
+      },
+      "page_number": 1,
+      "value": "HOOD LAND SVC"
+    }
+  },
+  "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_remho5ppunhb5bqc.json",
+  "page_count": 1,
+  "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_remho5ppunhb5bqc.pdf",
+  "routed_copy_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/bills/inv_remho5ppunhb5bqc.pdf",
+  "routing_reason": "defaulted to bill because amount due was detected",
+  "sha256": "e03eaec30b6091a6289f213ba63d37d92700b40699b6acca447de38508ea5ebb",
+  "source_filename": "hood.pdf"
+}

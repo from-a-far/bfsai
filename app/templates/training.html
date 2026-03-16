@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <h1>Training admin</h1>
+    <p>Curate corrected invoices, generate a reusable corpus, benchmark strategies, and activate improved extraction packs.</p>
+  </div>
+  <div class="config-box">
+    <div><strong>Active strategy</strong><span>{{ active_strategy }}</span></div>
+    <div><strong>Corpus examples</strong><span>{{ examples|length }}</span></div>
+    <div><strong>Training runs</strong><span>{{ runs|length }}</span></div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Run training</h2>
+    <span>Select approved invoices to build a corpus and benchmark a candidate strategy.</span>
+  </div>
+  <form method="get" class="filters">
+    <input type="text" name="po_box" placeholder="PO Box" value="{{ filters.po_box }}" />
+    <input type="text" name="vendor" placeholder="Vendor" value="{{ filters.vendor }}" />
+    <button type="submit">Filter</button>
+  </form>
+  <form method="post" action="/training/runs" class="training-form">
+    <div class="form-grid">
+      <label>
+        <span>Run name</span>
+        <input type="text" name="name" placeholder="March PP-Structure benchmark" />
+      </label>
+      <label>
+        <span>Candidate strategy</span>
+        <select name="strategy_name">
+          {% for strategy in strategies if strategy.name != active_strategy %}
+          <option value="{{ strategy.name }}">{{ strategy.label }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    </div>
+    <label>
+      <span>Notes</span>
+      <textarea name="notes" rows="3" placeholder="Optional context for this run"></textarea>
+    </label>
+    <div class="panel-heading">
+      <h3>Approved corpus candidates</h3>
+      <span>{{ examples|length }} examples ready</span>
+    </div>
+    <div class="training-example-list">
+      {% for example in examples %}
+      <label class="training-example">
+        <input type="checkbox" name="selected_document_ids" value="{{ example.document_id }}" checked />
+        <div>
+          <strong>{{ example.document_id }}</strong>
+          <span>{{ example.po_box }} · {{ example.vendor or "Unknown vendor" }}</span>
+          <span>{{ example.strategy_source }}</span>
+        </div>
+      </label>
+      {% else %}
+      <p>No approved documents have been exported into the training corpus yet.</p>
+      {% endfor %}
+    </div>
+    <button type="submit">Build corpus and benchmark</button>
+  </form>
+</section>
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Strategy switching</h2>
+    <span>Manual override between the current system and the PP-StructureV3/LayoutLMv3/Qwen stack.</span>
+  </div>
+  <div class="strategy-grid">
+    {% for strategy in strategies %}
+    <article class="strategy-card {% if strategy.is_active %}strategy-card-active{% endif %}">
+      <h3>{{ strategy.label }}</h3>
+      <p>{{ strategy.description }}</p>
+      <div class="strategy-meta">
+        <span>{{ strategy.kind }}</span>
+        <span>{{ "active" if strategy.is_active else "inactive" }}</span>
+      </div>
+      {% if not strategy.is_active %}
+      <form method="post" action="/strategies/activate">
+        <input type="hidden" name="strategy_name" value="{{ strategy.name }}" />
+        <button type="submit">Activate</button>
+      </form>
+      {% endif %}
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Training runs</h2>
+    <span>Benchmark candidate strategy performance against approved ground truth.</span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Strategy</th>
+        <th>Status</th>
+        <th>Examples</th>
+        <th>Baseline</th>
+        <th>Candidate</th>
+        <th>Improved</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for run in runs %}
+      <tr>
+        <td>{{ run.name }}</td>
+        <td>{{ run.strategy_name }}</td>
+        <td><span class="status status-{{ run.status }}">{{ run.status }}</span></td>
+        <td>{{ run.example_count }}</td>
+        <td>{{ run.results.baseline.average_score if run.results.baseline else "n/a" }}</td>
+        <td>{{ run.results.candidate.average_score if run.results.candidate else "n/a" }}</td>
+        <td>{{ "Yes" if run.results.improved else "No" }}</td>
+        <td>
+          {% if run.results.improved and run.status != "active" %}
+          <form method="post" action="/training/runs/{{ run.id }}/activate">
+            <button type="submit">Put into use</button>
+          </form>
+          {% else %}
+          <span style="color:var(--muted)">No action</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="8">No training runs yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Activation history</h2>
+    <span>Recent strategy switches applied to the runtime.</span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Strategy</th>
+        <th>Run</th>
+        <th>Notes</th>
+        <th>When</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for event in activations %}
+      <tr>
+        <td>{{ event.strategy_name }}</td>
+        <td>{{ event.training_run_id or "manual" }}</td>
+        <td>{{ event.notes or "" }}</td>
+        <td>{{ event.created_at }}</td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4">No activation history yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

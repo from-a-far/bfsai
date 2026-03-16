@@ -1,0 +1,685 @@
+{
+  "account_number": "1243-HS CONTRACT ID: WHITE- 577 SEAVIEW- HOUSE",
+  "amount_due": 329.4,
+  "billing_address": "MRS. MICHAEL WHITE MR.\r\nPO BOX 5010\r\nMONROE, CT 06468",
+  "confidence": 0.99,
+  "currency": "USD",
+  "due_date": null,
+  "friendly_name": "ROGERS&MARNEY, INC. BUILDERS",
+  "invoice_date": "8/23/19",
+  "invoice_number": "18740",
+  "learning_hints": {
+    "approved_count": 2,
+    "confirmed_fields": {
+      "account_number": "CONTRACT ID: 1243-HS WHITE- 577 SEAVIEW- HOUSE",
+      "amount_due": 329.4,
+      "billing_address": "MR. & MRS. MICHAEL WHITE\r\nPO BOX 5010\r\nMONROE, CT 06468",
+      "currency": "USD",
+      "friendly_name": "ROGERS&MARNEY,INC. BUILDERS",
+      "invoice_date": "8/23/19",
+      "invoice_number": "18740",
+      "name_on_account": "MR. & MRS. MICHAEL WHITE",
+      "payable_to": "ROGERS&MARNEY, INC. BUILDERS",
+      "payment_terms": "NET 10",
+      "physical_billing_address": "MR. & MRS. MICHAEL WHITE\r\nPO BOX 5010\r\nMONROE, CT 06468",
+      "remittance_address": "PO Box 310. Osterville, Massachusetts 02655",
+      "service_address": "577 SEA VIEW AVENUE\r\nOSTERVILLE, MA 02655",
+      "subtotal": 329.4,
+      "total": 329.4,
+      "vendor": "ROGERS&MARNEY, INC."
+    },
+    "correction_count": 20,
+    "field_alignment_profiles": [
+      {
+        "field_name": "payment_terms",
+        "id": 49,
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.1422,
+          "top": 0.5648,
+          "width": 0.0435
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0076,\n  \"left\": 0.1422,\n  \"top\": 0.5648,\n  \"width\": 0.0435\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 2,
+        "sample_value": "NET 10",
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "invoice_date",
+        "id": 45,
+        "normalized_bbox": {
+          "height": 0.0146,
+          "left": 0.6631,
+          "top": 0.2351,
+          "width": 0.0468
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0146,\n  \"left\": 0.6631,\n  \"top\": 0.2351,\n  \"width\": 0.0468\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 2,
+        "sample_value": "8/23/19",
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "amount_due",
+        "id": 59,
+        "normalized_bbox": {
+          "height": 0.0196,
+          "left": 0.831,
+          "top": 0.512,
+          "width": 0.0657
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0196,\n  \"left\": 0.831,\n  \"top\": 0.512,\n  \"width\": 0.0657\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 329.4,
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "total",
+        "id": 58,
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.848,
+          "top": 0.4276,
+          "width": 0.0394
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0076,\n  \"left\": 0.848,\n  \"top\": 0.4276,\n  \"width\": 0.0394\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 329.4,
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "subtotal",
+        "id": 57,
+        "normalized_bbox": {
+          "height": 0.0145,
+          "left": 0.8432,
+          "top": 0.4408,
+          "width": 0.0479
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0145,\n  \"left\": 0.8432,\n  \"top\": 0.4408,\n  \"width\": 0.0479\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 329.4,
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "invoice_number",
+        "id": 56,
+        "normalized_bbox": {
+          "height": 0.0123,
+          "left": 0.5793,
+          "top": 0.2367,
+          "width": 0.0507
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0123,\n  \"left\": 0.5793,\n  \"top\": 0.2367,\n  \"width\": 0.0507\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "18740",
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "name_on_account",
+        "id": 55,
+        "normalized_bbox": {
+          "height": 0.0174,
+          "left": 0.0761,
+          "top": 0.1939,
+          "width": 0.2366
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0174,\n  \"left\": 0.0761,\n  \"top\": 0.1939,\n  \"width\": 0.2366\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "MR. & MRS. MICHAEL WHITE",
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "account_number",
+        "id": 54,
+        "normalized_bbox": {
+          "height": 0.0378,
+          "left": 0.5549,
+          "top": 0.2869,
+          "width": 0.2338
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0378,\n  \"left\": 0.5549,\n  \"top\": 0.2869,\n  \"width\": 0.2338\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "CONTRACT ID: 1243-HS WHITE- 577 SEAVIEW- HOUSE",
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "service_address",
+        "id": 53,
+        "normalized_bbox": {
+          "height": 0.037,
+          "left": 0.0826,
+          "top": 0.3065,
+          "width": 0.1897
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.037,\n  \"left\": 0.0826,\n  \"top\": 0.3065,\n  \"width\": 0.1897\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "577 SEA VIEW AVENUE \r\nOSTERVILLE, MA 02655",
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "billing_address",
+        "id": 52,
+        "normalized_bbox": {
+          "height": 0.0479,
+          "left": 0.0779,
+          "top": 0.1954,
+          "width": 0.2329
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0479,\n  \"left\": 0.0779,\n  \"top\": 0.1954,\n  \"width\": 0.2329\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "MR. & MRS. MICHAEL WHITE \r\nPO BOX 5010 \r\nMONROE, CT 06468",
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "remittance_address",
+        "id": 51,
+        "normalized_bbox": {
+          "height": 0.0225,
+          "left": 0.0948,
+          "top": 0.955,
+          "width": 0.3108
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0225,\n  \"left\": 0.0948,\n  \"top\": 0.955,\n  \"width\": 0.3108\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "PO Box 310. Osterville, Massachusetts 02655",
+        "updated_at": "2026-03-12T08:55:19+00:00"
+      },
+      {
+        "field_name": "payable_to",
+        "id": 50,
+        "normalized_bbox": {
+          "height": 0.0341,
+          "left": 0.3577,
+          "top": 0.0951,
+          "width": 0.2995
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0341,\n  \"left\": 0.3577,\n  \"top\": 0.0951,\n  \"width\": 0.2995\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "ROGERS&MARNEY INC. BUILDERS",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "amount_due",
+        "id": 48,
+        "normalized_bbox": {
+          "height": 0.0254,
+          "left": 0.8244,
+          "top": 0.5113,
+          "width": 0.0751
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0254,\n  \"left\": 0.8244,\n  \"top\": 0.5113,\n  \"width\": 0.0751\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 329.4,
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "total",
+        "id": 47,
+        "normalized_bbox": {
+          "height": 0.024,
+          "left": 0.8291,
+          "top": 0.5105,
+          "width": 0.0704
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.024,\n  \"left\": 0.8291,\n  \"top\": 0.5105,\n  \"width\": 0.0704\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 329.4,
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "subtotal",
+        "id": 46,
+        "normalized_bbox": {
+          "height": 0.0145,
+          "left": 0.8432,
+          "top": 0.4401,
+          "width": 0.0469
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0145,\n  \"left\": 0.8432,\n  \"top\": 0.4401,\n  \"width\": 0.0469\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 329.4,
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "invoice_number",
+        "id": 44,
+        "normalized_bbox": {
+          "height": 0.0167,
+          "left": 0.5822,
+          "top": 0.2346,
+          "width": 0.0441
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0167,\n  \"left\": 0.5822,\n  \"top\": 0.2346,\n  \"width\": 0.0441\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "18740",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "friendly_name",
+        "id": 43,
+        "normalized_bbox": {
+          "height": 0.0443,
+          "left": 0.3596,
+          "top": 0.0893,
+          "width": 0.2901
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0443,\n  \"left\": 0.3596,\n  \"top\": 0.0893,\n  \"width\": 0.2901\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "ROGERS&MARNEY,INC. BUILDERS",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "account_number",
+        "id": 42,
+        "normalized_bbox": {
+          "height": 0.0407,
+          "left": 0.5502,
+          "top": 0.2847,
+          "width": 0.2385
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0407,\n  \"left\": 0.5502,\n  \"top\": 0.2847,\n  \"width\": 0.2385\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "CONTRACT ID: 1243-HS WHITE- 577 SEAVIEW- HOUSE",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "service_address",
+        "id": 41,
+        "normalized_bbox": {
+          "height": 0.0327,
+          "left": 0.0798,
+          "top": 0.3072,
+          "width": 0.2009
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0327,\n  \"left\": 0.0798,\n  \"top\": 0.3072,\n  \"width\": 0.2009\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "577 SEA VIEW AVENUE\r\nOSTERVILLE, MA 02655",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "physical_billing_address",
+        "id": 40,
+        "normalized_bbox": {
+          "height": 0.0581,
+          "left": 0.0779,
+          "top": 0.1924,
+          "width": 0.2282
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0581,\n  \"left\": 0.0779,\n  \"top\": 0.1924,\n  \"width\": 0.2282\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "MR. & MRS. MICHAEL WHITE\r\nPO BOX 5010\r\nMONROE, CT 06468",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "billing_address",
+        "id": 39,
+        "normalized_bbox": {
+          "height": 0.0566,
+          "left": 0.0808,
+          "top": 0.1939,
+          "width": 0.2244
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0566,\n  \"left\": 0.0808,\n  \"top\": 0.1939,\n  \"width\": 0.2244\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "MR. & MRS. MICHAEL WHITE\r\nPO BOX 5010\r\nMONROE, CT 06468",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "remittance_address",
+        "id": 38,
+        "normalized_bbox": {
+          "height": 0.0174,
+          "left": 0.0967,
+          "top": 0.9579,
+          "width": 0.3052
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0174,\n  \"left\": 0.0967,\n  \"top\": 0.9579,\n  \"width\": 0.3052\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "PO Box 310. Osterville, Massachusetts 02655",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "payable_to",
+        "id": 37,
+        "normalized_bbox": {
+          "height": 0.0385,
+          "left": 0.3624,
+          "top": 0.0908,
+          "width": 0.2798
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0385,\n  \"left\": 0.3624,\n  \"top\": 0.0908,\n  \"width\": 0.2798\n}",
+        "normalized_vendor": "rogers marney inc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "ROGERS&MARNEY, INC. BUILDERS",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      }
+    ],
+    "learned_field_candidates": {
+      "account_number": {
+        "confidence": 0.7000000000000001,
+        "match_text": "1243-HS CONTRACT ID:\nWHITE- 577 SEAVIEW- HOUSE",
+        "normalized_bbox": {
+          "height": 0.0378,
+          "left": 0.5549,
+          "top": 0.2869,
+          "width": 0.2338
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "1243-HS CONTRACT ID: WHITE- 577 SEAVIEW- HOUSE"
+      },
+      "amount_due": {
+        "confidence": 0.7000000000000001,
+        "match_text": "$329.40",
+        "normalized_bbox": {
+          "height": 0.0196,
+          "left": 0.831,
+          "top": 0.512,
+          "width": 0.0657
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": 329.4
+      },
+      "billing_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "MRS. MICHAEL WHITE MR.\nPO BOX 5010\nMONROE, CT 06468",
+        "normalized_bbox": {
+          "height": 0.0479,
+          "left": 0.0779,
+          "top": 0.1954,
+          "width": 0.2329
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "MRS. MICHAEL WHITE MR.\nPO BOX 5010\nMONROE, CT 06468"
+      },
+      "friendly_name": {
+        "confidence": 0.7000000000000001,
+        "match_text": "ROGERS&MARNEY, INC.\nBUILDERS",
+        "normalized_bbox": {
+          "height": 0.0443,
+          "left": 0.3596,
+          "top": 0.0893,
+          "width": 0.2901
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "ROGERS&MARNEY, INC. BUILDERS"
+      },
+      "invoice_date": {
+        "confidence": 0.75,
+        "match_text": "8/23/19",
+        "normalized_bbox": {
+          "height": 0.0146,
+          "left": 0.6631,
+          "top": 0.2351,
+          "width": 0.0468
+        },
+        "page_number": 1,
+        "sample_count": 2,
+        "source": "vendor_field_profile",
+        "value": "8/23/19"
+      },
+      "invoice_number": {
+        "confidence": 0.7000000000000001,
+        "match_text": "18740",
+        "normalized_bbox": {
+          "height": 0.0123,
+          "left": 0.5793,
+          "top": 0.2367,
+          "width": 0.0507
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "18740"
+      },
+      "name_on_account": {
+        "confidence": 0.7000000000000001,
+        "match_text": "MRS. MICHAEL WHITE MR.",
+        "normalized_bbox": {
+          "height": 0.0174,
+          "left": 0.0761,
+          "top": 0.1939,
+          "width": 0.2366
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "MRS. MICHAEL WHITE MR."
+      },
+      "payable_to": {
+        "confidence": 0.7000000000000001,
+        "match_text": "ROGERS&MARNEY, INC.\nBUILDERS",
+        "normalized_bbox": {
+          "height": 0.0341,
+          "left": 0.3577,
+          "top": 0.0951,
+          "width": 0.2995
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "ROGERS&MARNEY, INC. BUILDERS"
+      },
+      "payment_terms": {
+        "confidence": 0.75,
+        "match_text": "NET 10",
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.1422,
+          "top": 0.5648,
+          "width": 0.0435
+        },
+        "page_number": 1,
+        "sample_count": 2,
+        "source": "vendor_field_profile",
+        "value": "NET 10"
+      },
+      "physical_billing_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "MRS. MICHAEL WHITE MR.\nPO BOX 5010\nMONROE, CT 06468",
+        "normalized_bbox": {
+          "height": 0.0581,
+          "left": 0.0779,
+          "top": 0.1924,
+          "width": 0.2282
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "MRS. MICHAEL WHITE MR.\nPO BOX 5010\nMONROE, CT 06468"
+      },
+      "remittance_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "PO Box 310. Osterville, Massachusetts 02655\n.",
+        "normalized_bbox": {
+          "height": 0.0225,
+          "left": 0.0948,
+          "top": 0.955,
+          "width": 0.3108
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "PO Box 310. Osterville, Massachusetts 02655\n."
+      },
+      "service_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "SEA VIEW AVENUE 577\nOSTERVILLE, MA 02655",
+        "normalized_bbox": {
+          "height": 0.037,
+          "left": 0.0826,
+          "top": 0.3065,
+          "width": 0.1897
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "SEA VIEW AVENUE 577\nOSTERVILLE, MA 02655"
+      },
+      "subtotal": {
+        "confidence": 0.7000000000000001,
+        "match_text": "329.40",
+        "normalized_bbox": {
+          "height": 0.0145,
+          "left": 0.8432,
+          "top": 0.4408,
+          "width": 0.0479
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": 329.4
+      },
+      "total": {
+        "confidence": 0.7000000000000001,
+        "match_text": "329.40",
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.848,
+          "top": 0.4276,
+          "width": 0.0394
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": 329.4
+      }
+    },
+    "matched_vendor": "ROGERS&MARNEY, INC.",
+    "matched_vendor_normalized": "rogers marney inc"
+  },
+  "line_items": [
+    {
+      "amount": 329.4,
+      "description": "CMC ELEVATOR CORPORATION 275 08/05/19 ELEVATOR SERVICE/ POWER OUTAGE",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 329.4,
+      "description": "Subcontract sub-total",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 329.4,
+      "description": "Amount due this invoice",
+      "quantity": null,
+      "unit_price": null
+    }
+  ],
+  "model_source": "heuristic+confirmed",
+  "name_on_account": "MRS. MICHAEL WHITE MR.",
+  "payable_to": "ROGERS&MARNEY, INC. BUILDERS",
+  "payment_terms": "NET 10",
+  "physical_billing_address": "MRS. MICHAEL WHITE MR.\r\nPO BOX 5010\r\nMONROE, CT 06468",
+  "po_box": "5010095",
+  "previous_amount_due": null,
+  "previous_payment_amount": null,
+  "previous_payment_date": null,
+  "raw_text_excerpt": "& ROGERS&MARNEY, INC. BUILDERS MR. & MRS. MICHAEL WHITE DRAW PO BOX 5010 NUMBER MONROE, CT 06468 NUMBER 18740 8/23/19 1243-HS00234 LOCATION: CONTRACT ID: 1243-HS 577 SEA VIEW AVENUE WHITE- 577 SEAVIEW- HOUSE OSTERVILLE, MA 02655 Subcontract Name Reference Date Description Amount CMC ELEVATOR CORPORATION 275 08/05/19 ELEVATOR SERVICE/ POWER OUTAGE 329.40 Subcontract sub-total 329.40 Amount due this invoice $329.40 TERMS: NET 10 DAYS PO Box 310. Osterville, Massachusetts 02655 . Phone: 508.428.6106 . Fax: 508.420.3550 . rogersandmarneybuilders.com",
+  "remittance_address": "PO Box 310. Osterville, Massachusetts 02655\r\n.",
+  "service_address": "SEA VIEW AVENUE 577\r\nOSTERVILLE, MA 02655",
+  "subtotal": 329.4,
+  "tax": null,
+  "total": 329.4,
+  "vendor": "ROGERS&MARNEY, INC."
+}

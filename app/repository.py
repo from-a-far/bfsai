@@ -93,6 +93,44 @@ CREATE TABLE IF NOT EXISTS ingestion_events (
   error_message TEXT,
   created_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS training_examples (
+  document_id TEXT PRIMARY KEY,
+  po_box TEXT NOT NULL,
+  vendor TEXT,
+  status TEXT NOT NULL DEFAULT 'ready',
+  strategy_source TEXT NOT NULL,
+  example_dir TEXT NOT NULL,
+  file_path TEXT NOT NULL,
+  json_path TEXT NOT NULL,
+  alignment_path TEXT,
+  metadata_json TEXT NOT NULL DEFAULT '{}',
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS training_runs (
+  id TEXT PRIMARY KEY,
+  name TEXT NOT NULL,
+  strategy_name TEXT NOT NULL,
+  status TEXT NOT NULL,
+  selected_document_ids_json TEXT NOT NULL,
+  example_count INTEGER NOT NULL DEFAULT 0,
+  corpus_path TEXT,
+  results_json TEXT NOT NULL DEFAULT '{}',
+  notes TEXT,
+  created_at TEXT NOT NULL,
+  updated_at TEXT NOT NULL,
+  activated_at TEXT
+);
+
+CREATE TABLE IF NOT EXISTS strategy_activations (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  strategy_name TEXT NOT NULL,
+  training_run_id TEXT,
+  notes TEXT,
+  created_at TEXT NOT NULL
+);
 """
 
 
@@ -120,6 +158,18 @@ class Repository:
                 """
                 CREATE INDEX IF NOT EXISTS idx_vendor_field_profiles_lookup
                 ON vendor_field_profiles (po_box, normalized_vendor, field_name, page_count, updated_at DESC)
+                """
+            )
+            connection.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_training_examples_status
+                ON training_examples (status, updated_at DESC)
+                """
+            )
+            connection.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_training_runs_strategy
+                ON training_runs (strategy_name, created_at DESC)
                 """
             )
 
@@ -275,6 +325,18 @@ class Repository:
                 (po_box, *statuses),
             ).fetchall()
         return [self._row_to_document(row) for row in rows]
+
+    def list_documents_by_ids(self, document_ids: list[str]) -> list[dict[str, Any]]:
+        if not document_ids:
+            return []
+        placeholders = ",".join("?" for _ in document_ids)
+        with self._connect() as connection:
+            rows = connection.execute(
+                f"SELECT * FROM documents WHERE id IN ({placeholders})",
+                tuple(document_ids),
+            ).fetchall()
+        documents = {row["id"]: self._row_to_document(row) for row in rows}
+        return [documents[document_id] for document_id in document_ids if document_id in documents]
 
     def review_queue_ids(self) -> list[str]:
         with self._connect() as connection:
@@ -568,6 +630,12 @@ class Repository:
             correction_rows = connection.execute(
                 "SELECT COUNT(*) AS correction_count FROM corrections"
             ).fetchone()
+            corpus_rows = connection.execute(
+                "SELECT COUNT(*) AS corpus_count FROM training_examples WHERE status = 'ready'"
+            ).fetchone()
+            training_rows = connection.execute(
+                "SELECT COUNT(*) AS training_run_count FROM training_runs"
+            ).fetchone()
         return {
             "total": totals["total"] or 0,
             "review_count": totals["review_count"] or 0,
@@ -578,7 +646,198 @@ class Repository:
             "failed_ingestion_count": totals["failed_ingestion_count"] or 0,
             "avg_confidence": totals["avg_confidence"] or 0,
             "correction_count": correction_rows["correction_count"] or 0,
+            "corpus_count": corpus_rows["corpus_count"] or 0,
+            "training_run_count": training_rows["training_run_count"] or 0,
         }
+
+    def upsert_training_example(
+        self,
+        document_id: str,
+        po_box: str,
+        vendor: str | None,
+        status: str,
+        strategy_source: str,
+        example_dir: str,
+        file_path: str,
+        json_path: str,
+        alignment_path: str | None,
+        metadata: dict[str, Any],
+    ) -> None:
+        now = utcnow()
+        with self._connect() as connection:
+            connection.execute(
+                """
+                INSERT INTO training_examples (
+                  document_id, po_box, vendor, status, strategy_source, example_dir,
+                  file_path, json_path, alignment_path, metadata_json, created_at, updated_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(document_id) DO UPDATE SET
+                  po_box=excluded.po_box,
+                  vendor=excluded.vendor,
+                  status=excluded.status,
+                  strategy_source=excluded.strategy_source,
+                  example_dir=excluded.example_dir,
+                  file_path=excluded.file_path,
+                  json_path=excluded.json_path,
+                  alignment_path=excluded.alignment_path,
+                  metadata_json=excluded.metadata_json,
+                  updated_at=excluded.updated_at
+                """,
+                (
+                    document_id,
+                    po_box,
+                    vendor,
+                    status,
+                    strategy_source,
+                    example_dir,
+                    file_path,
+                    json_path,
+                    alignment_path,
+                    json_dumps(metadata),
+                    now,
+                    now,
+                ),
+            )
+
+    def list_training_examples(
+        self,
+        status: str | None = None,
+        po_box: str | None = None,
+        vendor: str | None = None,
+        limit: int = 500,
+    ) -> list[dict[str, Any]]:
+        query = "SELECT * FROM training_examples"
+        params: list[Any] = []
+        clauses: list[str] = []
+        if status:
+            clauses.append("status = ?")
+            params.append(status)
+        if po_box:
+            clauses.append("po_box = ?")
+            params.append(po_box)
+        if vendor:
+            clauses.append("COALESCE(vendor, '') LIKE ?")
+            params.append(f"%{vendor}%")
+        if clauses:
+            query += " WHERE " + " AND ".join(clauses)
+        query += " ORDER BY updated_at DESC LIMIT ?"
+        params.append(limit)
+        with self._connect() as connection:
+            rows = connection.execute(query, params).fetchall()
+        return [
+            dict(row) | {"metadata": json.loads(row["metadata_json"] or "{}")}
+            for row in rows
+        ]
+
+    def get_training_example(self, document_id: str) -> dict[str, Any] | None:
+        with self._connect() as connection:
+            row = connection.execute(
+                "SELECT * FROM training_examples WHERE document_id = ?",
+                (document_id,),
+            ).fetchone()
+        if not row:
+            return None
+        return dict(row) | {"metadata": json.loads(row["metadata_json"] or "{}")}
+
+    def upsert_training_run(
+        self,
+        run_id: str,
+        name: str,
+        strategy_name: str,
+        status: str,
+        selected_document_ids: list[str],
+        example_count: int,
+        corpus_path: str | None,
+        results: dict[str, Any],
+        notes: str = "",
+        activated_at: str | None = None,
+    ) -> None:
+        now = utcnow()
+        with self._connect() as connection:
+            connection.execute(
+                """
+                INSERT INTO training_runs (
+                  id, name, strategy_name, status, selected_document_ids_json, example_count,
+                  corpus_path, results_json, notes, created_at, updated_at, activated_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ON CONFLICT(id) DO UPDATE SET
+                  name=excluded.name,
+                  strategy_name=excluded.strategy_name,
+                  status=excluded.status,
+                  selected_document_ids_json=excluded.selected_document_ids_json,
+                  example_count=excluded.example_count,
+                  corpus_path=excluded.corpus_path,
+                  results_json=excluded.results_json,
+                  notes=excluded.notes,
+                  updated_at=excluded.updated_at,
+                  activated_at=excluded.activated_at
+                """,
+                (
+                    run_id,
+                    name,
+                    strategy_name,
+                    status,
+                    json_dumps(selected_document_ids),
+                    example_count,
+                    corpus_path,
+                    json_dumps(results),
+                    notes,
+                    now,
+                    now,
+                    activated_at,
+                ),
+            )
+
+    def list_training_runs(self, limit: int = 100) -> list[dict[str, Any]]:
+        with self._connect() as connection:
+            rows = connection.execute(
+                "SELECT * FROM training_runs ORDER BY updated_at DESC, created_at DESC LIMIT ?",
+                (limit,),
+            ).fetchall()
+        return [
+            dict(row)
+            | {
+                "selected_document_ids": json.loads(row["selected_document_ids_json"] or "[]"),
+                "results": json.loads(row["results_json"] or "{}"),
+            }
+            for row in rows
+        ]
+
+    def get_training_run(self, run_id: str) -> dict[str, Any] | None:
+        with self._connect() as connection:
+            row = connection.execute(
+                "SELECT * FROM training_runs WHERE id = ?",
+                (run_id,),
+            ).fetchone()
+        if not row:
+            return None
+        return dict(row) | {
+            "selected_document_ids": json.loads(row["selected_document_ids_json"] or "[]"),
+            "results": json.loads(row["results_json"] or "{}"),
+        }
+
+    def record_strategy_activation(
+        self,
+        strategy_name: str,
+        training_run_id: str | None = None,
+        notes: str = "",
+    ) -> None:
+        with self._connect() as connection:
+            connection.execute(
+                """
+                INSERT INTO strategy_activations (strategy_name, training_run_id, notes, created_at)
+                VALUES (?, ?, ?, ?)
+                """,
+                (strategy_name, training_run_id, notes, utcnow()),
+            )
+
+    def list_strategy_activations(self, limit: int = 50) -> list[dict[str, Any]]:
+        with self._connect() as connection:
+            rows = connection.execute(
+                "SELECT * FROM strategy_activations ORDER BY created_at DESC, id DESC LIMIT ?",
+                (limit,),
+            ).fetchall()
+        return [dict(row) for row in rows]
 
     def _row_to_document(self, row: sqlite3.Row) -> dict[str, Any]:
         return {

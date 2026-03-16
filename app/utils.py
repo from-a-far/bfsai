@@ -39,6 +39,16 @@ def normalize_text(value: str | None) -> str:
     return re.sub(r"\s+", " ", cleaned).strip()
 
 
+PO_BOX_PATTERN = re.compile(r"\b(5010\d{3})\b")
+
+
+def detect_po_box(text: str | None) -> str | None:
+    if not text:
+        return None
+    match = PO_BOX_PATTERN.search(text)
+    return match.group(1) if match else None
+
+
 def sha256sum(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:

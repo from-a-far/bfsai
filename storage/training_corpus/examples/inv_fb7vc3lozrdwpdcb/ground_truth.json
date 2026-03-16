@@ -1,0 +1,42 @@
+{
+  "account_number": "23861782",
+  "amount_due": 3893.11,
+  "billing_address": "MICHAEL & SUSAN WHITE,\r\nUNIT B1006\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+  "confidence": 0.99,
+  "currency": "USD",
+  "due_date": "09/01/2019",
+  "friendly_name": null,
+  "invoice_date": "09/01/2019",
+  "invoice_number": null,
+  "learning_hints": {},
+  "line_items": [
+    {
+      "amount": 0.0,
+      "description": "COMMON CHG ~",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 3893.11,
+      "description": "[AMOUNTIOUE?",
+      "quantity": null,
+      "unit_price": null
+    }
+  ],
+  "model_source": "heuristic+confirmed",
+  "name_on_account": null,
+  "payable_to": null,
+  "payment_terms": null,
+  "physical_billing_address": "MICHAEL & SUSAN WHITE,\r\nUNIT B1006\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+  "po_box": "5010095",
+  "previous_amount_due": null,
+  "previous_payment_amount": null,
+  "previous_payment_date": null,
+  "raw_text_excerpt": "DouglasEllimaii 675 THIRD AVENUE, NEW YORK, NY 10017 PLEASE WRITE YOUR ACCOUNT # ON YOUR CHECK. MICHAEL & SUSAN WHITE UNIT B1006 PO BOX 5010 MONROE CT 06468-8200 23861782 $3, 3341 41 eae 200 EAST 66TH STREET B1006 \u2014 [DUEIDATE] 09/01/2019 THIS BILL REFLECTS PAYMENTS PROCESSED THROUGH 08/20/19 Billing Inquiries Phone: (212) 692 8315, Trisha Williams@Ellimanpm.Com Management inquiries Phone: 2128380342 Jennifer. Drum@Ellimanpm.Com www.ellimanpm.com. COMMON CHG ~ $0.00 HELP SAVE OUR PLANET SIGN UP FOR ONLINE FEATURES: v7 View current bits a Pay your bill av Update your information oY Review balance Ae, of Review past bills . . VISIT: ELLIMANPM.REVIEWMYINVOICE.COM * Terms payable upon receipt. Please reference your account number with your remittance. Vv DETACH AND RETURN COUPON WITH YOUR PAYMENT V Page 1 of 2 675 THIRD AVENUE, NEW YORK, NY 10017 Address Service Requested o7segqaans PRESORT PBPS001 <B> eu EC aa DT a MIGHAEL & SUSAN WHITE UNIT B10 PO BOX S010 MONROE CT 06468-8200 [ACCOUNTINUMBER? 23861782 fo [AMOUNTIOUE? $3,893.11 (ARTISPACE 81006 09/01/2019 Please write your Account # on your check. IGTERSEIMATEICRECKSIAVABUELLONS JANHATTAN HOUSE CONDOMINI C/O MANHATTAN HOUSE CONDOMINIUM. AR DEPT: PO BOX 70263 PHILADELPHIA, PA 19176-0263 TMU Race UU UY on eunrg toa 9995823948181924221723241870000003893911090120190000002e0e",
+  "remittance_address": "C/O MANHATTAN HOUSE CONDOMINIUM\r\nAR DEPT:\r\nPO BOX 70263\r\nPHILADELPHIA, PA 19176-0263",
+  "service_address": "200 EAST 66TH STREET",
+  "subtotal": null,
+  "tax": null,
+  "total": 3893.11,
+  "vendor": "DouglasElliman"
+}

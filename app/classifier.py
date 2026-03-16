@@ -22,9 +22,6 @@ DOCUMENT_TYPE_RULES = (
     ("r", ("report", "summary report", "monthly report")),
 )
 
-PROCESS_AND_DUPLICATE_DTYPES = {"b", "cc", "t"}
-
-
 @dataclass(frozen=True, slots=True)
 class DocumentRouting:
     dtype: str
@@ -48,8 +45,8 @@ def classify_document(text: str) -> DocumentRouting:
     if matched_dtype in {"cc", "t"}:
         return DocumentRouting(
             dtype=matched_dtype,
-            should_extract=True,
-            duplicate_to_type_folder=True,
+            should_extract=matched_dtype == "cc",
+            duplicate_to_type_folder=matched_dtype == "cc",
             reason=matched_reason,
         )
 
@@ -57,7 +54,7 @@ def classify_document(text: str) -> DocumentRouting:
         return DocumentRouting(
             dtype="b" if matched_dtype not in {"cc"} else matched_dtype,
             should_extract=True,
-            duplicate_to_type_folder=True,
+            duplicate_to_type_folder=matched_dtype == "cc",
             reason=matched_reason,
         )
 

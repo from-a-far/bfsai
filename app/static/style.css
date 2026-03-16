@@ -29,6 +29,30 @@ body {
   line-height: 1.5;
   color: var(--ink);
   background: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+input,
+select,
+textarea,
+button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: checkbox;
+  appearance: auto;
+  accent-color: var(--accent);
 }
 
 body.modal-open {
@@ -59,6 +83,22 @@ body.modal-open {
   color: var(--muted);
   margin: 0;
   font-size: 0.8rem;
+}
+
+.topnav {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.topnav a {
+  color: var(--ink-secondary);
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  color: var(--accent);
 }
 
 /* ── shell ─────────────────────────────────── */
@@ -279,6 +319,7 @@ body.modal-open {
   font-size: 0.8rem;
   background: var(--bg-raised);
   color: var(--ink);
+  line-height: 1.2;
 }
 
 .filters input::placeholder {
@@ -857,6 +898,219 @@ a {
   flex-wrap: wrap;
 }
 
+.form-grid,
+.strategy-grid,
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.training-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.training-form label {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.training-form input,
+.training-form select,
+.training-form textarea,
+.training-form button {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  background: var(--bg-raised);
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.training-form button {
+  width: auto;
+  cursor: pointer;
+}
+
+.training-example-list {
+  display: grid;
+  gap: 0.45rem;
+  max-height: 26rem;
+  overflow: auto;
+}
+
+.training-example {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.6rem;
+  align-items: start;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--bg-raised);
+}
+
+.training-example div,
+.strategy-card,
+.strategy-meta {
+  min-width: 0;
+}
+
+.training-example strong,
+.training-example span {
+  display: block;
+}
+
+.training-example span {
+  color: var(--muted);
+}
+
+.strategy-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.7rem;
+  background: var(--bg-raised);
+  display: grid;
+  gap: 0.45rem;
+}
+
+.strategy-card-active {
+  border-color: rgba(62, 205, 198, 0.45);
+  box-shadow: 0 0 0 1px rgba(62, 205, 198, 0.18);
+}
+
+.strategy-card h3,
+.strategy-card p {
+  margin: 0;
+}
+
+.strategy-card p {
+  color: var(--ink-secondary);
+}
+
+.strategy-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.service-actions {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.service-actions form {
+  margin: 0;
+}
+
+.service-actions button {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  padding: 0.42rem 0.62rem;
+  font: inherit;
+  background: var(--panel-hover);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+/* ── bill splitter ─────────────────────────── */
+
+.splitter-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.splitter-form label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.splitter-form span,
+.splitter-summary strong {
+  font-weight: 600;
+}
+
+.form-hint {
+  margin: 0;
+  color: var(--muted);
+}
+
+.splitter-errors,
+.splitter-notes {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--ink-secondary);
+}
+
+.splitter-summary {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.splitter-summary > div {
+  display: flex;
+  gap: 0.75rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.splitter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.splitter-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-raised);
+}
+
+.splitter-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 8 / 11;
+  object-fit: cover;
+  background: var(--bg);
+}
+
+.splitter-card-body {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.7rem;
+}
+
+.splitter-card-body span {
+  color: var(--muted);
+}
+
+.splitter-card-body a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.splitter-card-body code {
+  display: block;
+  color: var(--ink-secondary);
+  font-size: 0.78rem;
+  overflow-wrap: anywhere;
+}
+
+.config-box .config-wrap {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  overflow-wrap: anywhere;
+}
+
 /* ── alignment panel ───────────────────────── */
 
 .alignment-panel {
@@ -888,7 +1142,10 @@ pre {
   .meta-grid,
   .history-grid,
   .compact-fields,
-  .review-modal-body {
+  .review-modal-body,
+  .form-grid,
+  .strategy-grid,
+  .service-grid {
     grid-template-columns: 1fr;
   }
 

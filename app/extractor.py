@@ -62,11 +62,21 @@ class Extractor:
         return self._read_image(file_path)
 
     def extract(self, po_box: str, text: str, hints: dict[str, Any]) -> InvoiceExtraction:
+        strategy = self.settings.extraction.strategies.get(self.settings.extraction.active_strategy)
+        if strategy and strategy.kind == "experimental":
+            experimental_result = self._extract_with_experimental_strategy(po_box, text, hints, strategy)
+            if experimental_result:
+                return experimental_result
         if self.settings.ollama.enabled:
             llm_result = self._extract_with_ollama(po_box, text, hints)
             if llm_result:
-                return llm_result
-        return self._heuristic_extract(po_box, text, hints)
+                return llm_result.model_copy(
+                    update={"model_source": f"{self.settings.extraction.active_strategy}:{llm_result.model_source}"}
+                )
+        heuristic = self._heuristic_extract(po_box, text, hints)
+        if strategy and strategy.name != "legacy_local":
+            return heuristic.model_copy(update={"model_source": f"{strategy.name}:fallback"})
+        return heuristic
 
     def _read_pdf(self, file_path: Path) -> OcrResult:
         document = pdfium.PdfDocument(str(file_path))
@@ -336,6 +346,83 @@ class Extractor:
             model_source="heuristic",
             learning_hints=hints,
         )
+
+    def _extract_with_experimental_strategy(
+        self,
+        po_box: str,
+        text: str,
+        hints: dict[str, Any],
+        strategy: Any,
+    ) -> InvoiceExtraction | None:
+        if not getattr(strategy, "qwen_base_url", ""):
+            return None
+        prompt = (
+            "You are extracting structured invoice data. Return strict JSON with keys "
+            "vendor, payable_to, remittance_address, billing_address, physical_billing_address, "
+            "service_address, account_number, friendly_name, name_on_account, invoice_number, "
+            "invoice_date, due_date, subtotal, tax, total, amount_due, previous_amount_due, "
+            "previous_payment_date, previous_payment_amount, currency, payment_terms, po_box, "
+            "line_items, confidence. "
+            f"PO box: {po_box}. Learning hints: {json.dumps(hints)}. Document text:\n{text[:12000]}"
+        )
+        try:
+            response = httpx.post(
+                f"{strategy.qwen_base_url.rstrip('/')}/v1/chat/completions",
+                json={
+                    "model": strategy.qwen_model or "Qwen2.5-VL-7B",
+                    "messages": [
+                        {"role": "system", "content": "Extract invoice data as JSON."},
+                        {"role": "user", "content": prompt},
+                    ],
+                    "temperature": 0,
+                    "response_format": {"type": "json_object"},
+                },
+                timeout=self.settings.ollama.timeout_seconds,
+            )
+            response.raise_for_status()
+            payload = response.json()
+            content = payload["choices"][0]["message"]["content"]
+            parsed = json.loads(content)
+            return InvoiceExtraction(
+                vendor=parsed.get("vendor"),
+                payable_to=parsed.get("payable_to"),
+                remittance_address=parsed.get("remittance_address"),
+                billing_address=parsed.get("billing_address"),
+                physical_billing_address=parsed.get("physical_billing_address"),
+                service_address=parsed.get("service_address"),
+                account_number=parsed.get("account_number"),
+                friendly_name=parsed.get("friendly_name"),
+                name_on_account=parsed.get("name_on_account"),
+                invoice_number=parsed.get("invoice_number"),
+                invoice_date=parsed.get("invoice_date"),
+                due_date=parsed.get("due_date"),
+                subtotal=as_float(parsed.get("subtotal")),
+                tax=as_float(parsed.get("tax")),
+                total=as_float(parsed.get("total")),
+                amount_due=as_float(parsed.get("amount_due")),
+                previous_amount_due=as_float(parsed.get("previous_amount_due")),
+                previous_payment_date=parsed.get("previous_payment_date"),
+                previous_payment_amount=as_float(parsed.get("previous_payment_amount")),
+                currency=parsed.get("currency") or "USD",
+                payment_terms=parsed.get("payment_terms"),
+                po_box=po_box,
+                line_items=[
+                    InvoiceLineItem(
+                        description=str(item.get("description", "")),
+                        quantity=as_float(item.get("quantity")),
+                        unit_price=as_float(item.get("unit_price")),
+                        amount=as_float(item.get("amount")),
+                    )
+                    for item in parsed.get("line_items", [])
+                    if item.get("description")
+                ],
+                confidence=float(parsed.get("confidence") or 0.8),
+                raw_text_excerpt=compact_excerpt(text),
+                model_source=f"{strategy.name}:{strategy.qwen_model or 'Qwen2.5-VL-7B'}",
+                learning_hints=hints,
+            )
+        except Exception:
+            return None
 
     def _hinted_text(self, hints: dict[str, Any], field_name: str) -> str | None:
         learned = (hints.get("learned_field_candidates") or {}).get(field_name)

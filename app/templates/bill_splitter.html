@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <h1>Bill splitter</h1>
+    <p>Upload scanned batch PDFs, keep only invoice or bill pages, and write one PDF per detected bill beside the source file.</p>
+  </div>
+  <div class="config-box">
+    <div><strong>Default keywords</strong><span class="config-wrap">{{ form.register_keywords }}</span></div>
+    <div><strong>Output rule</strong><span class="config-wrap">Creates a `*_split` folder next to each source file</span></div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Split scanned batches</h2>
+    <span>Registers, checks, cover sheets, and blank pages are ignored. Only bill-like page ranges are exported.</span>
+  </div>
+  <form method="post" enctype="multipart/form-data" class="splitter-form">
+    <label>
+      <span>Batch scans</span>
+      <input type="file" name="files" accept=".pdf,image/*" multiple required />
+    </label>
+    <label>
+      <span>Original folder</span>
+      <input type="text" name="source_directory" value="{{ form.source_directory }}" placeholder="/Users/ajfarren/Documents/bills" />
+    </label>
+    <label>
+      <span>Register keywords</span>
+      <input type="text" name="register_keywords" value="{{ form.register_keywords }}" />
+    </label>
+    <p class="form-hint">If the originals already live on this machine, enter that folder so the split PDFs are written beside those source files instead of beside a staged upload copy.</p>
+    <button type="submit">Split bills</button>
+  </form>
+</section>
+
+{% if errors %}
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Problems</h2>
+    <span>{{ errors|length }} issue{{ "" if errors|length == 1 else "s" }}</span>
+  </div>
+  <ul class="splitter-errors">
+    {% for error in errors %}
+    <li>{{ error }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% for batch in results %}
+<section class="panel">
+  <div class="panel-heading">
+    <h2>{{ batch.source_path }}</h2>
+    <span>{{ batch.outputs|length }} split PDF{{ "" if batch.outputs|length == 1 else "s" }}</span>
+  </div>
+  <div class="splitter-summary">
+    <div><strong>Output folder</strong><span>{{ batch.output_dir }}</span></div>
+    <div><strong>Register pages</strong><span>{{ batch.register_pages|join(", ") if batch.register_pages else "None detected" }}</span></div>
+    <div><strong>Ignored pages</strong><span>{{ batch.ignored_pages|join(", ") if batch.ignored_pages else "None" }}</span></div>
+    <div><strong>Keywords</strong><span>{{ batch.register_keywords|join(", ") }}</span></div>
+  </div>
+  {% if batch.notes %}
+  <ul class="splitter-notes">
+    {% for note in batch.notes %}
+    <li>{{ note }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <div class="splitter-grid">
+    {% for output in batch.outputs %}
+    <article class="splitter-card">
+      <img src="{{ output.thumbnail_data_uri }}" alt="Bill {{ output.bill_index }} thumbnail" />
+      <div class="splitter-card-body">
+        <strong>Bill {{ output.bill_index }}</strong>
+        <span>Pages {{ output.page_numbers|join(", ") }}</span>
+        <a href="{{ output.download_url }}" target="_blank" rel="noreferrer">Open PDF</a>
+        <code>{{ output.path }}</code>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  {% if not batch.outputs %}
+  <p class="form-hint">No invoice-like pages were found in this upload.</p>
+  {% endif %}
+</section>
+{% endfor %}
+{% endblock %}

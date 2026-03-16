@@ -1,0 +1,364 @@
+{
+  "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_jsjqxaxkmzg55f2n_c.pdf",
+  "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_jsjqxaxkmzg55f2n_c.json",
+  "archived_file_path": "storage/document_files/5010095/inv_jsjqxaxkmzg55f2n.pdf",
+  "field_alignments": {
+    "account_number": {
+      "bbox": {
+        "height": 56,
+        "left": 586,
+        "top": 392,
+        "width": 254
+      },
+      "confidence": 1,
+      "match_text": "CONTRACT ID: 1243-HS\nWHITE- 577 SEAVIEW- HOUSE",
+      "normalized_bbox": {
+        "height": 0.0407,
+        "left": 0.5502,
+        "top": 0.2847,
+        "width": 0.2385
+      },
+      "page_number": 1,
+      "value": "CONTRACT ID: 1243-HS WHITE- 577 SEAVIEW- HOUSE"
+    },
+    "amount_due": {
+      "bbox": {
+        "height": 35,
+        "left": 878,
+        "top": 704,
+        "width": 80
+      },
+      "confidence": 1,
+      "match_text": "$329.40",
+      "normalized_bbox": {
+        "height": 0.0254,
+        "left": 0.8244,
+        "top": 0.5113,
+        "width": 0.0751
+      },
+      "page_number": 1,
+      "value": 329.4
+    },
+    "billing_address": {
+      "bbox": {
+        "height": 78,
+        "left": 86,
+        "top": 267,
+        "width": 239
+      },
+      "confidence": 1,
+      "match_text": "MR. & MRS. MICHAEL WHITE\nPO BOX 5010\nMONROE, CT 06468",
+      "normalized_bbox": {
+        "height": 0.0566,
+        "left": 0.0808,
+        "top": 0.1939,
+        "width": 0.2244
+      },
+      "page_number": 1,
+      "value": "MR. & MRS. MICHAEL WHITE\nPO BOX 5010\nMONROE, CT 06468"
+    },
+    "friendly_name": {
+      "bbox": {
+        "height": 61,
+        "left": 383,
+        "top": 123,
+        "width": 309
+      },
+      "confidence": 1,
+      "match_text": "ROGERS&MARNEY,INC.\nBUILDERS",
+      "normalized_bbox": {
+        "height": 0.0443,
+        "left": 0.3596,
+        "top": 0.0893,
+        "width": 0.2901
+      },
+      "page_number": 1,
+      "value": "ROGERS&MARNEY,INC. BUILDERS"
+    },
+    "invoice_date": {
+      "bbox": {
+        "height": 23,
+        "left": 807,
+        "top": 370,
+        "width": 57
+      },
+      "confidence": 1,
+      "match_text": "8/23/19",
+      "normalized_bbox": {
+        "height": 0.0146,
+        "left": 0.6631,
+        "top": 0.2351,
+        "width": 0.0468
+      },
+      "page_number": 1,
+      "value": "8/23/19"
+    },
+    "invoice_number": {
+      "bbox": {
+        "height": 23,
+        "left": 620,
+        "top": 323,
+        "width": 47
+      },
+      "confidence": 1,
+      "match_text": "18740",
+      "normalized_bbox": {
+        "height": 0.0167,
+        "left": 0.5822,
+        "top": 0.2346,
+        "width": 0.0441
+      },
+      "page_number": 1,
+      "value": "18740"
+    },
+    "line_items": [
+      {
+        "amount": {
+          "bbox": {
+            "height": 12,
+            "left": 1032,
+            "top": 673,
+            "width": 48
+          },
+          "confidence": 1.0,
+          "match_text": "329.40",
+          "normalized_bbox": {
+            "height": 0.0076,
+            "left": 0.848,
+            "top": 0.4276,
+            "width": 0.0394
+          },
+          "page_number": 1,
+          "value": 329.4
+        },
+        "description": {
+          "bbox": {
+            "height": 13,
+            "left": 108,
+            "top": 673,
+            "width": 804
+          },
+          "confidence": 1.0,
+          "match_text": "CMC ELEVATOR CORPORATION 275 08/05/19 ELEVATOR SERVICE/ POWER OUTAGE",
+          "normalized_bbox": {
+            "height": 0.0083,
+            "left": 0.0887,
+            "top": 0.4276,
+            "width": 0.6606
+          },
+          "page_number": 1,
+          "value": "CMC ELEVATOR CORPORATION 275 08/05/19 ELEVATOR SERVICE/ POWER OUTAGE"
+        }
+      },
+      {
+        "amount": {
+          "bbox": {
+            "height": 12,
+            "left": 1032,
+            "top": 673,
+            "width": 48
+          },
+          "confidence": 1.0,
+          "match_text": "329.40",
+          "normalized_bbox": {
+            "height": 0.0076,
+            "left": 0.848,
+            "top": 0.4276,
+            "width": 0.0394
+          },
+          "page_number": 1,
+          "value": 329.4
+        },
+        "description": {
+          "bbox": {
+            "height": 12,
+            "left": 749,
+            "top": 699,
+            "width": 165
+          },
+          "confidence": 1.0,
+          "match_text": "Subcontract sub-total",
+          "normalized_bbox": {
+            "height": 0.0076,
+            "left": 0.6154,
+            "top": 0.4441,
+            "width": 0.1356
+          },
+          "page_number": 1,
+          "value": "Subcontract sub-total"
+        }
+      },
+      {
+        "amount": {
+          "bbox": {
+            "height": 12,
+            "left": 1032,
+            "top": 673,
+            "width": 48
+          },
+          "confidence": 1.0,
+          "match_text": "329.40",
+          "normalized_bbox": {
+            "height": 0.0076,
+            "left": 0.848,
+            "top": 0.4276,
+            "width": 0.0394
+          },
+          "page_number": 1,
+          "value": 329.4
+        },
+        "description": {
+          "bbox": {
+            "height": 12,
+            "left": 684,
+            "top": 816,
+            "width": 186
+          },
+          "confidence": 1.0,
+          "match_text": "Amount due this invoice",
+          "normalized_bbox": {
+            "height": 0.0076,
+            "left": 0.562,
+            "top": 0.5184,
+            "width": 0.1528
+          },
+          "page_number": 1,
+          "value": "Amount due this invoice"
+        }
+      }
+    ],
+    "payable_to": {
+      "bbox": {
+        "height": 53,
+        "left": 386,
+        "top": 125,
+        "width": 298
+      },
+      "confidence": 1,
+      "match_text": "ROGERS&MARNEY, INC.\nBUILDERS",
+      "normalized_bbox": {
+        "height": 0.0385,
+        "left": 0.3624,
+        "top": 0.0908,
+        "width": 0.2798
+      },
+      "page_number": 1,
+      "value": "ROGERS&MARNEY, INC. BUILDERS"
+    },
+    "payment_terms": {
+      "bbox": {
+        "height": 12,
+        "left": 173,
+        "top": 889,
+        "width": 53
+      },
+      "confidence": 1,
+      "match_text": "NET 10",
+      "normalized_bbox": {
+        "height": 0.0076,
+        "left": 0.1422,
+        "top": 0.5648,
+        "width": 0.0435
+      },
+      "page_number": 1,
+      "value": "NET 10"
+    },
+    "physical_billing_address": {
+      "bbox": {
+        "height": 80,
+        "left": 83,
+        "top": 265,
+        "width": 243
+      },
+      "confidence": 1,
+      "match_text": "MR. & MRS. MICHAEL WHITE\nPO BOX 5010\nMONROE, CT 06468",
+      "normalized_bbox": {
+        "height": 0.0581,
+        "left": 0.0779,
+        "top": 0.1924,
+        "width": 0.2282
+      },
+      "page_number": 1,
+      "value": "MR. & MRS. MICHAEL WHITE\nPO BOX 5010\nMONROE, CT 06468"
+    },
+    "remittance_address": {
+      "bbox": {
+        "height": 24,
+        "left": 103,
+        "top": 1319,
+        "width": 325
+      },
+      "confidence": 1,
+      "match_text": "PO Box 310. Osterville, Massachusetts 02655",
+      "normalized_bbox": {
+        "height": 0.0174,
+        "left": 0.0967,
+        "top": 0.9579,
+        "width": 0.3052
+      },
+      "page_number": 1,
+      "value": "PO Box 310. Osterville, Massachusetts 02655"
+    },
+    "service_address": {
+      "bbox": {
+        "height": 45,
+        "left": 85,
+        "top": 423,
+        "width": 214
+      },
+      "confidence": 1,
+      "match_text": "577 SEA VIEW AVENUE\nOSTERVILLE, MA 02655",
+      "normalized_bbox": {
+        "height": 0.0327,
+        "left": 0.0798,
+        "top": 0.3072,
+        "width": 0.2009
+      },
+      "page_number": 1,
+      "value": "577 SEA VIEW AVENUE\nOSTERVILLE, MA 02655"
+    },
+    "subtotal": {
+      "bbox": {
+        "height": 20,
+        "left": 898,
+        "top": 606,
+        "width": 50
+      },
+      "confidence": 1,
+      "match_text": "329.40",
+      "normalized_bbox": {
+        "height": 0.0145,
+        "left": 0.8432,
+        "top": 0.4401,
+        "width": 0.0469
+      },
+      "page_number": 1,
+      "value": 329.4
+    },
+    "tax": null,
+    "total": {
+      "bbox": {
+        "height": 33,
+        "left": 883,
+        "top": 703,
+        "width": 75
+      },
+      "confidence": 1,
+      "match_text": "$329.40",
+      "normalized_bbox": {
+        "height": 0.024,
+        "left": 0.8291,
+        "top": 0.5105,
+        "width": 0.0704
+      },
+      "page_number": 1,
+      "value": 329.4
+    },
+    "vendor": null
+  },
+  "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_jsjqxaxkmzg55f2n.json",
+  "page_count": 1,
+  "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_jsjqxaxkmzg55f2n.pdf",
+  "sha256": "8c7a98697c42418da686addeb06b63c868d86c809bde10a7511d96634c37fc70",
+  "source_filename": "rnm.pdf"
+}

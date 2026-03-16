@@ -1,0 +1,551 @@
+{
+  "account_number": "1421 503 0033",
+  "amount_due": 1553.37,
+  "billing_address": "MICHAEL D WHITE\r\nSUSAN L WHITE\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+  "confidence": 0.99,
+  "currency": "USD",
+  "due_date": "09/15/19",
+  "friendly_name": "EVERSOURCE - 0033",
+  "invoice_date": "08/21/19",
+  "invoice_number": null,
+  "learning_hints": {
+    "approved_count": 1,
+    "confirmed_fields": {
+      "account_number": "1421 503 0033",
+      "amount_due": 1553.37,
+      "billing_address": "MICHAEL D WHITE\r\nSUSAN L WHITE\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+      "currency": "USD",
+      "due_date": "09/15/19",
+      "friendly_name": "EVERSOURCE - 0033",
+      "invoice_date": "08/21/19",
+      "name_on_account": "MICHAEL D WHITE",
+      "payable_to": "Eversource",
+      "physical_billing_address": "MICHAEL D WHITE\r\nSUSAN L WHITE\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+      "previous_amount_due": 1118.29,
+      "previous_payment_amount": -1118.29,
+      "previous_payment_date": "08/17/19",
+      "remittance_address": "Eversource, PO Box 56007, Boston, MA 02205-6007",
+      "total": 1553.37,
+      "vendor": "EVERSOURCE"
+    },
+    "correction_count": 13,
+    "field_alignment_profiles": [
+      {
+        "field_name": "previous_payment_amount",
+        "id": 24,
+        "normalized_bbox": {
+          "height": 0.0138,
+          "left": 0.8734,
+          "top": 0.085,
+          "width": 0.0788
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0138,\n  \"left\": 0.8734,\n  \"top\": 0.085,\n  \"width\": 0.0788\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": -1118.29,
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "previous_payment_date",
+        "id": 23,
+        "normalized_bbox": {
+          "height": 0.0189,
+          "left": 0.5572,
+          "top": 0.0654,
+          "width": 0.0657
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0189,\n  \"left\": 0.5572,\n  \"top\": 0.0654,\n  \"width\": 0.0657\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "08/17/19",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "previous_amount_due",
+        "id": 22,
+        "normalized_bbox": {
+          "height": 0.0167,
+          "left": 0.8762,
+          "top": 0.069,
+          "width": 0.0741
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0167,\n  \"left\": 0.8762,\n  \"top\": 0.069,\n  \"width\": 0.0741\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 1118.29,
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "amount_due",
+        "id": 21,
+        "normalized_bbox": {
+          "height": 0.0196,
+          "left": 0.878,
+          "top": 0.1118,
+          "width": 0.0675
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0196,\n  \"left\": 0.878,\n  \"top\": 0.1118,\n  \"width\": 0.0675\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 1553.37,
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "total",
+        "id": 20,
+        "normalized_bbox": {
+          "height": 0.0057,
+          "left": 0.2529,
+          "top": 0.3996,
+          "width": 0.0131
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0057,\n  \"left\": 0.2529,\n  \"top\": 0.3996,\n  \"width\": 0.0131\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 1553.37,
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "due_date",
+        "id": 19,
+        "normalized_bbox": {
+          "height": 0.0189,
+          "left": 0.4803,
+          "top": 0.045,
+          "width": 0.0919
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0189,\n  \"left\": 0.4803,\n  \"top\": 0.045,\n  \"width\": 0.0919\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "09/15/19",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "invoice_date",
+        "id": 18,
+        "normalized_bbox": {
+          "height": 0.0114,
+          "left": 0.1773,
+          "top": 0.0673,
+          "width": 0.0665
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0114,\n  \"left\": 0.1773,\n  \"top\": 0.0673,\n  \"width\": 0.0665\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "08/21/19",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "name_on_account",
+        "id": 17,
+        "normalized_bbox": {
+          "height": 0.0196,
+          "left": 0.0328,
+          "top": 0.0988,
+          "width": 0.1417
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0196,\n  \"left\": 0.0328,\n  \"top\": 0.0988,\n  \"width\": 0.1417\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "MICHAEL D WHITE",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "account_number",
+        "id": 16,
+        "normalized_bbox": {
+          "height": 0.0247,
+          "left": 0.1895,
+          "top": 0.7458,
+          "width": 0.1323
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0247,\n  \"left\": 0.1895,\n  \"top\": 0.7458,\n  \"width\": 0.1323\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "1421 503 0033",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "physical_billing_address",
+        "id": 15,
+        "normalized_bbox": {
+          "height": 0.0617,
+          "left": 0.1023,
+          "top": 0.8838,
+          "width": 0.1923
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0617,\n  \"left\": 0.1023,\n  \"top\": 0.8838,\n  \"width\": 0.1923\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "MICHAEL D WHITE\r\nSUSAN L WHITE\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "billing_address",
+        "id": 14,
+        "normalized_bbox": {
+          "height": 0.0625,
+          "left": 0.1032,
+          "top": 0.8838,
+          "width": 0.1932
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0625,\n  \"left\": 0.1032,\n  \"top\": 0.8838,\n  \"width\": 0.1932\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "MICHAEL D WHITE\r\nSUSAN L WHITE\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "remittance_address",
+        "id": 13,
+        "normalized_bbox": {
+          "height": 0.024,
+          "left": 0.4053,
+          "top": 0.6514,
+          "width": 0.3049
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.024,\n  \"left\": 0.4053,\n  \"top\": 0.6514,\n  \"width\": 0.3049\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "Eversource, PO Box 56007, Boston, MA 02205-6007",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "payable_to",
+        "id": 12,
+        "normalized_bbox": {
+          "height": 0.016,
+          "left": 0.4053,
+          "top": 0.6565,
+          "width": 0.0694
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.016,\n  \"left\": 0.4053,\n  \"top\": 0.6565,\n  \"width\": 0.0694\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "Eversource",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "vendor",
+        "id": 11,
+        "normalized_bbox": {
+          "height": 0.0305,
+          "left": 0.0345,
+          "top": 0.0191,
+          "width": 0.3218
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0305,\n  \"left\": 0.0345,\n  \"top\": 0.0191,\n  \"width\": 0.3218\n}",
+        "normalized_vendor": "eversource",
+        "page_count": 2,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "EVERSOURCE",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      }
+    ],
+    "learned_field_candidates": {
+      "account_number": {
+        "confidence": 0.7000000000000001,
+        "match_text": "1421 503 0033",
+        "normalized_bbox": {
+          "height": 0.0247,
+          "left": 0.1895,
+          "top": 0.7458,
+          "width": 0.1323
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "1421 503 0033"
+      },
+      "amount_due": {
+        "confidence": 0.7000000000000001,
+        "match_text": "$1,553.37",
+        "normalized_bbox": {
+          "height": 0.0196,
+          "left": 0.878,
+          "top": 0.1118,
+          "width": 0.0675
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": 1553.37
+      },
+      "billing_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "D\nMICHAEL WHITE\nSUSAN L_WHITE\nPO BOX 5010\nMONROE CT 06468-8200",
+        "normalized_bbox": {
+          "height": 0.0625,
+          "left": 0.1032,
+          "top": 0.8838,
+          "width": 0.1932
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "D\nMICHAEL WHITE\nSUSAN L_WHITE\nPO BOX 5010\nMONROE CT 06468-8200"
+      },
+      "invoice_date": {
+        "confidence": 0.7000000000000001,
+        "match_text": "08/21/19",
+        "normalized_bbox": {
+          "height": 0.0114,
+          "left": 0.1773,
+          "top": 0.0673,
+          "width": 0.0665
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "08/21/19"
+      },
+      "name_on_account": {
+        "confidence": 0.7000000000000001,
+        "match_text": "MICHAEL D WHITE",
+        "normalized_bbox": {
+          "height": 0.0196,
+          "left": 0.0328,
+          "top": 0.0988,
+          "width": 0.1417
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "MICHAEL D WHITE"
+      },
+      "payable_to": {
+        "confidence": 0.7000000000000001,
+        "match_text": "Eversource,",
+        "normalized_bbox": {
+          "height": 0.016,
+          "left": 0.4053,
+          "top": 0.6565,
+          "width": 0.0694
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "Eversource,"
+      },
+      "physical_billing_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "D\nMICHAEL WHITE\nSUSAN L_WHITE\nPO BOX 5010\nMONROE CT 06468-8200",
+        "normalized_bbox": {
+          "height": 0.0617,
+          "left": 0.1023,
+          "top": 0.8838,
+          "width": 0.1923
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "D\nMICHAEL WHITE\nSUSAN L_WHITE\nPO BOX 5010\nMONROE CT 06468-8200"
+      },
+      "previous_amount_due": {
+        "confidence": 0.7000000000000001,
+        "match_text": "$1,118.29",
+        "normalized_bbox": {
+          "height": 0.0167,
+          "left": 0.8762,
+          "top": 0.069,
+          "width": 0.0741
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": 1118.29
+      },
+      "previous_payment_amount": {
+        "confidence": 0.7000000000000001,
+        "match_text": "-$1,118.29",
+        "normalized_bbox": {
+          "height": 0.0138,
+          "left": 0.8734,
+          "top": 0.085,
+          "width": 0.0788
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": -1118.29
+      },
+      "previous_payment_date": {
+        "confidence": 0.7000000000000001,
+        "match_text": "08/17/19",
+        "normalized_bbox": {
+          "height": 0.0189,
+          "left": 0.5572,
+          "top": 0.0654,
+          "width": 0.0657
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "08/17/19"
+      },
+      "remittance_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "Eversource, PO Box 56007, Boston, MA 02205-6007",
+        "normalized_bbox": {
+          "height": 0.024,
+          "left": 0.4053,
+          "top": 0.6514,
+          "width": 0.3049
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "Eversource, PO Box 56007, Boston, MA 02205-6007"
+      },
+      "total": {
+        "confidence": 0.7000000000000001,
+        "match_text": "37\"",
+        "normalized_bbox": {
+          "height": 0.0057,
+          "left": 0.2529,
+          "top": 0.3996,
+          "width": 0.0131
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "37\""
+      },
+      "vendor": {
+        "confidence": 0.7000000000000001,
+        "match_text": "EVERSSURCE",
+        "normalized_bbox": {
+          "height": 0.0305,
+          "left": 0.0345,
+          "top": 0.0191,
+          "width": 0.3218
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "EVERSSURCE"
+      }
+    },
+    "matched_vendor": "EVERSOURCE",
+    "matched_vendor_normalized": "eversource"
+  },
+  "line_items": [
+    {
+      "amount": 1118.29,
+      "description": "Amount Due On 08/17/19",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 0.0,
+      "description": "Balance Forward",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 1553.37,
+      "description": "Total Current Charges",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 804.44,
+      "description": "$748.93",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 1118.29,
+      "description": "MICHAEL D WHITE Amount Due On 08/17/19",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 1118.29,
+      "description": "Last Payment Received On 08/05/19",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 0.0,
+      "description": "Balance Forward",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 748.93,
+      "description": "Electric Supply Services",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 804.44,
+      "description": "Delivery Services",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 1553.37,
+      "description": "ON. OF. Sep 21 952 01 Total Current Charges",
+      "quantity": null,
+      "unit_price": null
+    }
+  ],
+  "model_source": "heuristic+confirmed",
+  "name_on_account": "MICHAEL D WHITE",
+  "payable_to": "EVERSSURCE",
+  "payment_terms": null,
+  "physical_billing_address": "1421 503 0033",
+  "po_box": "5010095",
+  "previous_amount_due": 1118.29,
+  "previous_payment_amount": -1118.29,
+  "previous_payment_date": "08/17/19",
+  "raw_text_excerpt": "EVERSSURCE Account Number: 1421 503 0033 Statement Date: 08/21/19 Service Provided To: MICHAEL D WHITE = s0,ss0.0] Amount Due On 08/17/19 $1,118.29 Last Payment Received On 08/05/19 -$1,118.29 Balance Forward $0.00 Total Current Charges $1,553.37 ElectriclUSagelHistonypaWowstitous( kWh) wmnvDay 280: \u2018ig Sep Oct Nov Doo Jan feb Ma Ax May Jin Jd Aig Te? 7S\" G4\" 50\u00b0 39\u00b0 38\u00b0 34\u00b0 37\" 48 55\" OB 76\u00b0 78\u00b0 \u2018Average Temperate fEtectrclusagelsummany] This month your This month you used average daily 7.9% less 7 % electric use was than at the 9 4 218.8 kWh \u2018same time last year USAGE News For You (Current{charges}fogelectricityy Supply Delivery $748.93 $804.44 Cost of electricity from NEXTERA Cost to deliver electricity ENERGY SERVICES from Eversource $0 $312 $624 $936 3 \"208 $1,560 Your electric supplier is NEXTERA ENERGY SERVICES 20455 STATE HIGHWAY 249, SUITE 200 HOUSTON, TX 77070 WWW.NEXTERAENERGYSERVICES.COM 800-381-9192 Billing for CAPE LIGHT COMPACT Join us on Sunday, Sept. 8 at 8 a.m. on the Esplanade in Boston for the Mass General Cancer Center Eversource Amazing Race. The event supports the amazing work the Mass General Cancer Center does in our community every day. Visit Eversource.com to register, create a team and learn more. Remit Payment To: Eversource, PO Box 56007, Boston, MA 02205-6007 EVERSSURCE Account Number: 1421 503 0033 060934 000001626 Hyuatnt fag, MICHAEL D WHITE SUSAN L_WHITE PO BOX 5010 MONROE CT 06468-8200 vos AS ARUBA TIT-121067-000001626, Please make your check payable to Eversource or to make your payment today visit Eversource.com. {i mailing your payment",
+  "remittance_address": "Eversource, PO Box 56007, Boston, MA 02205-6007",
+  "service_address": null,
+  "subtotal": null,
+  "tax": null,
+  "total": 1553.37,
+  "vendor": "EVERSSURCE"
+}

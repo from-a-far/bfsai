@@ -1,0 +1,48 @@
+{
+  "account_number": "CONTRACT ID: 1243-HS WHITE- 577 SEAVIEW- HOUSE",
+  "amount_due": 329.4,
+  "billing_address": "MR. & MRS. MICHAEL WHITE \r\nPO BOX 5010 \r\nMONROE, CT 06468",
+  "confidence": 0.99,
+  "currency": "USD",
+  "due_date": null,
+  "friendly_name": null,
+  "invoice_date": "8/23/19",
+  "invoice_number": "18740",
+  "learning_hints": {},
+  "line_items": [
+    {
+      "amount": 329.4,
+      "description": "CMC ELEVATOR CORPORATION 275 08/05/19 ELEVATOR SERVICE/ POWER OUTAGE",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 329.4,
+      "description": "Subcontract sub-total",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 329.4,
+      "description": "Amount due this invoice",
+      "quantity": null,
+      "unit_price": null
+    }
+  ],
+  "model_source": "heuristic+confirmed",
+  "name_on_account": "MR. & MRS. MICHAEL WHITE",
+  "payable_to": "ROGERS&MARNEY INC. BUILDERS",
+  "payment_terms": "NET 10",
+  "physical_billing_address": "MR. & MRS. MICHAEL WHITE \r\nPO BOX 5010 \r\nMONROE, CT 06468",
+  "po_box": "5010095",
+  "previous_amount_due": null,
+  "previous_payment_amount": null,
+  "previous_payment_date": null,
+  "raw_text_excerpt": "& ROGERS&MARNEY, INC. BUILDERS MR. & MRS. MICHAEL WHITE DRAW PO BOX 5010 NUMBER MONROE, CT 06468 NUMBER 18740 8/23/19 1243-HS00234 LOCATION: CONTRACT ID: 1243-HS 577 SEA VIEW AVENUE WHITE- 577 SEAVIEW- HOUSE OSTERVILLE, MA 02655 Subcontract Name Reference Date Description Amount CMC ELEVATOR CORPORATION 275 08/05/19 ELEVATOR SERVICE/ POWER OUTAGE 329.40 Subcontract sub-total 329.40 Amount due this invoice $329.40 TERMS: NET 10 DAYS PO Box 310. Osterville, Massachusetts 02655 . Phone: 508.428.6106 . Fax: 508.420.3550 . rogersandmarneybuilders.com",
+  "remittance_address": "PO Box 310. Osterville, Massachusetts 02655",
+  "service_address": "577 SEA VIEW AVENUE \r\nOSTERVILLE, MA 02655",
+  "subtotal": 329.4,
+  "tax": null,
+  "total": 329.4,
+  "vendor": "ROGERS&MARNEY, INC."
+}

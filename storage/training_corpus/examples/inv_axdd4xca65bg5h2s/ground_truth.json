@@ -1,0 +1,54 @@
+{
+  "account_number": null,
+  "amount_due": 2633.41,
+  "billing_address": "White Residence\r\nPO Box 5010\r\nMonroe, Ct 06468",
+  "confidence": 0.99,
+  "currency": "USD",
+  "due_date": null,
+  "friendly_name": null,
+  "invoice_date": "8/15/2019",
+  "invoice_number": "3798",
+  "learning_hints": {},
+  "line_items": [
+    {
+      "amount": 2630.5,
+      "description": "Subtotal",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 2633.41,
+      "description": "Total",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 0.0,
+      "description": "Payments/Credits",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 2633.41,
+      "description": "Balance Due",
+      "quantity": null,
+      "unit_price": null
+    }
+  ],
+  "model_source": "heuristic+confirmed",
+  "name_on_account": "White Residence",
+  "payable_to": "HOOD LAND SVC",
+  "payment_terms": null,
+  "physical_billing_address": "White Residence\r\nPO Box 5010\r\nMonroe, Ct 06468",
+  "po_box": "5010095",
+  "previous_amount_due": null,
+  "previous_payment_amount": null,
+  "previous_payment_date": null,
+  "raw_text_excerpt": "HOOD LAND SVC P.O. Box 701058 Wabasso, FL 32970 772-473-3555 hoodlandsve@aol.com Invoice Date 8/15/2019 Bill To Ship To White Residence PO Box 5010 Monroe, Ct 06468 P.O. No. Project Qty Item Description Lawn Maintenance | August Trimming 2 days - trimming palms, oaks & mangroves. Nozzle Irrigation Rotor Irrigation 12\" Pop-up irrigation Funny Plpe ' Connectors Irrigation Irrigation Hours Labor Subtotal $2,630.50 Sales Tax (7.0%) Total $2,633.41 Payments/Credits $0.00 Balance Due $2,633.41",
+  "remittance_address": "HOOD LAND SVC\r\nP.O, Box 701058\r\nWabasso, FL 32970",
+  "service_address": null,
+  "subtotal": 2630.5,
+  "tax": 2.91,
+  "total": 2630.5,
+  "vendor": "HOOD LAND SVC"
+}

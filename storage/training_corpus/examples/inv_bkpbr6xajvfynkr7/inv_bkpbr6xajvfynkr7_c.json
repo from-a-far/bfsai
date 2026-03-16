@@ -1,0 +1,768 @@
+{
+  "alignment": {
+    "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_bkpbr6xajvfynkr7_c.pdf",
+    "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_bkpbr6xajvfynkr7_c.json",
+    "archived_file_path": "storage/document_files/5010095/inv_bkpbr6xajvfynkr7.pdf",
+    "field_alignments": {
+      "account_number": {
+        "bbox": {
+          "height": 34,
+          "left": 202,
+          "top": 1027,
+          "width": 141
+        },
+        "confidence": 1,
+        "match_text": "1421 503 0033",
+        "normalized_bbox": {
+          "height": 0.0247,
+          "left": 0.1895,
+          "top": 0.7458,
+          "width": 0.1323
+        },
+        "page_number": 1,
+        "value": "1421 503 0033"
+      },
+      "amount_due": {
+        "bbox": {
+          "height": 27,
+          "left": 936,
+          "top": 154,
+          "width": 72
+        },
+        "confidence": 1,
+        "match_text": "$1,553.37",
+        "normalized_bbox": {
+          "height": 0.0196,
+          "left": 0.878,
+          "top": 0.1118,
+          "width": 0.0675
+        },
+        "page_number": 1,
+        "value": 1553.37
+      },
+      "billing_address": {
+        "bbox": {
+          "height": 86,
+          "left": 110,
+          "top": 1217,
+          "width": 206
+        },
+        "confidence": 1,
+        "match_text": "MICHAEL D WHITE\nSUSAN L WHITE\n\nPO BOX 5010\n\nMONROE CT 06468-8200",
+        "normalized_bbox": {
+          "height": 0.0625,
+          "left": 0.1032,
+          "top": 0.8838,
+          "width": 0.1932
+        },
+        "page_number": 1,
+        "value": "MICHAEL D WHITE\nSUSAN L WHITE\nPO BOX 5010\nMONROE CT 06468-8200"
+      },
+      "due_date": {
+        "bbox": {
+          "height": 26,
+          "left": 512,
+          "top": 62,
+          "width": 98
+        },
+        "confidence": 1,
+        "match_text": "[09/15/19",
+        "normalized_bbox": {
+          "height": 0.0189,
+          "left": 0.4803,
+          "top": 0.045,
+          "width": 0.0919
+        },
+        "page_number": 1,
+        "value": "[09/15/19"
+      },
+      "invoice_date": {
+        "bbox": {
+          "height": 18,
+          "left": 216,
+          "top": 106,
+          "width": 81
+        },
+        "confidence": 1,
+        "match_text": "08/21/19",
+        "normalized_bbox": {
+          "height": 0.0114,
+          "left": 0.1773,
+          "top": 0.0673,
+          "width": 0.0665
+        },
+        "page_number": 1,
+        "value": "08/21/19"
+      },
+      "invoice_number": null,
+      "line_items": [
+        {
+          "amount": {
+            "bbox": {
+              "height": 21,
+              "left": 416,
+              "top": 784,
+              "width": 19
+            },
+            "confidence": 1.0,
+            "match_text": "9",
+            "normalized_bbox": {
+              "height": 0.0133,
+              "left": 0.3415,
+              "top": 0.4981,
+              "width": 0.0156
+            },
+            "page_number": 1,
+            "value": 1118.29
+          },
+          "description": {
+            "bbox": {
+              "height": 16,
+              "left": 562,
+              "top": 112,
+              "width": 190
+            },
+            "confidence": 1.0,
+            "match_text": "Amount Due On 08/17/19",
+            "normalized_bbox": {
+              "height": 0.0102,
+              "left": 0.4614,
+              "top": 0.0712,
+              "width": 0.156
+            },
+            "page_number": 1,
+            "value": "Amount Due On 08/17/19"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 18,
+              "left": 1107,
+              "top": 158,
+              "width": 43
+            },
+            "confidence": 1.0,
+            "match_text": "$0.00",
+            "normalized_bbox": {
+              "height": 0.0114,
+              "left": 0.9089,
+              "top": 0.1004,
+              "width": 0.0353
+            },
+            "page_number": 1,
+            "value": 0.0
+          },
+          "description": {
+            "bbox": {
+              "height": 14,
+              "left": 563,
+              "top": 160,
+              "width": 123
+            },
+            "confidence": 1.0,
+            "match_text": "Balance Forward",
+            "normalized_bbox": {
+              "height": 0.0089,
+              "left": 0.4622,
+              "top": 0.1017,
+              "width": 0.101
+            },
+            "page_number": 1,
+            "value": "Balance Forward"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 9,
+              "left": 308,
+              "top": 629,
+              "width": 16
+            },
+            "confidence": 1.0,
+            "match_text": "37\"",
+            "normalized_bbox": {
+              "height": 0.0057,
+              "left": 0.2529,
+              "top": 0.3996,
+              "width": 0.0131
+            },
+            "page_number": 1,
+            "value": 1553.37
+          },
+          "description": {
+            "bbox": {
+              "height": 19,
+              "left": 562,
+              "top": 183,
+              "width": 160
+            },
+            "confidence": 1.0,
+            "match_text": "Total Current Charges",
+            "normalized_bbox": {
+              "height": 0.0121,
+              "left": 0.4614,
+              "top": 0.1163,
+              "width": 0.1314
+            },
+            "page_number": 1,
+            "value": "Total Current Charges"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 33,
+              "left": 453,
+              "top": 800,
+              "width": 17
+            },
+            "confidence": 1.0,
+            "match_text": "4",
+            "normalized_bbox": {
+              "height": 0.021,
+              "left": 0.3719,
+              "top": 0.5083,
+              "width": 0.014
+            },
+            "page_number": 1,
+            "value": 804.44
+          },
+          "description": {
+            "bbox": {
+              "height": 9,
+              "left": 338,
+              "top": 629,
+              "width": 16
+            },
+            "confidence": 1.0,
+            "match_text": "48",
+            "normalized_bbox": {
+              "height": 0.0057,
+              "left": 0.2775,
+              "top": 0.3996,
+              "width": 0.0131
+            },
+            "page_number": 1,
+            "value": "$748.93"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 21,
+              "left": 416,
+              "top": 784,
+              "width": 19
+            },
+            "confidence": 1.0,
+            "match_text": "9",
+            "normalized_bbox": {
+              "height": 0.0133,
+              "left": 0.3415,
+              "top": 0.4981,
+              "width": 0.0156
+            },
+            "page_number": 1,
+            "value": 1118.29
+          },
+          "description": {
+            "bbox": {
+              "height": 19,
+              "left": 67,
+              "top": 172,
+              "width": 689
+            },
+            "confidence": 1.0,
+            "match_text": "MICHAEL D WHITE Amount Due On 08/17/19",
+            "normalized_bbox": {
+              "height": 0.0121,
+              "left": 0.0549,
+              "top": 0.1093,
+              "width": 0.5643
+            },
+            "page_number": 2,
+            "value": "MICHAEL D WHITE Amount Due On 08/17/19"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 21,
+              "left": 416,
+              "top": 784,
+              "width": 19
+            },
+            "confidence": 1.0,
+            "match_text": "9",
+            "normalized_bbox": {
+              "height": 0.0133,
+              "left": 0.3415,
+              "top": 0.4981,
+              "width": 0.0156
+            },
+            "page_number": 1,
+            "value": 1118.29
+          },
+          "description": {
+            "bbox": {
+              "height": 18,
+              "left": 563,
+              "top": 136,
+              "width": 270
+            },
+            "confidence": 1.0,
+            "match_text": "Last Payment Received On 08/05/19",
+            "normalized_bbox": {
+              "height": 0.0114,
+              "left": 0.4622,
+              "top": 0.0864,
+              "width": 0.2217
+            },
+            "page_number": 1,
+            "value": "Last Payment Received On 08/05/19"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 18,
+              "left": 1107,
+              "top": 158,
+              "width": 43
+            },
+            "confidence": 1.0,
+            "match_text": "$0.00",
+            "normalized_bbox": {
+              "height": 0.0114,
+              "left": 0.9089,
+              "top": 0.1004,
+              "width": 0.0353
+            },
+            "page_number": 1,
+            "value": 0.0
+          },
+          "description": {
+            "bbox": {
+              "height": 14,
+              "left": 563,
+              "top": 160,
+              "width": 123
+            },
+            "confidence": 1.0,
+            "match_text": "Balance Forward",
+            "normalized_bbox": {
+              "height": 0.0089,
+              "left": 0.4622,
+              "top": 0.1017,
+              "width": 0.101
+            },
+            "page_number": 1,
+            "value": "Balance Forward"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 9,
+              "left": 338,
+              "top": 629,
+              "width": 16
+            },
+            "confidence": 1.0,
+            "match_text": "48",
+            "normalized_bbox": {
+              "height": 0.0057,
+              "left": 0.2775,
+              "top": 0.3996,
+              "width": 0.0131
+            },
+            "page_number": 1,
+            "value": 748.93
+          },
+          "description": {
+            "bbox": {
+              "height": 17,
+              "left": 611,
+              "top": 278,
+              "width": 159
+            },
+            "confidence": 1.0,
+            "match_text": "Electric Supply Services",
+            "normalized_bbox": {
+              "height": 0.0108,
+              "left": 0.5004,
+              "top": 0.1767,
+              "width": 0.1302
+            },
+            "page_number": 2,
+            "value": "Electric Supply Services"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 33,
+              "left": 453,
+              "top": 800,
+              "width": 17
+            },
+            "confidence": 1.0,
+            "match_text": "4",
+            "normalized_bbox": {
+              "height": 0.021,
+              "left": 0.3719,
+              "top": 0.5083,
+              "width": 0.014
+            },
+            "page_number": 1,
+            "value": 804.44
+          },
+          "description": {
+            "bbox": {
+              "height": 18,
+              "left": 611,
+              "top": 303,
+              "width": 114
+            },
+            "confidence": 1.0,
+            "match_text": "Delivery Services",
+            "normalized_bbox": {
+              "height": 0.0114,
+              "left": 0.5004,
+              "top": 0.1926,
+              "width": 0.0934
+            },
+            "page_number": 2,
+            "value": "Delivery Services"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 9,
+              "left": 308,
+              "top": 629,
+              "width": 16
+            },
+            "confidence": 1.0,
+            "match_text": "37\"",
+            "normalized_bbox": {
+              "height": 0.0057,
+              "left": 0.2529,
+              "top": 0.3996,
+              "width": 0.0131
+            },
+            "page_number": 1,
+            "value": 1553.37
+          },
+          "description": {
+            "bbox": {
+              "height": 27,
+              "left": 193,
+              "top": 325,
+              "width": 535
+            },
+            "confidence": 1.0,
+            "match_text": "ON. OF. Sep 21 952 01 Total Current Charges",
+            "normalized_bbox": {
+              "height": 0.0172,
+              "left": 0.1581,
+              "top": 0.2066,
+              "width": 0.4382
+            },
+            "page_number": 2,
+            "value": "ON. OF. Sep 21 952 01 Total Current Charges"
+          }
+        }
+      ],
+      "name_on_account": {
+        "bbox": {
+          "height": 27,
+          "left": 35,
+          "top": 136,
+          "width": 151
+        },
+        "confidence": 1,
+        "match_text": "MICHAEL D WHITE",
+        "normalized_bbox": {
+          "height": 0.0196,
+          "left": 0.0328,
+          "top": 0.0988,
+          "width": 0.1417
+        },
+        "page_number": 1,
+        "value": "MICHAEL D WHITE"
+      },
+      "payable_to": {
+        "bbox": {
+          "height": 22,
+          "left": 432,
+          "top": 904,
+          "width": 74
+        },
+        "confidence": 1,
+        "match_text": "Eversource,",
+        "normalized_bbox": {
+          "height": 0.016,
+          "left": 0.4053,
+          "top": 0.6565,
+          "width": 0.0694
+        },
+        "page_number": 1,
+        "value": "Eversource,"
+      },
+      "payment_terms": null,
+      "physical_billing_address": {
+        "bbox": {
+          "height": 85,
+          "left": 109,
+          "top": 1217,
+          "width": 205
+        },
+        "confidence": 1,
+        "match_text": "MICHAEL D WHITE\nSUSAN L WHITE\n\nPO BOX 5010\n\nMONROE CT 06468-8200",
+        "normalized_bbox": {
+          "height": 0.0617,
+          "left": 0.1023,
+          "top": 0.8838,
+          "width": 0.1923
+        },
+        "page_number": 1,
+        "value": "MICHAEL D WHITE\nSUSAN L WHITE\nPO BOX 5010\nMONROE CT 06468-8200"
+      },
+      "previous_amount_due": {
+        "bbox": {
+          "height": 23,
+          "left": 934,
+          "top": 95,
+          "width": 79
+        },
+        "confidence": 1,
+        "match_text": "$1,118.29",
+        "normalized_bbox": {
+          "height": 0.0167,
+          "left": 0.8762,
+          "top": 0.069,
+          "width": 0.0741
+        },
+        "page_number": 1,
+        "value": 1118.29
+      },
+      "previous_payment_amount": {
+        "bbox": {
+          "height": 19,
+          "left": 931,
+          "top": 117,
+          "width": 84
+        },
+        "confidence": 1,
+        "match_text": "-$1,118.29",
+        "normalized_bbox": {
+          "height": 0.0138,
+          "left": 0.8734,
+          "top": 0.085,
+          "width": 0.0788
+        },
+        "page_number": 1,
+        "value": -1118.29
+      },
+      "previous_payment_date": {
+        "bbox": {
+          "height": 26,
+          "left": 594,
+          "top": 90,
+          "width": 70
+        },
+        "confidence": 1,
+        "match_text": "08/17/19",
+        "normalized_bbox": {
+          "height": 0.0189,
+          "left": 0.5572,
+          "top": 0.0654,
+          "width": 0.0657
+        },
+        "page_number": 1,
+        "value": "08/17/19"
+      },
+      "remittance_address": {
+        "bbox": {
+          "height": 33,
+          "left": 432,
+          "top": 897,
+          "width": 325
+        },
+        "confidence": 1,
+        "match_text": "Eversource, PO Box 56007, Boston, MA 02205-6007",
+        "normalized_bbox": {
+          "height": 0.024,
+          "left": 0.4053,
+          "top": 0.6514,
+          "width": 0.3049
+        },
+        "page_number": 1,
+        "value": "Eversource, PO Box 56007, Boston, MA 02205-6007"
+      },
+      "subtotal": null,
+      "tax": null,
+      "total": {
+        "bbox": {
+          "height": 9,
+          "left": 308,
+          "top": 629,
+          "width": 16
+        },
+        "confidence": 1,
+        "match_text": "37\"",
+        "normalized_bbox": {
+          "height": 0.0057,
+          "left": 0.2529,
+          "top": 0.3996,
+          "width": 0.0131
+        },
+        "page_number": 1,
+        "value": 1553.37
+      },
+      "vendor": {
+        "bbox": {
+          "height": 48,
+          "left": 42,
+          "top": 30,
+          "width": 392
+        },
+        "confidence": 1,
+        "match_text": "EVERSSURCE",
+        "normalized_bbox": {
+          "height": 0.0305,
+          "left": 0.0345,
+          "top": 0.0191,
+          "width": 0.3218
+        },
+        "page_number": 1,
+        "value": "EVERSSURCE"
+      }
+    },
+    "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_bkpbr6xajvfynkr7.json",
+    "page_count": 2,
+    "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_bkpbr6xajvfynkr7.pdf",
+    "sha256": "5bf3f69a63734cbf97a951272c14771ea0ba667b0051fa84bbdadaf05cc54422",
+    "source_filename": "evsc.pdf"
+  },
+  "document_id": "inv_bkpbr6xajvfynkr7",
+  "extraction": {
+    "account_number": "1421 503 0033",
+    "amount_due": 1553.37,
+    "billing_address": "MICHAEL D WHITE\r\nSUSAN L WHITE\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+    "confidence": 0.99,
+    "currency": "USD",
+    "due_date": "09/15/19",
+    "friendly_name": "EVERSOURCE - 0033",
+    "invoice_date": "08/21/19",
+    "invoice_number": null,
+    "learning_hints": {},
+    "line_items": [
+      {
+        "amount": 1118.29,
+        "description": "Amount Due On 08/17/19",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 0.0,
+        "description": "Balance Forward",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 1553.37,
+        "description": "Total Current Charges",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 804.44,
+        "description": "$748.93",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 1118.29,
+        "description": "MICHAEL D WHITE Amount Due On 08/17/19",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 1118.29,
+        "description": "Last Payment Received On 08/05/19",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 0.0,
+        "description": "Balance Forward",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 748.93,
+        "description": "Electric Supply Services",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 804.44,
+        "description": "Delivery Services",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 1553.37,
+        "description": "ON. OF. Sep 21 952 01 Total Current Charges",
+        "quantity": null,
+        "unit_price": null
+      }
+    ],
+    "model_source": "heuristic+confirmed",
+    "name_on_account": "MICHAEL D WHITE",
+    "payable_to": "Eversource",
+    "payment_terms": null,
+    "physical_billing_address": "MICHAEL D WHITE\r\nSUSAN L WHITE\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+    "po_box": "5010095",
+    "previous_amount_due": 1118.29,
+    "previous_payment_amount": -1118.29,
+    "previous_payment_date": "08/17/19",
+    "raw_text_excerpt": "EVERSSURCE Account Number: 1421 503 0033 Statement Date: 08/21/19 Service Provided To: MICHAEL D WHITE = s0,ss0.0] Amount Due On 08/17/19 $1,118.29 Last Payment Received On 08/05/19 -$1,118.29 Balance Forward $0.00 Total Current Charges $1,553.37 ElectriclUSagelHistonypaWowstitous( kWh) wmnvDay 280: \u2018ig Sep Oct Nov Doo Jan feb Ma Ax May Jin Jd Aig Te? 7S\" G4\" 50\u00b0 39\u00b0 38\u00b0 34\u00b0 37\" 48 55\" OB 76\u00b0 78\u00b0 \u2018Average Temperate fEtectrclusagelsummany] This month your This month you used average daily 7.9% less 7 % electric use was than at the 9 4 218.8 kWh \u2018same time last year USAGE News For You (Current{charges}fogelectricityy Supply Delivery $748.93 $804.44 Cost of electricity from NEXTERA Cost to deliver electricity ENERGY SERVICES from Eversource $0 $312 $624 $936 3 \"208 $1,560 Your electric supplier is NEXTERA ENERGY SERVICES 20455 STATE HIGHWAY 249, SUITE 200 HOUSTON, TX 77070 WWW.NEXTERAENERGYSERVICES.COM 800-381-9192 Billing for CAPE LIGHT COMPACT Join us on Sunday, Sept. 8 at 8 a.m. on the Esplanade in Boston for the Mass General Cancer Center Eversource Amazing Race. The event supports the amazing work the Mass General Cancer Center does in our community every day. Visit Eversource.com to register, create a team and learn more. Remit Payment To: Eversource, PO Box 56007, Boston, MA 02205-6007 EVERSSURCE Account Number: 1421 503 0033 060934 000001626 Hyuatnt fag, MICHAEL D WHITE SUSAN L_WHITE PO BOX 5010 MONROE CT 06468-8200 vos AS ARUBA TIT-121067-000001626, Please make your check payable to Eversource or to make your payment today visit Eversource.com. {i mailing your payment",
+    "remittance_address": "Eversource, PO Box 56007, Boston, MA 02205-6007",
+    "service_address": null,
+    "subtotal": null,
+    "tax": null,
+    "total": 1553.37,
+    "vendor": "EVERSOURCE"
+  },
+  "ingestion": {
+    "attempts": 0,
+    "error_message": null,
+    "ingested_at": null,
+    "last_attempt_at": null,
+    "status": "pending"
+  },
+  "po_box": "5010095",
+  "status": "approved",
+  "verification": {
+    "issues": [
+      {
+        "field": "invoice_number",
+        "message": "Invoice number is missing",
+        "severity": "medium"
+      },
+      {
+        "field": "line_items",
+        "message": "Line-item total differs from invoice total by 7266.05",
+        "severity": "medium"
+      }
+    ],
+    "score": 0.83,
+    "status": "review"
+  }
+}

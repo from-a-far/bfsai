@@ -1,0 +1,246 @@
+{
+  "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_amsz7jpkrnfuhdyf_c.pdf",
+  "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_amsz7jpkrnfuhdyf_c.json",
+  "archived_file_path": "storage/document_files/5010095/inv_amsz7jpkrnfuhdyf.pdf",
+  "document_type": "b",
+  "field_alignments": {
+    "account_number": {
+      "confidence": 0.7000000000000001,
+      "match_text": "1243-HS CONTRACT ID:\nWHITE- 577 SEAVIEW- HOUSE",
+      "normalized_bbox": {
+        "height": 0.0378,
+        "left": 0.5549,
+        "top": 0.2869,
+        "width": 0.2338
+      },
+      "page_number": 1,
+      "sample_count": 1,
+      "source": "vendor_field_profile",
+      "value": "1243-HS CONTRACT ID: WHITE- 577 SEAVIEW- HOUSE"
+    },
+    "amount_due": {
+      "bbox": {
+        "height": 12,
+        "left": 1032,
+        "top": 673,
+        "width": 48
+      },
+      "confidence": 1,
+      "match_text": "329.40",
+      "normalized_bbox": {
+        "height": 0.0076,
+        "left": 0.848,
+        "top": 0.4276,
+        "width": 0.0394
+      },
+      "page_number": 1,
+      "value": 329.4
+    },
+    "billing_address": {
+      "confidence": 0.7000000000000001,
+      "match_text": "MRS. MICHAEL WHITE MR.\nPO BOX 5010\nMONROE, CT 06468",
+      "normalized_bbox": {
+        "height": 0.0479,
+        "left": 0.0779,
+        "top": 0.1954,
+        "width": 0.2329
+      },
+      "page_number": 1,
+      "sample_count": 1,
+      "source": "vendor_field_profile",
+      "value": "MRS. MICHAEL WHITE MR.\nPO BOX 5010\nMONROE, CT 06468"
+    },
+    "currency": null,
+    "due_date": null,
+    "friendly_name": {
+      "confidence": 0.7000000000000001,
+      "match_text": "ROGERS&MARNEY, INC.\nBUILDERS",
+      "normalized_bbox": {
+        "height": 0.0443,
+        "left": 0.3596,
+        "top": 0.0893,
+        "width": 0.2901
+      },
+      "page_number": 1,
+      "sample_count": 1,
+      "source": "vendor_field_profile",
+      "value": "ROGERS&MARNEY, INC. BUILDERS"
+    },
+    "invoice_date": {
+      "bbox": {
+        "height": 23,
+        "left": 807,
+        "top": 370,
+        "width": 57
+      },
+      "confidence": 1,
+      "match_text": "8/23/19",
+      "normalized_bbox": {
+        "height": 0.0146,
+        "left": 0.6631,
+        "top": 0.2351,
+        "width": 0.0468
+      },
+      "page_number": 1,
+      "value": "8/23/19"
+    },
+    "invoice_number": {
+      "bbox": {
+        "height": 12,
+        "left": 714,
+        "top": 374,
+        "width": 43
+      },
+      "confidence": 1,
+      "match_text": "18740",
+      "normalized_bbox": {
+        "height": 0.0076,
+        "left": 0.5867,
+        "top": 0.2376,
+        "width": 0.0353
+      },
+      "page_number": 1,
+      "value": "18740"
+    },
+    "name_on_account": {
+      "confidence": 0.7000000000000001,
+      "match_text": "MRS. MICHAEL WHITE MR.",
+      "normalized_bbox": {
+        "height": 0.0174,
+        "left": 0.0761,
+        "top": 0.1939,
+        "width": 0.2366
+      },
+      "page_number": 1,
+      "sample_count": 1,
+      "source": "vendor_field_profile",
+      "value": "MRS. MICHAEL WHITE MR."
+    },
+    "payable_to": {
+      "confidence": 0.7000000000000001,
+      "match_text": "ROGERS&MARNEY, INC.\nBUILDERS",
+      "normalized_bbox": {
+        "height": 0.0341,
+        "left": 0.3577,
+        "top": 0.0951,
+        "width": 0.2995
+      },
+      "page_number": 1,
+      "sample_count": 1,
+      "source": "vendor_field_profile",
+      "value": "ROGERS&MARNEY, INC. BUILDERS"
+    },
+    "payment_terms": {
+      "bbox": {
+        "height": 12,
+        "left": 173,
+        "top": 889,
+        "width": 53
+      },
+      "confidence": 1,
+      "match_text": "NET 10",
+      "normalized_bbox": {
+        "height": 0.0076,
+        "left": 0.1422,
+        "top": 0.5648,
+        "width": 0.0435
+      },
+      "page_number": 1,
+      "value": "NET 10"
+    },
+    "physical_billing_address": {
+      "confidence": 0.7000000000000001,
+      "match_text": "MRS. MICHAEL WHITE MR.\nPO BOX 5010\nMONROE, CT 06468",
+      "normalized_bbox": {
+        "height": 0.0581,
+        "left": 0.0779,
+        "top": 0.1924,
+        "width": 0.2282
+      },
+      "page_number": 1,
+      "sample_count": 1,
+      "source": "vendor_field_profile",
+      "value": "MRS. MICHAEL WHITE MR.\nPO BOX 5010\nMONROE, CT 06468"
+    },
+    "previous_amount_due": null,
+    "previous_payment_amount": null,
+    "previous_payment_date": null,
+    "remittance_address": {
+      "bbox": {
+        "height": 15,
+        "left": 130,
+        "top": 1516,
+        "width": 363
+      },
+      "confidence": 1,
+      "match_text": "PO Box 310. Osterville, Massachusetts 02655 .",
+      "normalized_bbox": {
+        "height": 0.0095,
+        "left": 0.1068,
+        "top": 0.9632,
+        "width": 0.2983
+      },
+      "page_number": 1,
+      "value": "PO Box 310. Osterville, Massachusetts 02655\n."
+    },
+    "service_address": {
+      "confidence": 0.7000000000000001,
+      "match_text": "SEA VIEW AVENUE 577\nOSTERVILLE, MA 02655",
+      "normalized_bbox": {
+        "height": 0.037,
+        "left": 0.0826,
+        "top": 0.3065,
+        "width": 0.1897
+      },
+      "page_number": 1,
+      "sample_count": 1,
+      "source": "vendor_field_profile",
+      "value": "SEA VIEW AVENUE 577\nOSTERVILLE, MA 02655"
+    },
+    "subtotal": {
+      "bbox": {
+        "height": 12,
+        "left": 1032,
+        "top": 673,
+        "width": 48
+      },
+      "confidence": 1,
+      "match_text": "329.40",
+      "normalized_bbox": {
+        "height": 0.0076,
+        "left": 0.848,
+        "top": 0.4276,
+        "width": 0.0394
+      },
+      "page_number": 1,
+      "value": 329.4
+    },
+    "tax": null,
+    "total": {
+      "bbox": {
+        "height": 12,
+        "left": 1032,
+        "top": 673,
+        "width": 48
+      },
+      "confidence": 1,
+      "match_text": "329.40",
+      "normalized_bbox": {
+        "height": 0.0076,
+        "left": 0.848,
+        "top": 0.4276,
+        "width": 0.0394
+      },
+      "page_number": 1,
+      "value": 329.4
+    },
+    "vendor": null
+  },
+  "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_amsz7jpkrnfuhdyf.json",
+  "page_count": 1,
+  "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_amsz7jpkrnfuhdyf.pdf",
+  "routed_copy_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/bills/inv_amsz7jpkrnfuhdyf.pdf",
+  "routing_reason": "defaulted to bill because amount due was detected",
+  "sha256": "56e8328506781a8b55dd47b7274b704cd06d0ab798aad442d6741fa8f79058ee",
+  "source_filename": "strk.pdf"
+}

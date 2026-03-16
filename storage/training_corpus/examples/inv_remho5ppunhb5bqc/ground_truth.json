@@ -1,0 +1,434 @@
+{
+  "account_number": null,
+  "amount_due": 2633.41,
+  "billing_address": "White Residence, PO Box 5010, Monroe, Ct 06468",
+  "confidence": 0.99,
+  "currency": "USD",
+  "due_date": null,
+  "friendly_name": "HOOD LAND SVC",
+  "invoice_date": "8/15/2019",
+  "invoice_number": "3798",
+  "learning_hints": {
+    "approved_count": 1,
+    "confirmed_fields": {
+      "amount_due": 2633.41,
+      "billing_address": "White Residence\r\nPO Box 5010\r\nMonroe, Ct 06468",
+      "currency": "USD",
+      "invoice_date": "8/15/2019",
+      "invoice_number": "3798",
+      "name_on_account": "White Residence",
+      "payable_to": "HOOD LAND SVC",
+      "physical_billing_address": "White Residence\r\nPO Box 5010\r\nMonroe, Ct 06468",
+      "remittance_address": "HOOD LAND SVC\r\nP.O, Box 701058\r\nWabasso, FL 32970",
+      "subtotal": 2630.5,
+      "tax": 2.91,
+      "total": 2630.5,
+      "vendor": "HOOD LAND SVC"
+    },
+    "correction_count": 8,
+    "field_alignment_profiles": [
+      {
+        "field_name": "amount_due",
+        "id": 36,
+        "normalized_bbox": {
+          "height": 0.0211,
+          "left": 0.8602,
+          "top": 0.92,
+          "width": 0.075
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0211,\n  \"left\": 0.8602,\n  \"top\": 0.92,\n  \"width\": 0.075\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 2633.41,
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "total",
+        "id": 35,
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.1962,
+          "top": 0.4309,
+          "width": 0.0057
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0076,\n  \"left\": 0.1962,\n  \"top\": 0.4309,\n  \"width\": 0.0057\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 2630.5,
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "tax",
+        "id": 34,
+        "normalized_bbox": {
+          "height": 0.016,
+          "left": 0.8856,
+          "top": 0.8116,
+          "width": 0.0488
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.016,\n  \"left\": 0.8856,\n  \"top\": 0.8116,\n  \"width\": 0.0488\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 2.91,
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "subtotal",
+        "id": 33,
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.1962,
+          "top": 0.4309,
+          "width": 0.0057
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0076,\n  \"left\": 0.1962,\n  \"top\": 0.4309,\n  \"width\": 0.0057\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": 2630.5,
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "invoice_date",
+        "id": 32,
+        "normalized_bbox": {
+          "height": 0.0083,
+          "left": 0.7455,
+          "top": 0.1139,
+          "width": 0.0591
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0083,\n  \"left\": 0.7455,\n  \"top\": 0.1139,\n  \"width\": 0.0591\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "8/15/2019",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "invoice_number",
+        "id": 31,
+        "normalized_bbox": {
+          "height": 0.0182,
+          "left": 0.8574,
+          "top": 0.1091,
+          "width": 0.0591
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0182,\n  \"left\": 0.8574,\n  \"top\": 0.1091,\n  \"width\": 0.0591\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "3798",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "name_on_account",
+        "id": 30,
+        "normalized_bbox": {
+          "height": 0.0182,
+          "left": 0.1013,
+          "top": 0.1833,
+          "width": 0.1248
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0182,\n  \"left\": 0.1013,\n  \"top\": 0.1833,\n  \"width\": 0.1248\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "White Residence",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "physical_billing_address",
+        "id": 29,
+        "normalized_bbox": {
+          "height": 0.0495,
+          "left": 0.1041,
+          "top": 0.1825,
+          "width": 0.1323
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0495,\n  \"left\": 0.1041,\n  \"top\": 0.1825,\n  \"width\": 0.1323\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "White Residence\r\nPO Box 5010\r\nMonroe, Ct 06468",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "billing_address",
+        "id": 28,
+        "normalized_bbox": {
+          "height": 0.0487,
+          "left": 0.1041,
+          "top": 0.184,
+          "width": 0.1276
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0487,\n  \"left\": 0.1041,\n  \"top\": 0.184,\n  \"width\": 0.1276\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "White Residence\r\nPO Box 5010\r\nMonroe, Ct 06468",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "remittance_address",
+        "id": 27,
+        "normalized_bbox": {
+          "height": 0.0749,
+          "left": 0.046,
+          "top": 0.0298,
+          "width": 0.1867
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0749,\n  \"left\": 0.046,\n  \"top\": 0.0298,\n  \"width\": 0.1867\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "HOOD LAND SVC\r\nP.O, Box 701058\r\nWabasso, FL 32970",
+        "updated_at": "2026-03-12T08:55:18+00:00"
+      },
+      {
+        "field_name": "payable_to",
+        "id": 26,
+        "normalized_bbox": {
+          "height": 0.0211,
+          "left": 0.0563,
+          "top": 0.0371,
+          "width": 0.1698
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0211,\n  \"left\": 0.0563,\n  \"top\": 0.0371,\n  \"width\": 0.1698\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "HOOD LAND SVC",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      },
+      {
+        "field_name": "vendor",
+        "id": 25,
+        "normalized_bbox": {
+          "height": 0.0108,
+          "left": 0.0624,
+          "top": 0.0433,
+          "width": 0.1593
+        },
+        "normalized_bbox_json": "{\n  \"height\": 0.0108,\n  \"left\": 0.0624,\n  \"top\": 0.0433,\n  \"width\": 0.1593\n}",
+        "normalized_vendor": "hood land svc",
+        "page_count": 1,
+        "page_number": 1,
+        "po_box": "5010095",
+        "sample_count": 1,
+        "sample_value": "HOOD LAND SVC",
+        "updated_at": "2026-03-12T08:55:17+00:00"
+      }
+    ],
+    "learned_field_candidates": {
+      "amount_due": {
+        "confidence": 0.7000000000000001,
+        "match_text": "$2,633.41",
+        "normalized_bbox": {
+          "height": 0.0211,
+          "left": 0.8602,
+          "top": 0.92,
+          "width": 0.075
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": 2633.41
+      },
+      "billing_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "White Residence\nPO Box 5010\nCt 06468 Monroe,",
+        "normalized_bbox": {
+          "height": 0.0487,
+          "left": 0.1041,
+          "top": 0.184,
+          "width": 0.1276
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "White Residence\nPO Box 5010\nCt 06468 Monroe,"
+      },
+      "invoice_date": {
+        "confidence": 0.7000000000000001,
+        "match_text": "8/15/2019",
+        "normalized_bbox": {
+          "height": 0.0083,
+          "left": 0.7455,
+          "top": 0.1139,
+          "width": 0.0591
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "8/15/2019"
+      },
+      "name_on_account": {
+        "confidence": 0.7000000000000001,
+        "match_text": "White Residence",
+        "normalized_bbox": {
+          "height": 0.0182,
+          "left": 0.1013,
+          "top": 0.1833,
+          "width": 0.1248
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "White Residence"
+      },
+      "payable_to": {
+        "confidence": 0.7000000000000001,
+        "match_text": "HOOD LAND SVC",
+        "normalized_bbox": {
+          "height": 0.0211,
+          "left": 0.0563,
+          "top": 0.0371,
+          "width": 0.1698
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "HOOD LAND SVC"
+      },
+      "physical_billing_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "White Residence\nPO Box 5010\nCt 06468 Monroe,",
+        "normalized_bbox": {
+          "height": 0.0495,
+          "left": 0.1041,
+          "top": 0.1825,
+          "width": 0.1323
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "White Residence\nPO Box 5010\nCt 06468 Monroe,"
+      },
+      "remittance_address": {
+        "confidence": 0.7000000000000001,
+        "match_text": "HOOD LAND SVC\nP.O. Box 701058\nWabasso, FL 32970",
+        "normalized_bbox": {
+          "height": 0.0749,
+          "left": 0.046,
+          "top": 0.0298,
+          "width": 0.1867
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "HOOD LAND SVC\nP.O. Box 701058\nWabasso, FL 32970"
+      },
+      "subtotal": {
+        "confidence": 0.7000000000000001,
+        "match_text": "2",
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.1962,
+          "top": 0.4309,
+          "width": 0.0057
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": 2.0
+      },
+      "total": {
+        "confidence": 0.7000000000000001,
+        "match_text": "2",
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.1962,
+          "top": 0.4309,
+          "width": 0.0057
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": 2.0
+      },
+      "vendor": {
+        "confidence": 0.7000000000000001,
+        "match_text": "HOOD LAND SVC",
+        "normalized_bbox": {
+          "height": 0.0108,
+          "left": 0.0624,
+          "top": 0.0433,
+          "width": 0.1593
+        },
+        "page_number": 1,
+        "sample_count": 1,
+        "source": "vendor_field_profile",
+        "value": "HOOD LAND SVC"
+      }
+    },
+    "matched_vendor": "HOOD LAND SVC",
+    "matched_vendor_normalized": "hood land svc"
+  },
+  "line_items": [
+    {
+      "amount": 2630.5,
+      "description": "Subtotal",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 2633.41,
+      "description": "Total",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 0.0,
+      "description": "Payments/Credits",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 2633.41,
+      "description": "Balance Due",
+      "quantity": null,
+      "unit_price": null
+    }
+  ],
+  "model_source": "heuristic+confirmed",
+  "name_on_account": "White Residence",
+  "payable_to": "HOOD LAND SVC",
+  "payment_terms": null,
+  "physical_billing_address": "White Residence\r\nPO Box 5010\r\nCt 06468 Monroe,",
+  "po_box": "5010095",
+  "previous_amount_due": null,
+  "previous_payment_amount": null,
+  "previous_payment_date": null,
+  "raw_text_excerpt": "HOOD LAND SVC P.O. Box 701058 Wabasso, FL 32970 772-473-3555 hoodlandsve@aol.com Invoice Date 8/15/2019 Bill To Ship To White Residence PO Box 5010 Monroe, Ct 06468 P.O. No. Project Qty Item Description Lawn Maintenance | August Trimming 2 days - trimming palms, oaks & mangroves. Nozzle Irrigation Rotor Irrigation 12\" Pop-up irrigation Funny Plpe ' Connectors Irrigation Irrigation Hours Labor Subtotal $2,630.50 Sales Tax (7.0%) Total $2,633.41 Payments/Credits $0.00 Balance Due $2,633.41",
+  "remittance_address": "HOOD LAND SVC\r\nP.O. Box 701058\r\nWabasso, FL 32970",
+  "service_address": null,
+  "subtotal": 2630.5,
+  "tax": 2.91,
+  "total": 2633.41,
+  "vendor": "HOOD LAND SVC"
+}

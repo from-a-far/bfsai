@@ -1,0 +1,339 @@
+{
+  "alignment": {
+    "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_fb7vc3lozrdwpdcb_c.pdf",
+    "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_fb7vc3lozrdwpdcb_c.json",
+    "archived_file_path": "storage/document_files/5010095/inv_fb7vc3lozrdwpdcb.pdf",
+    "field_alignments": {
+      "account_number": {
+        "bbox": {
+          "height": 24,
+          "left": 788,
+          "top": 29,
+          "width": 91
+        },
+        "confidence": 1,
+        "match_text": "23861782",
+        "normalized_bbox": {
+          "height": 0.0175,
+          "left": 0.7399,
+          "top": 0.0211,
+          "width": 0.0854
+        },
+        "page_number": 1,
+        "value": "23861782"
+      },
+      "amount_due": {
+        "bbox": {
+          "height": 24,
+          "left": 824,
+          "top": 1003,
+          "width": 87
+        },
+        "confidence": 1,
+        "match_text": "$3,893.11",
+        "normalized_bbox": {
+          "height": 0.0175,
+          "left": 0.7737,
+          "top": 0.731,
+          "width": 0.0817
+        },
+        "page_number": 1,
+        "value": 3893.11
+      },
+      "billing_address": {
+        "bbox": {
+          "height": 89,
+          "left": 57,
+          "top": 218,
+          "width": 200
+        },
+        "confidence": 1,
+        "match_text": "MICHAEL & SUSAN WHITE,\nUNIT B1006\n\nPO BOX 5010\n\nMONROE CT 06468-8200",
+        "normalized_bbox": {
+          "height": 0.0649,
+          "left": 0.0535,
+          "top": 0.1589,
+          "width": 0.1878
+        },
+        "page_number": 1,
+        "value": "MICHAEL & SUSAN WHITE,\nUNIT B1006\nPO BOX 5010\nMONROE CT 06468-8200"
+      },
+      "due_date": {
+        "bbox": {
+          "height": 24,
+          "left": 822,
+          "top": 1069,
+          "width": 99
+        },
+        "confidence": 1,
+        "match_text": "09/01/2019",
+        "normalized_bbox": {
+          "height": 0.0175,
+          "left": 0.7718,
+          "top": 0.7792,
+          "width": 0.093
+        },
+        "page_number": 1,
+        "value": "09/01/2019"
+      },
+      "invoice_date": {
+        "bbox": {
+          "height": 14,
+          "left": 912,
+          "top": 185,
+          "width": 88
+        },
+        "confidence": 1,
+        "match_text": "09/01/2019",
+        "normalized_bbox": {
+          "height": 0.0089,
+          "left": 0.7494,
+          "top": 0.118,
+          "width": 0.0723
+        },
+        "page_number": 1,
+        "value": "09/01/2019"
+      },
+      "invoice_number": null,
+      "line_items": [
+        {
+          "amount": {
+            "bbox": {
+              "height": 17,
+              "left": 359,
+              "top": 472,
+              "width": 65
+            },
+            "confidence": 1.0,
+            "match_text": "$0.00",
+            "normalized_bbox": {
+              "height": 0.0108,
+              "left": 0.295,
+              "top": 0.301,
+              "width": 0.0534
+            },
+            "page_number": 1,
+            "value": 0.0
+          },
+          "description": {
+            "bbox": {
+              "height": 24,
+              "left": 81,
+              "top": 462,
+              "width": 114
+            },
+            "confidence": 1.0,
+            "match_text": "COMMON CHG",
+            "normalized_bbox": {
+              "height": 0.0153,
+              "left": 0.0666,
+              "top": 0.2946,
+              "width": 0.0937
+            },
+            "page_number": 1,
+            "value": "COMMON CHG ~"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 27,
+              "left": 911,
+              "top": 71,
+              "width": 22
+            },
+            "confidence": 1.0,
+            "match_text": "$3,",
+            "normalized_bbox": {
+              "height": 0.0172,
+              "left": 0.7486,
+              "top": 0.0453,
+              "width": 0.0181
+            },
+            "page_number": 1,
+            "value": 3893.11
+          },
+          "description": {
+            "bbox": {
+              "height": 15,
+              "left": 814,
+              "top": 544,
+              "width": 14
+            },
+            "confidence": 1.0,
+            "match_text": "a",
+            "normalized_bbox": {
+              "height": 0.0096,
+              "left": 0.6689,
+              "top": 0.3469,
+              "width": 0.0115
+            },
+            "page_number": 1,
+            "value": "[AMOUNTIOUE?"
+          }
+        }
+      ],
+      "payment_terms": null,
+      "physical_billing_address": {
+        "bbox": {
+          "height": 84,
+          "left": 60,
+          "top": 222,
+          "width": 193
+        },
+        "confidence": 1,
+        "match_text": "MICHAEL & SUSAN WHITE,\nUNIT B1006\n\nPO BOX 5010\n\nMONROE CT 06468-8200",
+        "normalized_bbox": {
+          "height": 0.0612,
+          "left": 0.0563,
+          "top": 0.1618,
+          "width": 0.1812
+        },
+        "page_number": 1,
+        "value": "MICHAEL & SUSAN WHITE,\nUNIT B1006\nPO BOX 5010\nMONROE CT 06468-8200"
+      },
+      "remittance_address": {
+        "bbox": {
+          "height": 73,
+          "left": 635,
+          "top": 1200,
+          "width": 307
+        },
+        "confidence": 1,
+        "match_text": "C/O MANHATTAN HOUSE CONDOMINIUM\nAR DEPT:\n\nPO BOX 70263\n\nPHILADELPHIA, PA 19176-0263",
+        "normalized_bbox": {
+          "height": 0.0532,
+          "left": 0.5962,
+          "top": 0.8746,
+          "width": 0.2883
+        },
+        "page_number": 1,
+        "value": "C/O MANHATTAN HOUSE CONDOMINIUM\nAR DEPT:\nPO BOX 70263\nPHILADELPHIA, PA 19176-0263"
+      },
+      "service_address": {
+        "bbox": {
+          "height": 23,
+          "left": 791,
+          "top": 93,
+          "width": 191
+        },
+        "confidence": 1,
+        "match_text": "200 EAST 66TH STREET",
+        "normalized_bbox": {
+          "height": 0.0168,
+          "left": 0.7427,
+          "top": 0.0678,
+          "width": 0.1793
+        },
+        "page_number": 1,
+        "value": "200 EAST 66TH STREET"
+      },
+      "subtotal": null,
+      "tax": null,
+      "total": {
+        "bbox": {
+          "height": 27,
+          "left": 911,
+          "top": 71,
+          "width": 22
+        },
+        "confidence": 1,
+        "match_text": "$3,",
+        "normalized_bbox": {
+          "height": 0.0172,
+          "left": 0.7486,
+          "top": 0.0453,
+          "width": 0.0181
+        },
+        "page_number": 1,
+        "value": 3893.11
+      },
+      "vendor": {
+        "bbox": {
+          "height": 36,
+          "left": 102,
+          "top": 28,
+          "width": 179
+        },
+        "confidence": 1,
+        "match_text": "DouglasEllimaii",
+        "normalized_bbox": {
+          "height": 0.0262,
+          "left": 0.0958,
+          "top": 0.0204,
+          "width": 0.1681
+        },
+        "page_number": 1,
+        "value": "DouglasEllimaii"
+      }
+    },
+    "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_fb7vc3lozrdwpdcb.json",
+    "page_count": 1,
+    "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_fb7vc3lozrdwpdcb.pdf",
+    "sha256": "ae173b2e1c3bf367fb05bb2491455d18e2fef88c609232a2e9223b181363b960",
+    "source_filename": "dell.pdf"
+  },
+  "document_id": "inv_fb7vc3lozrdwpdcb",
+  "extraction": {
+    "account_number": "23861782",
+    "amount_due": 3893.11,
+    "billing_address": "MICHAEL & SUSAN WHITE,\r\nUNIT B1006\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+    "confidence": 0.99,
+    "currency": "USD",
+    "due_date": "09/01/2019",
+    "friendly_name": null,
+    "invoice_date": "09/01/2019",
+    "invoice_number": null,
+    "learning_hints": {},
+    "line_items": [
+      {
+        "amount": 0.0,
+        "description": "COMMON CHG ~",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 3893.11,
+        "description": "[AMOUNTIOUE?",
+        "quantity": null,
+        "unit_price": null
+      }
+    ],
+    "model_source": "heuristic+confirmed",
+    "name_on_account": null,
+    "payable_to": null,
+    "payment_terms": null,
+    "physical_billing_address": "MICHAEL & SUSAN WHITE,\r\nUNIT B1006\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+    "po_box": "5010095",
+    "previous_amount_due": null,
+    "previous_payment_amount": null,
+    "previous_payment_date": null,
+    "raw_text_excerpt": "DouglasEllimaii 675 THIRD AVENUE, NEW YORK, NY 10017 PLEASE WRITE YOUR ACCOUNT # ON YOUR CHECK. MICHAEL & SUSAN WHITE UNIT B1006 PO BOX 5010 MONROE CT 06468-8200 23861782 $3, 3341 41 eae 200 EAST 66TH STREET B1006 \u2014 [DUEIDATE] 09/01/2019 THIS BILL REFLECTS PAYMENTS PROCESSED THROUGH 08/20/19 Billing Inquiries Phone: (212) 692 8315, Trisha Williams@Ellimanpm.Com Management inquiries Phone: 2128380342 Jennifer. Drum@Ellimanpm.Com www.ellimanpm.com. COMMON CHG ~ $0.00 HELP SAVE OUR PLANET SIGN UP FOR ONLINE FEATURES: v7 View current bits a Pay your bill av Update your information oY Review balance Ae, of Review past bills . . VISIT: ELLIMANPM.REVIEWMYINVOICE.COM * Terms payable upon receipt. Please reference your account number with your remittance. Vv DETACH AND RETURN COUPON WITH YOUR PAYMENT V Page 1 of 2 675 THIRD AVENUE, NEW YORK, NY 10017 Address Service Requested o7segqaans PRESORT PBPS001 <B> eu EC aa DT a MIGHAEL & SUSAN WHITE UNIT B10 PO BOX S010 MONROE CT 06468-8200 [ACCOUNTINUMBER? 23861782 fo [AMOUNTIOUE? $3,893.11 (ARTISPACE 81006 09/01/2019 Please write your Account # on your check. IGTERSEIMATEICRECKSIAVABUELLONS JANHATTAN HOUSE CONDOMINI C/O MANHATTAN HOUSE CONDOMINIUM. AR DEPT: PO BOX 70263 PHILADELPHIA, PA 19176-0263 TMU Race UU UY on eunrg toa 9995823948181924221723241870000003893911090120190000002e0e",
+    "remittance_address": "C/O MANHATTAN HOUSE CONDOMINIUM\r\nAR DEPT:\r\nPO BOX 70263\r\nPHILADELPHIA, PA 19176-0263",
+    "service_address": "200 EAST 66TH STREET",
+    "subtotal": null,
+    "tax": null,
+    "total": 3893.11,
+    "vendor": "DouglasElliman"
+  },
+  "ingestion": {
+    "attempts": 0,
+    "error_message": null,
+    "ingested_at": null,
+    "last_attempt_at": null,
+    "status": "pending"
+  },
+  "po_box": "5010095",
+  "status": "approved",
+  "verification": {
+    "issues": [
+      {
+        "field": "invoice_number",
+        "message": "Invoice number is missing",
+        "severity": "medium"
+      }
+    ],
+    "score": 0.91,
+    "status": "verified"
+  }
+}

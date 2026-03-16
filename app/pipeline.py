@@ -7,7 +7,6 @@ from .classifier import classify_document
 from .config import Settings
 from .documents import (
     SUPPORTED_EXTENSIONS,
-    copy_to_document_type,
     move_to_document_type,
     move_to_other,
     move_to_review,
@@ -101,13 +100,11 @@ class PipelineProcessor:
             ocr_result = self.extractor.read_text(review_path)
             routing = classify_document(ocr_result.text)
             routed_copy_path = None
-            if routing.dtype != "other":
-                if routing.duplicate_to_type_folder:
-                    routed_copy_path = copy_to_document_type(self.settings, po_box, review_path, document_id, routing.dtype)
-                elif not routing.should_extract:
+            if not routing.should_extract:
+                if routing.dtype != "other":
                     routed_copy_path = move_to_document_type(self.settings, po_box, review_path, document_id, routing.dtype)
-            elif not routing.should_extract:
-                routed_copy_path = move_to_other(self.settings, po_box, review_path, document_id)
+                else:
+                    routed_copy_path = move_to_other(self.settings, po_box, review_path, document_id)
 
             if not routing.should_extract:
                 current_path = routed_copy_path or review_path

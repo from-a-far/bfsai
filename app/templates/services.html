@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <h1>Service manager</h1>
+    <p>Operate the local API and worker processes, inspect runtime state, and use the local switch scripts directly.</p>
+  </div>
+  <div class="config-box">
+    <div><strong>Active strategy</strong><span>{{ strategy_status.active_strategy }}</span></div>
+    <div><strong>Kind</strong><span>{{ strategy_status.kind }}</span></div>
+    <div><strong>Runtime file</strong><span>{{ strategy_status.runtime_file }}</span></div>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Service controls</h2>
+    <span>Buttons call the local management script in the background.</span>
+  </div>
+  <div class="service-grid">
+    {% for key, service in services.items() %}
+    <article class="strategy-card {% if service.running %}strategy-card-active{% endif %}">
+      <h3>{{ service.name }}</h3>
+      <p>{{ "Running" if service.running else "Stopped" }}</p>
+      <div class="strategy-meta">
+        <span>{{ service.pid or "no pid" }}</span>
+        <span>{{ service.last_log_line or "no logs yet" }}</span>
+      </div>
+      <div class="service-actions">
+        <form method="post" action="/services/{{ service.name }}/start"><button type="submit">Start</button></form>
+        <form method="post" action="/services/{{ service.name }}/restart"><button type="submit">Restart</button></form>
+        <form method="post" action="/services/{{ service.name }}/stop"><button type="submit">Stop</button></form>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  <div class="service-actions">
+    <form method="post" action="/services/all/start"><button type="submit">Start all</button></form>
+    <form method="post" action="/services/all/restart"><button type="submit">Restart all</button></form>
+    <form method="post" action="/services/all/stop"><button type="submit">Stop all</button></form>
+  </div>
+</section>
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Local scripts</h2>
+    <span>Useful when you want to operate the stack from a terminal.</span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Path</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Manage services</td>
+        <td>{{ script_paths.manage_services }}</td>
+      </tr>
+      <tr>
+        <td>Switch strategy</td>
+        <td>{{ script_paths.switch_strategy }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+{% endblock %}

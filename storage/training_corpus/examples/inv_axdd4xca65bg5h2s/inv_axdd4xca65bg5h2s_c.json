@@ -1,0 +1,465 @@
+{
+  "alignment": {
+    "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_axdd4xca65bg5h2s_c.pdf",
+    "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_axdd4xca65bg5h2s_c.json",
+    "archived_file_path": "storage/document_files/5010095/inv_axdd4xca65bg5h2s.pdf",
+    "field_alignments": {
+      "amount_due": {
+        "bbox": {
+          "height": 29,
+          "left": 917,
+          "top": 1265,
+          "width": 80
+        },
+        "confidence": 1,
+        "match_text": "$2,633.41",
+        "normalized_bbox": {
+          "height": 0.0211,
+          "left": 0.8602,
+          "top": 0.92,
+          "width": 0.075
+        },
+        "page_number": 1,
+        "value": 2633.41
+      },
+      "billing_address": {
+        "bbox": {
+          "height": 67,
+          "left": 111,
+          "top": 253,
+          "width": 136
+        },
+        "confidence": 1,
+        "match_text": "White Residence\nPO Box 5010\nMonroe, Ct 06468",
+        "normalized_bbox": {
+          "height": 0.0487,
+          "left": 0.1041,
+          "top": 0.184,
+          "width": 0.1276
+        },
+        "page_number": 1,
+        "value": "White Residence PO Box 5010 Monroe, Ct 06468"
+      },
+      "invoice_date": {
+        "bbox": {
+          "height": 13,
+          "left": 908,
+          "top": 179,
+          "width": 72
+        },
+        "confidence": 1,
+        "match_text": "8/15/2019",
+        "normalized_bbox": {
+          "height": 0.0083,
+          "left": 0.7455,
+          "top": 0.1139,
+          "width": 0.0591
+        },
+        "page_number": 1,
+        "value": "8/15/2019"
+      },
+      "invoice_number": {
+        "bbox": {
+          "height": 25,
+          "left": 914,
+          "top": 150,
+          "width": 63
+        },
+        "confidence": 1,
+        "match_text": "3798",
+        "normalized_bbox": {
+          "height": 0.0182,
+          "left": 0.8574,
+          "top": 0.1091,
+          "width": 0.0591
+        },
+        "page_number": 1,
+        "value": "3798"
+      },
+      "line_items": [
+        {
+          "amount": {
+            "bbox": {
+              "height": 12,
+              "left": 239,
+              "top": 677,
+              "width": 7
+            },
+            "confidence": 1.0,
+            "match_text": "2",
+            "normalized_bbox": {
+              "height": 0.0076,
+              "left": 0.1962,
+              "top": 0.4309,
+              "width": 0.0057
+            },
+            "page_number": 1,
+            "value": 2630.5
+          },
+          "description": {
+            "bbox": {
+              "height": 14,
+              "left": 177,
+              "top": 259,
+              "width": 21
+            },
+            "confidence": 1.0,
+            "match_text": "To",
+            "normalized_bbox": {
+              "height": 0.0089,
+              "left": 0.1453,
+              "top": 0.1649,
+              "width": 0.0172
+            },
+            "page_number": 1,
+            "value": "Subtotal"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 12,
+              "left": 239,
+              "top": 677,
+              "width": 7
+            },
+            "confidence": 1.0,
+            "match_text": "2",
+            "normalized_bbox": {
+              "height": 0.0076,
+              "left": 0.1962,
+              "top": 0.4309,
+              "width": 0.0057
+            },
+            "page_number": 1,
+            "value": 2633.41
+          },
+          "description": {
+            "bbox": {
+              "height": 14,
+              "left": 177,
+              "top": 259,
+              "width": 21
+            },
+            "confidence": 1.0,
+            "match_text": "To",
+            "normalized_bbox": {
+              "height": 0.0089,
+              "left": 0.1453,
+              "top": 0.1649,
+              "width": 0.0172
+            },
+            "page_number": 1,
+            "value": "Total"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 14,
+              "left": 1092,
+              "top": 1399,
+              "width": 40
+            },
+            "confidence": 1.0,
+            "match_text": "$0.00",
+            "normalized_bbox": {
+              "height": 0.0089,
+              "left": 0.8966,
+              "top": 0.8905,
+              "width": 0.0328
+            },
+            "page_number": 1,
+            "value": 0.0
+          },
+          "description": {
+            "bbox": {
+              "height": 33,
+              "left": 779,
+              "top": 1383,
+              "width": 200
+            },
+            "confidence": 1.0,
+            "match_text": "Payments/Credits",
+            "normalized_bbox": {
+              "height": 0.021,
+              "left": 0.6396,
+              "top": 0.8803,
+              "width": 0.1642
+            },
+            "page_number": 1,
+            "value": "Payments/Credits"
+          }
+        },
+        {
+          "amount": {
+            "bbox": {
+              "height": 12,
+              "left": 239,
+              "top": 677,
+              "width": 7
+            },
+            "confidence": 1.0,
+            "match_text": "2",
+            "normalized_bbox": {
+              "height": 0.0076,
+              "left": 0.1962,
+              "top": 0.4309,
+              "width": 0.0057
+            },
+            "page_number": 1,
+            "value": 2633.41
+          },
+          "description": {
+            "bbox": {
+              "height": 24,
+              "left": 779,
+              "top": 1438,
+              "width": 188
+            },
+            "confidence": 1.0,
+            "match_text": "Balance Due",
+            "normalized_bbox": {
+              "height": 0.0153,
+              "left": 0.6396,
+              "top": 0.9153,
+              "width": 0.1544
+            },
+            "page_number": 1,
+            "value": "Balance Due"
+          }
+        }
+      ],
+      "name_on_account": {
+        "bbox": {
+          "height": 25,
+          "left": 108,
+          "top": 252,
+          "width": 133
+        },
+        "confidence": 1,
+        "match_text": "White Residence",
+        "normalized_bbox": {
+          "height": 0.0182,
+          "left": 0.1013,
+          "top": 0.1833,
+          "width": 0.1248
+        },
+        "page_number": 1,
+        "value": "White Residence"
+      },
+      "payable_to": {
+        "bbox": {
+          "height": 29,
+          "left": 60,
+          "top": 51,
+          "width": 181
+        },
+        "confidence": 1,
+        "match_text": "HOOD LAND SVC",
+        "normalized_bbox": {
+          "height": 0.0211,
+          "left": 0.0563,
+          "top": 0.0371,
+          "width": 0.1698
+        },
+        "page_number": 1,
+        "value": "HOOD LAND SVC"
+      },
+      "payment_terms": null,
+      "physical_billing_address": {
+        "bbox": {
+          "height": 68,
+          "left": 111,
+          "top": 251,
+          "width": 141
+        },
+        "confidence": 1,
+        "match_text": "White Residence\nPO Box 5010\nMonroe, Ct 06468",
+        "normalized_bbox": {
+          "height": 0.0495,
+          "left": 0.1041,
+          "top": 0.1825,
+          "width": 0.1323
+        },
+        "page_number": 1,
+        "value": "White Residence PO Box 5010 Monroe, Ct 06468"
+      },
+      "remittance_address": {
+        "bbox": {
+          "height": 103,
+          "left": 49,
+          "top": 41,
+          "width": 199
+        },
+        "confidence": 1,
+        "match_text": "HOOD LAND SVC\n\nP.O, Box 701058\nWabasso, FL 32970",
+        "normalized_bbox": {
+          "height": 0.0749,
+          "left": 0.046,
+          "top": 0.0298,
+          "width": 0.1867
+        },
+        "page_number": 1,
+        "value": "HOOD LAND SVC P.O, Box 701058 Wabasso, FL 32970"
+      },
+      "subtotal": {
+        "bbox": {
+          "height": 12,
+          "left": 239,
+          "top": 677,
+          "width": 7
+        },
+        "confidence": 1,
+        "match_text": "2",
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.1962,
+          "top": 0.4309,
+          "width": 0.0057
+        },
+        "page_number": 1,
+        "value": 2630.5
+      },
+      "tax": {
+        "bbox": {
+          "height": 22,
+          "left": 944,
+          "top": 1116,
+          "width": 52
+        },
+        "confidence": 1,
+        "match_text": "$2.91",
+        "normalized_bbox": {
+          "height": 0.016,
+          "left": 0.8856,
+          "top": 0.8116,
+          "width": 0.0488
+        },
+        "page_number": 1,
+        "value": 2.91
+      },
+      "total": {
+        "bbox": {
+          "height": 12,
+          "left": 239,
+          "top": 677,
+          "width": 7
+        },
+        "confidence": 1,
+        "match_text": "2",
+        "normalized_bbox": {
+          "height": 0.0076,
+          "left": 0.1962,
+          "top": 0.4309,
+          "width": 0.0057
+        },
+        "page_number": 1,
+        "value": 2630.5
+      },
+      "vendor": {
+        "bbox": {
+          "height": 17,
+          "left": 76,
+          "top": 68,
+          "width": 194
+        },
+        "confidence": 1,
+        "match_text": "HOOD LAND SVC",
+        "normalized_bbox": {
+          "height": 0.0108,
+          "left": 0.0624,
+          "top": 0.0433,
+          "width": 0.1593
+        },
+        "page_number": 1,
+        "value": "HOOD LAND SVC"
+      }
+    },
+    "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_axdd4xca65bg5h2s.json",
+    "page_count": 1,
+    "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_axdd4xca65bg5h2s.pdf",
+    "sha256": "e03eaec30b6091a6289f213ba63d37d92700b40699b6acca447de38508ea5ebb",
+    "source_filename": "hood.pdf"
+  },
+  "document_id": "inv_axdd4xca65bg5h2s",
+  "extraction": {
+    "account_number": null,
+    "amount_due": 2633.41,
+    "billing_address": "White Residence\r\nPO Box 5010\r\nMonroe, Ct 06468",
+    "confidence": 0.99,
+    "currency": "USD",
+    "due_date": null,
+    "friendly_name": null,
+    "invoice_date": "8/15/2019",
+    "invoice_number": "3798",
+    "learning_hints": {},
+    "line_items": [
+      {
+        "amount": 2630.5,
+        "description": "Subtotal",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 2633.41,
+        "description": "Total",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 0.0,
+        "description": "Payments/Credits",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 2633.41,
+        "description": "Balance Due",
+        "quantity": null,
+        "unit_price": null
+      }
+    ],
+    "model_source": "heuristic+confirmed",
+    "name_on_account": "White Residence",
+    "payable_to": "HOOD LAND SVC",
+    "payment_terms": null,
+    "physical_billing_address": "White Residence\r\nPO Box 5010\r\nMonroe, Ct 06468",
+    "po_box": "5010095",
+    "previous_amount_due": null,
+    "previous_payment_amount": null,
+    "previous_payment_date": null,
+    "raw_text_excerpt": "HOOD LAND SVC P.O. Box 701058 Wabasso, FL 32970 772-473-3555 hoodlandsve@aol.com Invoice Date 8/15/2019 Bill To Ship To White Residence PO Box 5010 Monroe, Ct 06468 P.O. No. Project Qty Item Description Lawn Maintenance | August Trimming 2 days - trimming palms, oaks & mangroves. Nozzle Irrigation Rotor Irrigation 12\" Pop-up irrigation Funny Plpe ' Connectors Irrigation Irrigation Hours Labor Subtotal $2,630.50 Sales Tax (7.0%) Total $2,633.41 Payments/Credits $0.00 Balance Due $2,633.41",
+    "remittance_address": "HOOD LAND SVC\r\nP.O, Box 701058\r\nWabasso, FL 32970",
+    "service_address": null,
+    "subtotal": 2630.5,
+    "tax": 2.91,
+    "total": 2630.5,
+    "vendor": "HOOD LAND SVC"
+  },
+  "ingestion": {
+    "attempts": 0,
+    "error_message": null,
+    "ingested_at": null,
+    "last_attempt_at": null,
+    "status": "pending"
+  },
+  "po_box": "5010095",
+  "status": "approved",
+  "verification": {
+    "issues": [
+      {
+        "field": "line_items",
+        "message": "Line-item total differs from invoice total by 5263.91",
+        "severity": "medium"
+      },
+      {
+        "field": "amount_due",
+        "message": "Amount due differs from total by 2.91",
+        "severity": "low"
+      }
+    ],
+    "score": 0.88,
+    "status": "review"
+  }
+}

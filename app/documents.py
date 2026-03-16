@@ -36,8 +36,8 @@ DOCUMENT_TYPE_PATHS = {
 }
 
 
-def po_box_layout(settings: Settings, po_box: str) -> FolderLayout:
-    root = settings.watch_root / po_box
+def client_layout(settings: Settings, client_key: str) -> FolderLayout:
+    root = settings.watch_root / client_key
     document_types = {dtype: root / folder for dtype, folder in DOCUMENT_TYPE_PATHS.items()}
     layout = FolderLayout(
         root=root,
@@ -59,6 +59,10 @@ def po_box_layout(settings: Settings, po_box: str) -> FolderLayout:
     ):
         path.mkdir(parents=True, exist_ok=True)
     return layout
+
+
+def po_box_layout(settings: Settings, po_box: str) -> FolderLayout:
+    return client_layout(settings, po_box)
 
 
 def discover_po_boxes(settings: Settings) -> list[str]:
@@ -97,6 +101,55 @@ def copy_to_document_type(settings: Settings, po_box: str, source_path: Path, do
     destination_dir = layout.document_types[dtype]
     destination = destination_dir / f"{document_id}{source_path.suffix.lower()}"
     shutil.copy2(source_path, destination)
+    return destination
+
+
+def known_client_layout(settings: Settings, client_key: str) -> FolderLayout | None:
+    root = settings.watch_root / client_key
+    if not root.exists() or not root.is_dir():
+        return None
+    return client_layout(settings, client_key)
+
+
+def unique_destination(destination_dir: Path, filename: str) -> Path:
+    candidate = destination_dir / filename
+    if not candidate.exists():
+        return candidate
+    stem = Path(filename).stem
+    suffix = Path(filename).suffix
+    counter = 1
+    while True:
+        candidate = destination_dir / f"{stem}_{counter}{suffix}"
+        if not candidate.exists():
+            return candidate
+        counter += 1
+
+
+def move_scan_to_client_new(settings: Settings, client_key: str, source_path: Path) -> Path:
+    layout = client_layout(settings, client_key)
+    destination = unique_destination(layout.new, source_path.name)
+    shutil.move(str(source_path), destination)
+    return destination
+
+
+def move_scan_to_client_document_type(settings: Settings, client_key: str, source_path: Path, dtype: str) -> Path:
+    layout = client_layout(settings, client_key)
+    destination = unique_destination(layout.document_types[dtype], source_path.name)
+    shutil.move(str(source_path), destination)
+    return destination
+
+
+def copy_client_new_to_document_type(settings: Settings, client_key: str, source_path: Path, dtype: str) -> Path:
+    layout = client_layout(settings, client_key)
+    destination = unique_destination(layout.document_types[dtype], source_path.name)
+    shutil.copy2(source_path, destination)
+    return destination
+
+
+def move_scan_to_client_other(settings: Settings, client_key: str, source_path: Path) -> Path:
+    layout = client_layout(settings, client_key)
+    destination = unique_destination(layout.other, source_path.name)
+    shutil.move(str(source_path), destination)
     return destination
 
 

@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .config import load_settings
 from .documents import discover_po_boxes, po_box_layout
+from .intake import ScanIntakeService
 from .pipeline import PipelineProcessor
 from .repository import Repository
 
@@ -14,7 +15,19 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 LOGGER = logging.getLogger("bfsai.worker")
 
 
-def sweep_once(processor: PipelineProcessor, watch_root: Path) -> int:
+def sweep_scans_once(intake: ScanIntakeService, scan_root: Path) -> int:
+    count = 0
+    for path in sorted(scan_root.iterdir() if scan_root.exists() else []):
+        if not path.is_file():
+            continue
+        destination = intake.process_scan(path)
+        if destination:
+            count += 1
+            LOGGER.info("routed scan source=%s destination=%s", path, destination)
+    return count
+
+
+def sweep_client_new_once(processor: PipelineProcessor, watch_root: Path) -> int:
     count = 0
     settings = processor.settings
     for po_box in discover_po_boxes(settings):
@@ -32,10 +45,12 @@ def sweep_once(processor: PipelineProcessor, watch_root: Path) -> int:
 def main() -> None:
     settings = load_settings()
     repository = Repository(settings.database_path)
+    intake = ScanIntakeService(settings, repository)
     processor = PipelineProcessor(settings, repository)
-    LOGGER.info("watching %s every %ss", settings.watch_root, settings.poll_seconds)
+    LOGGER.info("watching scans=%s watch_root=%s every %ss", settings.scan_root, settings.watch_root, settings.poll_seconds)
     while True:
-        sweep_once(processor, settings.watch_root)
+        sweep_scans_once(intake, settings.scan_root)
+        sweep_client_new_once(processor, settings.watch_root)
         time.sleep(settings.poll_seconds)
 
 

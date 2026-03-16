@@ -1,0 +1,90 @@
+{
+  "account_number": "1421 503 0033",
+  "amount_due": 1553.37,
+  "billing_address": "MICHAEL D WHITE\r\nSUSAN L WHITE\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+  "confidence": 0.99,
+  "currency": "USD",
+  "due_date": "09/15/19",
+  "friendly_name": "EVERSOURCE - 0033",
+  "invoice_date": "08/21/19",
+  "invoice_number": null,
+  "learning_hints": {},
+  "line_items": [
+    {
+      "amount": 1118.29,
+      "description": "Amount Due On 08/17/19",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 0.0,
+      "description": "Balance Forward",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 1553.37,
+      "description": "Total Current Charges",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 804.44,
+      "description": "$748.93",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 1118.29,
+      "description": "MICHAEL D WHITE Amount Due On 08/17/19",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 1118.29,
+      "description": "Last Payment Received On 08/05/19",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 0.0,
+      "description": "Balance Forward",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 748.93,
+      "description": "Electric Supply Services",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 804.44,
+      "description": "Delivery Services",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 1553.37,
+      "description": "ON. OF. Sep 21 952 01 Total Current Charges",
+      "quantity": null,
+      "unit_price": null
+    }
+  ],
+  "model_source": "heuristic+confirmed",
+  "name_on_account": "MICHAEL D WHITE",
+  "payable_to": "Eversource",
+  "payment_terms": null,
+  "physical_billing_address": "MICHAEL D WHITE\r\nSUSAN L WHITE\r\nPO BOX 5010\r\nMONROE CT 06468-8200",
+  "po_box": "5010095",
+  "previous_amount_due": 1118.29,
+  "previous_payment_amount": -1118.29,
+  "previous_payment_date": "08/17/19",
+  "raw_text_excerpt": "EVERSSURCE Account Number: 1421 503 0033 Statement Date: 08/21/19 Service Provided To: MICHAEL D WHITE = s0,ss0.0] Amount Due On 08/17/19 $1,118.29 Last Payment Received On 08/05/19 -$1,118.29 Balance Forward $0.00 Total Current Charges $1,553.37 ElectriclUSagelHistonypaWowstitous( kWh) wmnvDay 280: \u2018ig Sep Oct Nov Doo Jan feb Ma Ax May Jin Jd Aig Te? 7S\" G4\" 50\u00b0 39\u00b0 38\u00b0 34\u00b0 37\" 48 55\" OB 76\u00b0 78\u00b0 \u2018Average Temperate fEtectrclusagelsummany] This month your This month you used average daily 7.9% less 7 % electric use was than at the 9 4 218.8 kWh \u2018same time last year USAGE News For You (Current{charges}fogelectricityy Supply Delivery $748.93 $804.44 Cost of electricity from NEXTERA Cost to deliver electricity ENERGY SERVICES from Eversource $0 $312 $624 $936 3 \"208 $1,560 Your electric supplier is NEXTERA ENERGY SERVICES 20455 STATE HIGHWAY 249, SUITE 200 HOUSTON, TX 77070 WWW.NEXTERAENERGYSERVICES.COM 800-381-9192 Billing for CAPE LIGHT COMPACT Join us on Sunday, Sept. 8 at 8 a.m. on the Esplanade in Boston for the Mass General Cancer Center Eversource Amazing Race. The event supports the amazing work the Mass General Cancer Center does in our community every day. Visit Eversource.com to register, create a team and learn more. Remit Payment To: Eversource, PO Box 56007, Boston, MA 02205-6007 EVERSSURCE Account Number: 1421 503 0033 060934 000001626 Hyuatnt fag, MICHAEL D WHITE SUSAN L_WHITE PO BOX 5010 MONROE CT 06468-8200 vos AS ARUBA TIT-121067-000001626, Please make your check payable to Eversource or to make your payment today visit Eversource.com. {i mailing your payment",
+  "remittance_address": "Eversource, PO Box 56007, Boston, MA 02205-6007",
+  "service_address": null,
+  "subtotal": null,
+  "tax": null,
+  "total": 1553.37,
+  "vendor": "EVERSOURCE"
+}

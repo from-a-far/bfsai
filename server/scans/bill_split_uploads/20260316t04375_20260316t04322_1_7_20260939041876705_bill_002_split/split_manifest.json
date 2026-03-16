@@ -1,0 +1,134 @@
+{
+  "source_path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260316t04375_20260316t04322_1_7_20260939041876705_bill_002.pdf",
+  "output_dir": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260316t04375_20260316t04322_1_7_20260939041876705_bill_002_split",
+  "register_keywords": [
+    "register",
+    "invoice register",
+    "remittance register",
+    "batch register",
+    "check register",
+    "voucher register"
+  ],
+  "register_pages": [],
+  "ignored_pages": [],
+  "notes": [],
+  "page_analyses": [
+    {
+      "page_number": 1,
+      "excerpt": "Account number ending in 5400. Effective 01/30/2026, commercial debit cards and commercial prepaid debit cards are no longer allowed payment",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 2,
+      "excerpt": "DILLARD'S REWARDS UPDATE * ] Previous Rewards Points Balance S45, View Dillard's Rewards Program Terms and Conditions Rewards Points Earned ",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 3,
+      "excerpt": "-_ i Total Amount Due EVERSSURCE Account Number: _ 7400 102 3899 by 01/23/26 $857.43 Statement Date: 12/29/25 Amount Due On 12/21/25 $552.89",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 4,
+      "excerpt": "= EVERSSURCE [SSIS aay Account Number: _ 7400 102 3899 by 01/23/26 \" Customer name key: WHIT Statement Date: 12/29/25 Service Provided To: E",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 5,
+      "excerpt": "- EVERSSURCE ;m $857.43 Account Number: 7400 102 3899 Aneel . \u2018Customer name key: WHIT Statement Date: 12/29/25 Service Provided To: MICHAEL",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 6,
+      "excerpt": "Juliana Miranda Invoice 54 Barberry Lane Marstons Mills, MA 02648 2 [ate] invoice | (508)362-7658 \u2018 Dustbusters \u2018Susan White \u2018Susan White P.",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 7,
+      "excerpt": "Michael P. eae haa - Neath Landscape Construction, Inc. lain Street . Osterville, MA 02655 Invoice Bill To ri wi PO BOX 5010 Aone CK (SaaS 5",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 8,
+      "excerpt": "Michael P. Neath Landscape Construction, Inc. Invoice 845 Main Street Osterville, MA 02655 [date [invoice # | Bill To Ship To Mir & Ms Whi 5",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 9,
+      "excerpt": "Michael P. Neath Landscape Construction, Inc. Invoice 845 Main Street Osterville, MA 02655 [Date [invoice # Bill To Ship To Mir & in Whe 377",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 10,
+      "excerpt": "Michael P. Neath Landscape Construction, Inc. Invoice 845 Main Street Osterville, MA 02655 [Date [invoice # J Mr & Mrs, White 377 Sea View A",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 11,
+      "excerpt": "Statement RedStick Golf Club 8350 58th Avenue Vero Beach, FL 32967 Office (772) 388-3200 www.redstickgolfclub.com MR. MICHAEL D. WHITE P.O. ",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    },
+    {
+      "page_number": 12,
+      "excerpt": "Statement RedStick Golf Club 8350 58th Avenue Vero Beach, FL 32967 Office (772) 388-3200 www.redstickgolfclub.com MR. MICHAEL D. WHITE [ wos",
+      "page_type": "bill",
+      "classification_reason": "Matched invoice/bill terms.",
+      "can_continue_bill": true,
+      "matched_keywords": []
+    }
+  ],
+  "outputs": [
+    {
+      "bill_index": 1,
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260316t04375_20260316t04322_1_7_20260939041876705_bill_002_split/20260316t04375_20260316t04322_1_7_20260939041876705_bill_002_bill_001.pdf",
+      "thumbnail_path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260316t04375_20260316t04322_1_7_20260939041876705_bill_002_split/20260316t04375_20260316t04322_1_7_20260939041876705_bill_002_bill_001.png",
+      "page_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  ]
+}

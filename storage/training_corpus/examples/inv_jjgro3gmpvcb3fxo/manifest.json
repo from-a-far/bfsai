@@ -1,0 +1,11 @@
+{
+  "alignment_path": "storage/training_corpus/examples/inv_jjgro3gmpvcb3fxo/alignment.json",
+  "approved_file_path": "storage/training_corpus/examples/inv_jjgro3gmpvcb3fxo/inv_jjgro3gmpvcb3fxo_c.pdf",
+  "approved_json_path": "storage/training_corpus/examples/inv_jjgro3gmpvcb3fxo/inv_jjgro3gmpvcb3fxo_c.json",
+  "document_id": "inv_jjgro3gmpvcb3fxo",
+  "ground_truth_path": "storage/training_corpus/examples/inv_jjgro3gmpvcb3fxo/ground_truth.json",
+  "po_box": "5010095",
+  "strategy_source": "heuristic+confirmed",
+  "updated_at": "2026-03-15T23:08:53+00:00",
+  "vendor": "EVERSSURCE"
+}
