@@ -1,0 +1,53 @@
+{
+  "batch_id": "batch_bvfayqie2zehfe5r",
+  "source_path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07185_1_20_20260929390637279.pdf",
+  "output_dir": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07185_1_20_20260929390637279_indbills",
+  "original_filename": "1_20_20260929390637279.pdf",
+  "total_pages": 23,
+  "remaining_pages": [],
+  "saved_outputs": [
+    {
+      "name": "4hv2gsxv_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07185_1_20_20260929390637279_indbills/4hv2gsxv_indbill.pdf",
+      "page_numbers": [
+        12
+      ]
+    },
+    {
+      "name": "kkwa3bui_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07185_1_20_20260929390637279_indbills/kkwa3bui_indbill.pdf",
+      "page_numbers": [
+        13,
+        14
+      ]
+    },
+    {
+      "name": "hwbbruxq_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07185_1_20_20260929390637279_indbills/hwbbruxq_indbill.pdf",
+      "page_numbers": [
+        15,
+        16
+      ]
+    },
+    {
+      "name": "jeicjpap_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07185_1_20_20260929390637279_indbills/jeicjpap_indbill.pdf",
+      "page_numbers": [
+        17,
+        18,
+        19,
+        20,
+        21
+      ]
+    },
+    {
+      "name": "xnodpt7e_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07185_1_20_20260929390637279_indbills/xnodpt7e_indbill.pdf",
+      "page_numbers": [
+        22,
+        23
+      ]
+    }
+  ],
+  "created_at": "2026-03-17T07:18:51+00:00"
+}

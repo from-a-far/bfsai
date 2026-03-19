@@ -1,0 +1,8 @@
+{
+  "activated_at": "2026-03-18T01:34:25+00:00",
+  "active_strategy": "ppstruct_layoutlm_qwen",
+  "kind": "experimental",
+  "label": "PP-StructureV3 + LayoutLMv3 + Qwen2.5-VL-7B",
+  "notes": "Manual activation from admin UI",
+  "training_run_id": null
+}

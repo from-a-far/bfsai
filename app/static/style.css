@@ -166,6 +166,165 @@ body.modal-open {
   white-space: nowrap;
 }
 
+.stacked-cell {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.stacked-cell span {
+  color: var(--ink-secondary);
+  font-size: 0.8rem;
+}
+
+.inline-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 20rem;
+}
+
+.client-picker {
+  display: grid;
+  gap: 0.4rem;
+  min-width: min(26rem, 100%);
+  flex: 1 1 20rem;
+  position: relative;
+}
+
+.inline-form select,
+.client-typeahead,
+.inline-form button {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  padding: 0.4rem 0.6rem;
+  font: inherit;
+  font-size: 0.8rem;
+  background: var(--bg-raised);
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.inline-form select {
+  appearance: none;
+  padding-right: 1.4rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236b7080'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+}
+
+.client-typeahead::placeholder {
+  color: var(--muted);
+}
+
+.client-picker-status {
+  color: var(--ink-secondary);
+  font-size: 0.75rem;
+}
+
+.client-typeahead-results[hidden] {
+  display: none;
+}
+
+.client-typeahead-results {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  right: 0;
+  z-index: 25;
+  display: grid;
+  gap: 0;
+  max-height: 16rem;
+  overflow: auto;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: rgba(15, 17, 23, 0.98);
+  box-shadow: var(--shadow);
+}
+
+.client-typeahead-option,
+.client-typeahead-empty {
+  padding: 0.55rem 0.65rem;
+  text-align: left;
+  font-size: 0.8rem;
+}
+
+.client-typeahead-option {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.client-typeahead-option:last-child {
+  border-bottom: 0;
+}
+
+.client-typeahead-option:hover,
+.client-typeahead-option.active {
+  background: var(--panel-hover);
+}
+
+.client-typeahead-empty {
+  color: var(--muted);
+}
+
+.inline-form select option {
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.inline-form button {
+  background: var(--panel-hover);
+  cursor: pointer;
+}
+
+.inline-form button:hover {
+  background: var(--line-strong);
+}
+
+.client-select {
+  min-width: 16rem;
+}
+
+.unmatched-file-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.unmatched-file-link:hover {
+  text-decoration: underline;
+}
+
+.unmatched-preview-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.unmatched-preview-dialog {
+  width: min(94vw, 1200px);
+  height: min(92vh, 960px);
+}
+
+.unmatched-preview-body {
+  min-height: 0;
+  padding: 0.9rem;
+  background:
+    radial-gradient(circle at top, rgba(62, 205, 198, 0.08), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 40%);
+}
+
+.unmatched-preview-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 78vh;
+  border: 0;
+  border-radius: var(--radius);
+  background: #1a1c24;
+}
+
 /* ── collapsible PO box list ───────────────── */
 
 .po-box-collapsible {
@@ -1026,9 +1185,31 @@ a {
   gap: 0.75rem;
 }
 
+.splitter-open-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
 .splitter-form label {
   display: grid;
   gap: 0.35rem;
+}
+
+.splitter-form input,
+.splitter-form select,
+.splitter-form textarea {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.7rem;
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.splitter-form input::placeholder,
+.splitter-form textarea::placeholder {
+  color: var(--muted);
 }
 
 .splitter-form span,
@@ -1041,11 +1222,25 @@ a {
   color: var(--muted);
 }
 
+.splitter-loading {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .splitter-errors,
 .splitter-notes {
   margin: 0;
   padding-left: 1.1rem;
   color: var(--ink-secondary);
+}
+
+.panel-message {
+  border-color: rgba(62, 205, 198, 0.35);
+  background: rgba(62, 205, 198, 0.08);
+}
+
+.panel-message p {
+  margin: 0;
 }
 
 .splitter-summary {
@@ -1061,47 +1256,182 @@ a {
   flex-wrap: wrap;
 }
 
-.splitter-grid {
+.splitter-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+  position: sticky;
+  top: 0.75rem;
+  z-index: 5;
+}
+
+.splitter-toolbar-copy {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.splitter-toolbar-copy span {
+  color: var(--muted);
+}
+
+.splitter-toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.splitter-toolbar-actions form {
+  margin: 0;
+}
+
+.splitter-toolbar-actions button,
+.splitter-form button {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+  padding: 0.55rem 0.85rem;
+  font: inherit;
+  background: var(--panel-hover);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.splitter-toolbar-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.button-danger {
+  border-color: rgba(240, 115, 74, 0.45);
+  color: #ffd5c8;
+}
+
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
+  justify-content: start;
+  gap: 0.75rem;
+  position: relative;
+  isolation: isolate;
+  user-select: none;
+}
+
+.page-card {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+  overflow: visible;
+  cursor: pointer;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  z-index: 1;
+}
+
+.page-card:hover,
+.page-card:focus-visible {
+  border-color: rgba(62, 205, 198, 0.45);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+  outline: none;
+  z-index: 30;
+}
+
+.page-card-selected {
+  border-color: rgba(62, 205, 198, 0.7);
+  box-shadow: 0 0 0 2px rgba(62, 205, 198, 0.18);
+}
+
+.page-card-frame {
+  position: relative;
+  padding: 0.5rem 0.5rem 0;
+}
+
+.page-card-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 8.5 / 11;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+}
+
+.page-card-preview {
+  position: absolute;
+  left: calc(100% + 0.6rem);
+  top: 0;
+  display: none;
+  width: min(42.5vw, 525px);
+  padding: 0.35rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: rgba(15, 17, 23, 0.96);
+  box-shadow: var(--shadow);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.page-card-preview-left .page-card-preview {
+  left: auto;
+  right: calc(100% + 0.6rem);
+}
+
+.page-card:hover .page-card-preview,
+.page-card:focus-visible .page-card-preview {
+  display: block;
+}
+
+.page-card-preview img {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-sm);
+}
+
+.page-card-meta {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.55rem 0.6rem 0.65rem;
+}
+
+.page-card-meta strong {
+  font-size: 0.82rem;
+}
+
+.page-selection-box {
+  position: absolute;
+  border: 1px solid rgba(62, 205, 198, 0.9);
+  background: rgba(62, 205, 198, 0.16);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 40;
+}
+
+.saved-bill-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 0.75rem;
 }
 
-.splitter-card {
+.saved-bill-card {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.7rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  overflow: hidden;
   background: var(--bg-raised);
 }
 
-.splitter-card img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 8 / 11;
-  object-fit: cover;
-  background: var(--bg);
-}
-
-.splitter-card-body {
-  display: grid;
-  gap: 0.35rem;
-  padding: 0.7rem;
-}
-
-.splitter-card-body span {
+.saved-bill-card span {
   color: var(--muted);
 }
 
-.splitter-card-body a {
+.saved-bill-card a {
   color: var(--accent);
   text-decoration: none;
-}
-
-.splitter-card-body code {
-  display: block;
-  color: var(--ink-secondary);
-  font-size: 0.78rem;
-  overflow-wrap: anywhere;
 }
 
 .config-box .config-wrap {
@@ -1145,8 +1475,19 @@ pre {
   .review-modal-body,
   .form-grid,
   .strategy-grid,
-  .service-grid {
+  .service-grid,
+  .splitter-open-grid {
     grid-template-columns: 1fr;
+  }
+
+  .splitter-toolbar {
+    position: static;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-card-preview {
+    display: none !important;
   }
 
   .review-modal-dialog {

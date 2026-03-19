@@ -15,10 +15,23 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 LOGGER = logging.getLogger("bfsai.worker")
 
 
+def iter_scan_roots(watch_root: Path, scan_root: Path) -> list[Path]:
+    candidates = [scan_root, watch_root / "scans", watch_root]
+    roots: list[Path] = []
+    seen: set[Path] = set()
+    for candidate in candidates:
+        resolved = candidate.resolve()
+        if resolved in seen:
+            continue
+        seen.add(resolved)
+        roots.append(candidate)
+    return roots
+
+
 def sweep_scans_once(intake: ScanIntakeService, scan_root: Path) -> int:
     count = 0
     for path in sorted(scan_root.iterdir() if scan_root.exists() else []):
-        if not path.is_file():
+        if not path.is_file() or path.name.startswith("."):
             continue
         destination = intake.process_scan(path)
         if destination:
@@ -49,7 +62,8 @@ def main() -> None:
     processor = PipelineProcessor(settings, repository)
     LOGGER.info("watching scans=%s watch_root=%s every %ss", settings.scan_root, settings.watch_root, settings.poll_seconds)
     while True:
-        sweep_scans_once(intake, settings.scan_root)
+        for scan_root in iter_scan_roots(settings.watch_root, settings.scan_root):
+            sweep_scans_once(intake, scan_root)
         sweep_client_new_once(processor, settings.watch_root)
         time.sleep(settings.poll_seconds)
 

@@ -338,6 +338,19 @@ class Repository:
         documents = {row["id"]: self._row_to_document(row) for row in rows}
         return [documents[document_id] for document_id in document_ids if document_id in documents]
 
+    def list_confirmed_documents(self, limit: int = 1000) -> list[dict[str, Any]]:
+        with self._connect() as connection:
+            rows = connection.execute(
+                """
+                SELECT * FROM documents
+                WHERE confirmed_at IS NOT NULL
+                ORDER BY confirmed_at DESC, updated_at DESC, created_at DESC, id DESC
+                LIMIT ?
+                """,
+                (limit,),
+            ).fetchall()
+        return [self._row_to_document(row) for row in rows]
+
     def review_queue_ids(self) -> list[str]:
         with self._connect() as connection:
             rows = connection.execute(

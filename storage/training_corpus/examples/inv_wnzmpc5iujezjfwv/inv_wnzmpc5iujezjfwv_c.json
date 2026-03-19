@@ -1,0 +1,362 @@
+{
+  "alignment": {
+    "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_wnzmpc5iujezjfwv_c.pdf",
+    "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_wnzmpc5iujezjfwv_c.json",
+    "archived_file_path": "storage/document_files/5010095/inv_wnzmpc5iujezjfwv.pdf",
+    "document_type": "b",
+    "field_alignments": {
+      "account_number": {
+        "bbox": {
+          "height": 27,
+          "left": 645,
+          "top": 262,
+          "width": 81
+        },
+        "confidence": 1,
+        "match_text": "WHITM",
+        "normalized_bbox": {
+          "height": 0.0233,
+          "left": 0.7175,
+          "top": 0.2257,
+          "width": 0.0901
+        },
+        "page_number": 1,
+        "value": "WHITM"
+      },
+      "amount_due": {
+        "bbox": {
+          "height": 34,
+          "left": 776,
+          "top": 1068,
+          "width": 76
+        },
+        "confidence": 1,
+        "match_text": "287.50",
+        "normalized_bbox": {
+          "height": 0.0293,
+          "left": 0.8632,
+          "top": 0.9199,
+          "width": 0.0845
+        },
+        "page_number": 1,
+        "value": 287.5
+      },
+      "billing_address": {
+        "bbox": {
+          "height": 86,
+          "left": 86,
+          "top": 186,
+          "width": 170
+        },
+        "confidence": 1,
+        "match_text": "LINDA LAROCCA\nRE: MIKE WHITE\nP.O. BOX 5010\nMonroe, CT 06468",
+        "normalized_bbox": {
+          "height": 0.0741,
+          "left": 0.0957,
+          "top": 0.1602,
+          "width": 0.1891
+        },
+        "page_number": 1,
+        "value": "LINDA LAROCCA\nRE: MIKE WHITE\nP.O. BOX 5010\nMonroe, CT 06468"
+      },
+      "currency": null,
+      "due_date": null,
+      "friendly_name": {
+        "bbox": {
+          "height": 32,
+          "left": 89,
+          "top": 36,
+          "width": 247
+        },
+        "confidence": 1,
+        "match_text": "TREASURE COAST POOLS",
+        "normalized_bbox": {
+          "height": 0.0276,
+          "left": 0.099,
+          "top": 0.031,
+          "width": 0.2747
+        },
+        "page_number": 1,
+        "value": "TREASURE COAST POOLS"
+      },
+      "invoice_date": {
+        "bbox": {
+          "height": 12,
+          "left": 747,
+          "top": 246,
+          "width": 64
+        },
+        "confidence": 1,
+        "match_text": "03/03/26",
+        "normalized_bbox": {
+          "height": 0.009,
+          "left": 0.7267,
+          "top": 0.1855,
+          "width": 0.0623
+        },
+        "page_number": 1,
+        "value": "03/03/26"
+      },
+      "invoice_number": null,
+      "name_on_account": {
+        "bbox": {
+          "height": 24,
+          "left": 118,
+          "top": 210,
+          "width": 103
+        },
+        "confidence": 1,
+        "match_text": "MIKE WHITE",
+        "normalized_bbox": {
+          "height": 0.0207,
+          "left": 0.1313,
+          "top": 0.1809,
+          "width": 0.1146
+        },
+        "page_number": 1,
+        "value": "MIKE WHITE"
+      },
+      "payable_to": {
+        "bbox": {
+          "height": 23,
+          "left": 92,
+          "top": 41,
+          "width": 241
+        },
+        "confidence": 1,
+        "match_text": "TREASURE COAST POOLS",
+        "normalized_bbox": {
+          "height": 0.0198,
+          "left": 0.1023,
+          "top": 0.0353,
+          "width": 0.2681
+        },
+        "page_number": 1,
+        "value": "TREASURE COAST POOLS"
+      },
+      "payment_terms": null,
+      "physical_billing_address": {
+        "bbox": {
+          "height": 93,
+          "left": 83,
+          "top": 183,
+          "width": 168
+        },
+        "confidence": 1,
+        "match_text": "LINDA LAROCCA\nRE: MIKE WHITE\nP.O. BOX 5010\nMonroe, CT 06468",
+        "normalized_bbox": {
+          "height": 0.0801,
+          "left": 0.0923,
+          "top": 0.1576,
+          "width": 0.1869
+        },
+        "page_number": 1,
+        "value": "LINDA LAROCCA\nRE: MIKE WHITE\nP.O. BOX 5010\nMonroe, CT 06468"
+      },
+      "previous_amount_due": {
+        "bbox": {
+          "height": 20,
+          "left": 788,
+          "top": 407,
+          "width": 57
+        },
+        "confidence": 1,
+        "match_text": "230.00",
+        "normalized_bbox": {
+          "height": 0.0172,
+          "left": 0.8765,
+          "top": 0.3506,
+          "width": 0.0634
+        },
+        "page_number": 1,
+        "value": 230
+      },
+      "previous_payment_amount": {
+        "bbox": {
+          "height": 21,
+          "left": 584,
+          "top": 424,
+          "width": 56
+        },
+        "confidence": 1,
+        "match_text": "-230.00",
+        "normalized_bbox": {
+          "height": 0.0181,
+          "left": 0.6496,
+          "top": 0.3652,
+          "width": 0.0623
+        },
+        "page_number": 1,
+        "value": -230
+      },
+      "previous_payment_date": {
+        "bbox": {
+          "height": 18,
+          "left": 46,
+          "top": 425,
+          "width": 66
+        },
+        "confidence": 1,
+        "match_text": "02/13/26",
+        "normalized_bbox": {
+          "height": 0.0155,
+          "left": 0.0512,
+          "top": 0.3661,
+          "width": 0.0734
+        },
+        "page_number": 1,
+        "value": "02/13/26"
+      },
+      "remittance_address": {
+        "bbox": {
+          "height": 69,
+          "left": 86,
+          "top": 37,
+          "width": 171
+        },
+        "confidence": 1,
+        "match_text": "TREASURE COAST\n\n1835 Wilbur Avenue\nVero Beach, FL 32960",
+        "normalized_bbox": {
+          "height": 0.0594,
+          "left": 0.0957,
+          "top": 0.0319,
+          "width": 0.1902
+        },
+        "page_number": 1,
+        "value": "TREASURE COAST\n1835 Wilbur Avenue\nVero Beach, FL 32960"
+      },
+      "service_address": null,
+      "subtotal": null,
+      "tax": null,
+      "total": {
+        "bbox": {
+          "height": 25,
+          "left": 779,
+          "top": 1074,
+          "width": 69
+        },
+        "confidence": 1,
+        "match_text": "287.50",
+        "normalized_bbox": {
+          "height": 0.0215,
+          "left": 0.8665,
+          "top": 0.9251,
+          "width": 0.0768
+        },
+        "page_number": 1,
+        "value": 287.5
+      },
+      "vendor": {
+        "bbox": {
+          "height": 16,
+          "left": 109,
+          "top": 52,
+          "width": 262
+        },
+        "confidence": 1,
+        "match_text": "TREASURE COAST POOLS",
+        "normalized_bbox": {
+          "height": 0.0121,
+          "left": 0.106,
+          "top": 0.0392,
+          "width": 0.2549
+        },
+        "page_number": 1,
+        "value": "TREASURE COAST POOLS"
+      }
+    },
+    "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_wnzmpc5iujezjfwv.json",
+    "page_count": 1,
+    "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_wnzmpc5iujezjfwv.pdf",
+    "routed_copy_path": null,
+    "routing_reason": "matched s keyword",
+    "sha256": "40468c6d5914c8a2905a5548e9c27ee60547d2b6bea69f2045e8ebde38960be6",
+    "source_filename": "vfir33bj_indbill_1.pdf"
+  },
+  "document_id": "inv_wnzmpc5iujezjfwv",
+  "extraction": {
+    "account_number": "WHITM",
+    "amount_due": 287.5,
+    "billing_address": "LINDA LAROCCA\r\nRE: MIKE WHITE\r\nP.O. BOX 5010\r\nMonroe, CT 06468",
+    "confidence": 0.99,
+    "currency": "USD",
+    "due_date": null,
+    "friendly_name": "TREASURE COAST POOLS",
+    "invoice_date": "03/03/26",
+    "invoice_number": null,
+    "learning_hints": {},
+    "line_items": [
+      {
+        "amount": 230.0,
+        "description": "02/01/26 155560 POOL MAINT Feb/26 230.00 0.00 0.00",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 0.0,
+        "description": "02/13/26 Payment, chk#10945 0.00 -230.00 0.00",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 57.5,
+        "description": "03/01/26 156080 WEEK FIVE CLEANING 57.50 0.00 57.50",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 287.5,
+        "description": "03/01/26 156081 POOL MAINT Mar/26 230.00 0.00 230.00",
+        "quantity": null,
+        "unit_price": null
+      },
+      {
+        "amount": 287.5,
+        "description": "287.50 0.00 0.00 0.00 0.00 7",
+        "quantity": null,
+        "unit_price": null
+      }
+    ],
+    "model_source": "ppstruct_layoutlm_qwen:fallback+confirmed",
+    "name_on_account": "MIKE WHITE",
+    "payable_to": "TREASURE COAST POOLS",
+    "payment_terms": null,
+    "physical_billing_address": "LINDA LAROCCA\r\nRE: MIKE WHITE\r\nP.O. BOX 5010\r\nMonroe, CT 06468",
+    "po_box": "5010095",
+    "previous_amount_due": 230.0,
+    "previous_payment_amount": -230.0,
+    "previous_payment_date": "02/13/26",
+    "raw_text_excerpt": "TREASURE COAST POOLS 1835 Wilbur Avenue Vero Beach, FL 32960 Statement of Account LINDA LAROCCA STATEMENT DATE RE: MIKE WHITE 03/03/26 P.O. BOX 5010 Monroe, CT 06468 ACCOUNT NO. WHITM DATE | INVOICE DESCRIPTION CHARGES | CREDITS | AMOUNTODUE | AMOUNT DUE 02/01/26 155560 POOL MAINT Feb/26 230.00 0.00 0.00 230.00 02/13/26 Payment, chk#10945 0.00 -230.00 0.00 0.00 03/01/26 156080 WEEK FIVE CLEANING 57.50 0.00 57.50 57.50 03/01/26 156081 POOL MAINT Mar/26 230.00 0.00 230.00 287.50 Does Your \"Pool\" Need a Facelift! Call today 772 569-5650 Current 1 to 30 31 to 60 61 to 90 Over 90 287.50 0.00 0.00 0.00 0.00 7 287.50",
+    "remittance_address": "TREASURE COAST\r\n1835 Wilbur Avenue\r\nVero Beach, FL 32960",
+    "service_address": null,
+    "subtotal": null,
+    "tax": null,
+    "total": 287.5,
+    "vendor": "TREASURE COAST POOLS"
+  },
+  "ingestion": {
+    "attempts": 0,
+    "error_message": null,
+    "ingested_at": null,
+    "last_attempt_at": null,
+    "status": "pending"
+  },
+  "po_box": "5010095",
+  "status": "approved",
+  "verification": {
+    "issues": [
+      {
+        "field": "invoice_number",
+        "message": "Invoice number is missing",
+        "severity": "medium"
+      },
+      {
+        "field": "line_items",
+        "message": "Line-item total differs from invoice total by 575.00",
+        "severity": "medium"
+      }
+    ],
+    "score": 0.83,
+    "status": "review"
+  }
+}

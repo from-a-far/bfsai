@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <h1>Unmatched documents</h1>
+    <p>Review files still sitting in the unresolved queue, assign a client, and send them back into the normal routing flow.</p>
+  </div>
+  <div class="config-box">
+    <div><strong>Queue</strong><span>unresolved/other</span></div>
+    <div><strong>Visible files</strong><span>{{ entries|length }}</span></div>
+    <div><strong>Client choices</strong><span>{{ clients|length }}</span></div>
+  </div>
+</section>
+
+{% if message %}
+<section class="panel panel-message">
+  <p>{{ message }}</p>
+</section>
+{% endif %}
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Review queue</h2>
+    <span>Assign a client to restart processing</span>
+  </div>
+  <form method="get" class="filters">
+    <input type="text" name="search" placeholder="Search filename" value="{{ filters.search }}" />
+    <button type="submit">Filter</button>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>File</th>
+        <th>OCR excerpt</th>
+        <th>Suggested client</th>
+        <th>Assign</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in entries %}
+      <tr>
+        <td class="stacked-cell">
+          <a
+            href="/unmatched/files/{{ entry.filename }}"
+            class="unmatched-file-link"
+            data-preview-url="/unmatched/files/{{ entry.filename }}"
+            data-filename="{{ entry.filename }}"
+          >{{ entry.filename }}</a>
+          <span>{{ entry.path }}</span>
+          {% if entry.error_message %}
+          <span class="status status-error">{{ entry.error_message }}</span>
+          {% endif %}
+        </td>
+        <td class="stacked-cell">
+          <span>{{ entry.excerpt or "No OCR text available." }}</span>
+        </td>
+        <td class="stacked-cell">
+          {% if entry.suggested_po_box %}
+          <span class="status status-review">{{ entry.suggested_label }}</span>
+          <span>Matched on "{{ entry.match_alias }}" (score {{ entry.match_score }})</span>
+          {% else %}
+          <span style="color:var(--muted)">No confident match</span>
+          {% endif %}
+        </td>
+        <td>
+          <form method="post" action="/unmatched/assign" class="inline-form client-assign-form">
+            <input type="hidden" name="filename" value="{{ entry.filename }}" />
+            <input type="hidden" name="po_box" class="client-po-box" value="{{ entry.suggested_po_box }}" />
+            <div class="client-picker">
+              <input
+                type="search"
+                class="client-typeahead"
+                placeholder="Type client name or PO box"
+                value="{{ entry.suggested_label if entry.suggested_po_box else '' }}"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <div class="client-typeahead-results" hidden></div>
+              <span class="client-picker-status">
+                {% if entry.suggested_po_box %}
+                Selected {{ entry.suggested_label }}
+                {% else %}
+                Type to search by last name, nickname, or PO box.
+                {% endif %}
+              </span>
+            </div>
+            <button type="submit">Assign and continue</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="4">No unmatched files in the unresolved queue.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<script id="unmatched-clients-data" type="application/json">{{ clients|tojson }}</script>
+<section class="review-modal unmatched-preview-modal" id="unmatched-preview-modal" hidden>
+  <div class="review-modal-backdrop" data-close-unmatched-preview></div>
+  <div class="review-modal-dialog unmatched-preview-dialog">
+    <div class="review-modal-header">
+      <div>
+        <h2 id="unmatched-preview-title">Unmatched document</h2>
+        <p>Inspect the original PDF for clues before assigning a client.</p>
+      </div>
+      <div class="unmatched-preview-actions">
+        <a href="#" id="unmatched-preview-open" class="icon-button" target="_blank" rel="noreferrer">Open raw PDF</a>
+        <button type="button" class="icon-button" data-close-unmatched-preview title="Close preview">&times;</button>
+      </div>
+    </div>
+    <div class="unmatched-preview-body">
+      <iframe id="unmatched-preview-frame" class="unmatched-preview-frame" title="Unmatched PDF preview"></iframe>
+    </div>
+  </div>
+</section>
+
+<script src="/static/unmatched.js"></script>
+{% endblock %}

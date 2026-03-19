@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import base64
 import json
 import re
 import shutil
@@ -8,7 +7,6 @@ import subprocess
 import sys
 from pathlib import Path
 from typing import Any
-from urllib.parse import quote
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
@@ -16,15 +14,20 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
 from .bill_splitter import (
-    default_register_keywords_text,
-    parse_register_keywords,
+    cached_page_image_path,
+    complete_batch_session,
+    create_batch_session,
+    load_batch_session,
+    output_file_for_batch,
+    remove_pages_from_batch,
+    save_selected_pages_as_bill,
     sanitize_upload_filename,
-    split_batch_file,
 )
 from .config import Settings, load_settings
-from .documents import approve_paths, discover_po_boxes, output_json_path, resolve_document_file_path
+from .documents import approve_paths, client_layout, discover_po_boxes, output_json_path, po_box_layout, resolve_document_file_path
 from .fields import AMOUNT_FIELDS, FIELD_SPECS, serialize_field_specs
 from .ingestion import RailsIngestionService
+from .intake import ScanIntakeService
 from .learning import LearningService
 from .pipeline import PipelineProcessor
 from .repository import Repository
@@ -44,6 +47,7 @@ def create_app() -> FastAPI:
     templates = Jinja2Templates(directory="app/templates")
     strategy = StrategyService(settings, repository)
     pipeline = PipelineProcessor(settings, repository)
+    intake = ScanIntakeService(settings, repository)
     ingestion = RailsIngestionService(settings, repository)
     training = TrainingService(settings, repository, strategy)
     service_manager = ServiceManager(settings, Path(__file__).resolve().parents[1])
@@ -54,6 +58,7 @@ def create_app() -> FastAPI:
     app.state.verifier = Verifier(settings)
     app.state.templates = templates
     app.state.pipeline = pipeline
+    app.state.intake = intake
     app.state.ingestion = ingestion
     app.state.strategy = strategy
     app.state.training = training
@@ -94,6 +99,48 @@ def create_app() -> FastAPI:
         previous_id = queue_ids[index - 1] if index > 0 else None
         next_id = queue_ids[index + 1] if index < len(queue_ids) - 1 else None
         return {"previous_id": previous_id, "next_id": next_id, "position": index + 1, "total": len(queue_ids)}
+
+    def unmatched_directory() -> Path:
+        return client_layout(settings, "unresolved").other
+
+    def unmatched_file_path(filename: str) -> Path:
+        candidate = (unmatched_directory() / Path(filename).name).resolve()
+        if candidate.parent != unmatched_directory().resolve() or not candidate.exists() or not candidate.is_file():
+            raise HTTPException(status_code=404, detail="Unmatched file not found")
+        return candidate
+
+    def unmatched_entries(search: str | None = None, limit: int = 100) -> list[dict[str, Any]]:
+        entries: list[dict[str, Any]] = []
+        query = (search or "").strip().lower()
+        for path in sorted(unmatched_directory().glob("*.pdf")):
+            if query and query not in path.name.lower():
+                continue
+            try:
+                ocr_result = app.state.intake.extractor.read_text(path)
+                text = ocr_result.text
+                match = app.state.intake.suggest_client(path, text)
+            except Exception as error:
+                text = ""
+                match = None
+                error_message = str(error)
+            else:
+                error_message = ""
+            excerpt = " ".join(text.split())[:280] if text else ""
+            entries.append(
+                {
+                    "filename": path.name,
+                    "path": str(path),
+                    "excerpt": excerpt,
+                    "suggested_po_box": match.po_box if match else "",
+                    "suggested_label": f"{match.client_name} - {match.po_box}" if match else "",
+                    "match_alias": match.matched_alias if match else "",
+                    "match_score": match.score if match else 0,
+                    "error_message": error_message,
+                }
+            )
+            if len(entries) >= limit:
+                break
+        return entries
 
     def persist_approved_document(
         document: dict[str, Any],
@@ -183,55 +230,53 @@ def create_app() -> FastAPI:
             app.state.training.sync_training_example(approved_document)
         repository.record_review_event(document_id, action=event_action, notes=review_notes, payload={"bypass_training": event_action == "quick_approve"})
 
+    def serialize_batch_session(batch: Any) -> dict[str, Any]:
+        pages = [
+            {
+                "page_number": page_number,
+                "thumbnail_url": f"/bill-splitter/batches/{batch.batch_id}/pages/{page_number}.png?size=thumb",
+                "preview_url": f"/bill-splitter/batches/{batch.batch_id}/pages/{page_number}.png?size=preview",
+            }
+            for page_number in batch.remaining_pages
+        ]
+        outputs = [
+            {
+                "name": output.name,
+                "page_numbers": output.page_numbers,
+                "download_url": f"/bill-splitter/batches/{batch.batch_id}/outputs/{output.name}",
+            }
+            for output in batch.saved_outputs
+        ]
+        return {
+            "batch_id": batch.batch_id,
+            "source_path": str(batch.source_path),
+            "output_dir": str(batch.output_dir),
+            "original_filename": batch.original_filename,
+            "total_pages": batch.total_pages,
+            "remaining_pages": batch.remaining_pages,
+            "remaining_count": len(batch.remaining_pages),
+            "saved_outputs": outputs,
+            "pages": pages,
+        }
+
     def render_bill_splitter_page(
         request: Request,
         *,
-        results: list[dict[str, Any]] | None = None,
+        batch: Any | None = None,
         errors: list[str] | None = None,
-        source_directory: str = "",
-        register_keywords: str | None = None,
+        message: str = "",
         status_code: int = 200,
     ) -> HTMLResponse:
         return templates.TemplateResponse(
             "bill_splitter.html",
             {
                 "request": request,
-                "results": results or [],
+                "batch": serialize_batch_session(batch) if batch else None,
                 "errors": errors or [],
-                "form": {
-                    "source_directory": source_directory,
-                    "register_keywords": register_keywords or default_register_keywords_text(),
-                },
+                "message": message,
             },
             status_code=status_code,
         )
-
-    def serialize_split_result(result: Any, source_note: str | None = None) -> dict[str, Any]:
-        return {
-            "source_path": str(result.source_path),
-            "output_dir": str(result.output_dir),
-            "register_pages": result.register_pages,
-            "ignored_pages": result.ignored_pages,
-            "register_keywords": result.register_keywords,
-            "notes": [*result.notes, *([source_note] if source_note else [])],
-            "outputs": [
-                {
-                    "bill_index": output.bill_index,
-                    "path": str(output.path),
-                    "page_numbers": output.page_numbers,
-                    "thumbnail_data_uri": f"data:image/png;base64,{base64.b64encode(output.thumbnail_path.read_bytes()).decode('ascii')}",
-                    "download_url": f"/bill-splitter/files?path={quote(str(output.path))}",
-                }
-                for output in result.outputs
-            ],
-        }
-
-    def output_root_for_split_path(path: Path) -> Path | None:
-        resolved = path.expanduser().resolve()
-        if not resolved.exists() or resolved.suffix.lower() != ".pdf":
-            return None
-        parent = resolved.parent
-        return parent if parent.name.endswith("_split") else None
 
     def upload_staging_path(settings: Settings, filename: str) -> Path:
         upload_dir = settings.scan_root / "bill_split_uploads"
@@ -281,6 +326,55 @@ def create_app() -> FastAPI:
             },
         }
         return templates.TemplateResponse("dashboard.html", context)
+
+    @app.get("/unmatched", response_class=HTMLResponse)
+    def unmatched_dashboard(
+        request: Request,
+        search: str | None = Query(default=None),
+        message: str = Query(default=""),
+    ) -> HTMLResponse:
+        clients = app.state.intake.client_lookup.list_clients()
+        context = {
+            "request": request,
+            "entries": unmatched_entries(search=search, limit=200),
+            "filters": {"search": search or ""},
+            "clients": clients,
+            "message": message,
+        }
+        return templates.TemplateResponse("unmatched.html", context)
+
+    @app.get("/unmatched/files/{filename}")
+    def unmatched_file_view(filename: str) -> FileResponse:
+        path = unmatched_file_path(filename)
+        return FileResponse(
+            str(path),
+            media_type="application/pdf",
+            headers={"Content-Disposition": f'inline; filename="{path.name}"'},
+        )
+
+    @app.post("/unmatched/assign")
+    def assign_unmatched(
+        filename: str = Form(...),
+        po_box: str = Form(...),
+    ) -> RedirectResponse:
+        client_key = po_box.strip()
+        if not client_key or not client_key.isdigit():
+            raise HTTPException(status_code=400, detail="Select a valid client")
+        if not po_box_layout(settings, client_key).root.exists():
+            raise HTTPException(status_code=400, detail="Client folder does not exist")
+        source_path = unmatched_file_path(filename)
+        destination = app.state.intake.process_scan(source_path, forced_client_key=client_key)
+        if not destination:
+            raise HTTPException(status_code=500, detail="Failed to route unmatched file")
+        layout = po_box_layout(settings, client_key)
+        if destination.parent == layout.new:
+            document_id = app.state.pipeline.process_file(client_key, destination)
+            if document_id:
+                return RedirectResponse(url=f"/documents/{document_id}", status_code=303)
+        return RedirectResponse(
+            url=f"/unmatched?message=Assigned+{Path(filename).name}+to+{client_key}",
+            status_code=303,
+        )
 
     @app.get("/training", response_class=HTMLResponse)
     def training_dashboard(
@@ -368,87 +462,144 @@ def create_app() -> FastAPI:
         return RedirectResponse(url="/services", status_code=303)
 
     @app.get("/bill-splitter", response_class=HTMLResponse)
-    def bill_splitter_page(request: Request) -> HTMLResponse:
-        return render_bill_splitter_page(request)
+    def bill_splitter_page(request: Request, message: str = Query(default="")) -> HTMLResponse:
+        return render_bill_splitter_page(request, message=message)
 
     @app.post("/bill-splitter", response_class=HTMLResponse)
     async def bill_splitter_upload(
         request: Request,
-        files: list[UploadFile] = File(default=[]),
-        source_directory: str = Form(""),
-        register_keywords: str = Form(default_register_keywords_text()),
+        batch_path: str = Form(""),
+        file: UploadFile | None = File(default=None),
     ) -> HTMLResponse:
-        selected_files = [upload for upload in files if upload.filename]
-        if not selected_files:
+        opened_path = batch_path.strip()
+        if opened_path:
+            try:
+                source_path = Path(opened_path).expanduser().resolve()
+                message = "Loaded the batch from disk. Saved bills will be written beside the source batch file."
+                batch = create_batch_session(settings.scan_root, source_path, original_filename=source_path.name)
+            except Exception as error:
+                return render_bill_splitter_page(
+                    request,
+                    errors=[f"{opened_path}: {error}"],
+                    status_code=400,
+                )
+            finally:
+                if file is not None:
+                    await file.close()
+            return render_bill_splitter_page(request, batch=batch, message=message)
+
+        if file is None or not file.filename:
             return render_bill_splitter_page(
                 request,
-                errors=["Select at least one batch PDF or scan image to split."],
-                source_directory=source_directory,
-                register_keywords=register_keywords,
+                errors=["Enter a batch file path or select a batch PDF or scan image to open."],
                 status_code=400,
             )
 
-        source_root: Path | None = None
-        if source_directory.strip():
-            source_root = Path(source_directory).expanduser()
-            if not source_root.exists() or not source_root.is_dir():
-                return render_bill_splitter_page(
-                    request,
-                    errors=[f"Original folder not found: {source_root}"],
-                    source_directory=source_directory,
-                    register_keywords=register_keywords,
-                    status_code=400,
+        try:
+            original_name = Path(file.filename or "batch.pdf").name
+            staged_name = sanitize_upload_filename(original_name)
+            staged_path = upload_staging_path(settings, staged_name)
+            staged_path.write_bytes(await file.read())
+            source_path = staged_path
+            message = "Loaded the uploaded batch copy. Saved bills will be written beside the staged batch file."
+            batch = create_batch_session(settings.scan_root, source_path, original_filename=original_name)
+        except Exception as error:
+            return render_bill_splitter_page(
+                request,
+                errors=[f"{file.filename or 'batch'}: {error}"],
+                status_code=400,
+            )
+        finally:
+            await file.close()
+
+        return render_bill_splitter_page(request, batch=batch, message=message)
+
+    @app.get("/bill-splitter/batches/{batch_id}", response_class=HTMLResponse)
+    def bill_splitter_batch_page(
+        request: Request,
+        batch_id: str,
+        message: str = Query(default=""),
+    ) -> HTMLResponse:
+        try:
+            batch = load_batch_session(settings.scan_root, batch_id)
+        except FileNotFoundError as error:
+            raise HTTPException(status_code=404, detail=str(error)) from error
+        return render_bill_splitter_page(request, batch=batch, message=message)
+
+    @app.get("/bill-splitter/batches/{batch_id}/pages/{page_number}.png")
+    def bill_splitter_page_image(batch_id: str, page_number: int, size: str = Query(default="thumb")) -> Response:
+        try:
+            batch = load_batch_session(settings.scan_root, batch_id)
+        except FileNotFoundError as error:
+            raise HTTPException(status_code=404, detail=str(error)) from error
+        if page_number < 1 or page_number > batch.total_pages:
+            raise HTTPException(status_code=404, detail="Page not found")
+        try:
+            image_path = cached_page_image_path(settings.scan_root, batch_id, page_number, size)
+        except ValueError as error:
+            raise HTTPException(status_code=400, detail=str(error)) from error
+        if not image_path.exists():
+            raise HTTPException(status_code=404, detail="Page image not found")
+        try:
+            return FileResponse(str(image_path), media_type="image/png", filename=image_path.name)
+        except IndexError as error:
+            raise HTTPException(status_code=404, detail=str(error)) from error
+
+    @app.post("/bill-splitter/batches/{batch_id}/save")
+    def bill_splitter_save(batch_id: str, page_numbers: str = Form("")) -> RedirectResponse:
+        try:
+            output = save_selected_pages_as_bill(settings.scan_root, batch_id, page_numbers)
+            batch = load_batch_session(settings.scan_root, batch_id)
+        except (FileNotFoundError, ValueError) as error:
+            raise HTTPException(status_code=400, detail=str(error)) from error
+        if not batch.remaining_pages:
+            transition = complete_batch_session(settings.scan_root, batch_id)
+            completed_name = transition.completed_source_path.name
+            if transition.next_batch:
+                return RedirectResponse(
+                    url=f"/bill-splitter/batches/{transition.next_batch.batch_id}?message=Saved+{output.name}+and+completed+{completed_name}",
+                    status_code=303,
                 )
-
-        results: list[dict[str, Any]] = []
-        errors: list[str] = []
-        active_keywords = parse_register_keywords(register_keywords)
-
-        for upload in selected_files:
-            try:
-                original_name = Path(upload.filename or "batch.pdf").name
-                staged_name = sanitize_upload_filename(original_name)
-                source_note = None
-                if source_root is not None:
-                    candidate_source = (source_root / original_name).resolve()
-                    if candidate_source.exists():
-                        source_path = candidate_source
-                        source_note = "Processed the on-disk source file so the split PDFs were written beside it."
-                    else:
-                        staged_path = upload_staging_path(settings, staged_name)
-                        staged_path.write_bytes(await upload.read())
-                        source_path = staged_path
-                        source_note = f"{original_name} was not found in {source_root}, so an uploaded copy was staged under {staged_path.parent}."
-                else:
-                    staged_path = upload_staging_path(settings, staged_name)
-                    staged_path.write_bytes(await upload.read())
-                    source_path = staged_path
-                    source_note = f"Processed an uploaded copy staged under {staged_path.parent}."
-
-                result = split_batch_file(source_path, register_keywords=active_keywords)
-                results.append(serialize_split_result(result, source_note))
-            except Exception as error:
-                errors.append(f"{upload.filename or 'batch'}: {error}")
-            finally:
-                await upload.close()
-
-        status_code = 200 if results else 400
-        return render_bill_splitter_page(
-            request,
-            results=results,
-            errors=errors,
-            source_directory=source_directory,
-            register_keywords=register_keywords,
-            status_code=status_code,
+            return RedirectResponse(
+                url=f"/bill-splitter?message=Saved+{output.name}+and+completed+{completed_name}",
+                status_code=303,
+            )
+        return RedirectResponse(
+            url=f"/bill-splitter/batches/{batch_id}?message=Saved+{output.name}",
+            status_code=303,
         )
 
-    @app.get("/bill-splitter/files")
-    def bill_splitter_file(path: str = Query(...)) -> FileResponse:
-        file_path = Path(path).expanduser().resolve()
-        output_root = output_root_for_split_path(file_path)
-        if output_root is None or file_path.parent != output_root:
-            raise HTTPException(status_code=404, detail="Split PDF not found")
-        return FileResponse(str(file_path), media_type="application/pdf", filename=file_path.name)
+    @app.post("/bill-splitter/batches/{batch_id}/remove")
+    def bill_splitter_remove(batch_id: str, page_numbers: str = Form("")) -> RedirectResponse:
+        try:
+            batch = remove_pages_from_batch(settings.scan_root, batch_id, page_numbers)
+        except (FileNotFoundError, ValueError) as error:
+            raise HTTPException(status_code=400, detail=str(error)) from error
+        removed_count = len(page_numbers.split(",")) if page_numbers.strip() else 0
+        if not batch.remaining_pages:
+            transition = complete_batch_session(settings.scan_root, batch_id)
+            completed_name = transition.completed_source_path.name
+            if transition.next_batch:
+                return RedirectResponse(
+                    url=f"/bill-splitter/batches/{transition.next_batch.batch_id}?message=Removed+{removed_count}+page(s)+and+completed+{completed_name}",
+                    status_code=303,
+                )
+            return RedirectResponse(
+                url=f"/bill-splitter?message=Removed+{removed_count}+page(s)+and+completed+{completed_name}",
+                status_code=303,
+            )
+        return RedirectResponse(
+            url=f"/bill-splitter/batches/{batch.batch_id}?message=Removed+{removed_count}+page(s)+from+the+batch",
+            status_code=303,
+        )
+
+    @app.get("/bill-splitter/batches/{batch_id}/outputs/{filename}")
+    def bill_splitter_output(batch_id: str, filename: str) -> FileResponse:
+        try:
+            output_path = output_file_for_batch(settings.scan_root, batch_id, filename)
+        except FileNotFoundError as error:
+            raise HTTPException(status_code=404, detail=str(error)) from error
+        return FileResponse(str(output_path), media_type="application/pdf", filename=output_path.name)
 
     @app.get("/documents/{document_id}", response_class=HTMLResponse)
     def document_detail(request: Request, document_id: str) -> HTMLResponse:
@@ -499,7 +650,11 @@ def create_app() -> FastAPI:
         return FileResponse(str(resolved_file_path))
 
     @app.get("/documents/{document_id}/pages/{page_number}.png")
-    def document_page_image(document_id: str, page_number: int) -> Response:
+    def document_page_image(
+        document_id: str,
+        page_number: int,
+        max_width: int = Query(default=1100, ge=200, le=1600),
+    ) -> Response:
         document = repository.get_document(document_id)
         if not document:
             raise HTTPException(status_code=404, detail="Document not found")
@@ -507,7 +662,7 @@ def create_app() -> FastAPI:
         if not resolved_file_path:
             raise HTTPException(status_code=404, detail="Document file not found on disk")
         try:
-            png = render_page_png(resolved_file_path, page_number)
+            png = render_page_png(resolved_file_path, page_number, max_width=max_width)
         except IndexError as error:
             raise HTTPException(status_code=404, detail=str(error)) from error
         return Response(content=png, media_type="image/png")

@@ -20,6 +20,8 @@
   let activeField = null;
   let dragState = null;
   let isExtracting = false;
+  let pagesInitialized = false;
+  let pageObserver = null;
 
   function persistAlignments() {
     alignmentsInput.value = JSON.stringify(fieldAlignments);
@@ -42,6 +44,7 @@
   function openModal() {
     modal.hidden = false;
     document.body.classList.add("modal-open");
+    initializePages();
   }
 
   function closeModal() {
@@ -104,6 +107,46 @@
       });
     });
     persistAlignments();
+  }
+
+  function loadPageImage(image) {
+    if (!image || image.dataset.loaded === "true") {
+      return;
+    }
+    image.src = image.dataset.src;
+    image.dataset.loaded = "true";
+  }
+
+  function ensurePageObserver() {
+    if (pageObserver || !("IntersectionObserver" in window)) {
+      return;
+    }
+    pageObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+          const image = entry.target.querySelector("img[data-src]");
+          loadPageImage(image);
+          pageObserver.unobserve(entry.target);
+        });
+      },
+      {
+        root: pagesRoot,
+        rootMargin: "600px 0px",
+      },
+    );
+  }
+
+  function initializePages() {
+    if (pagesInitialized) {
+      return;
+    }
+    ensurePageObserver();
+    pages.forEach(bindPage);
+    pagesInitialized = true;
+    renderBoxes();
   }
 
   function createSelectionBox(overlay) {
@@ -194,10 +237,11 @@
     pageElement.innerHTML = `
       <div class="review-page-header">Page ${page.page_number}</div>
       <div class="review-page-canvas">
-        <img src="${page.image_url}" alt="Page ${page.page_number}" draggable="false" />
+        <img data-src="${page.image_url}" alt="Page ${page.page_number}" draggable="false" loading="lazy" decoding="async" />
         <div class="review-page-overlay"></div>
       </div>
     `;
+    const image = pageElement.querySelector("img");
     const overlay = pageElement.querySelector(".review-page-overlay");
     overlay.addEventListener("pointerdown", (event) => {
       if (!activeField || isExtracting) {
@@ -261,6 +305,14 @@
 
     pagesRoot.appendChild(pageElement);
     pageElements.set(page.page_number, pageElement);
+    if (pageObserver) {
+      pageObserver.observe(pageElement);
+      if (page.page_number === 1) {
+        loadPageImage(image);
+      }
+      return;
+    }
+    loadPageImage(image);
   }
 
   fieldSpecs.forEach((field) => {
@@ -272,8 +324,7 @@
     input.addEventListener("focus", () => setActiveField(field.name));
   });
 
-  pages.forEach(bindPage);
-  renderBoxes();
+  persistAlignments();
 
   openButton?.addEventListener("click", openModal);
   closeButtons.forEach((button) => button.addEventListener("click", closeModal));

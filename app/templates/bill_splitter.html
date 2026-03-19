@@ -3,36 +3,45 @@
 <section class="hero">
   <div>
     <h1>Bill splitter</h1>
-    <p>Upload scanned batch PDFs, keep only invoice or bill pages, and write one PDF per detected bill beside the source file.</p>
+    <p>Upload a batch, review the page thumbnails, then manually save the pages that belong to each individual bill.</p>
   </div>
   <div class="config-box">
-    <div><strong>Default keywords</strong><span class="config-wrap">{{ form.register_keywords }}</span></div>
-    <div><strong>Output rule</strong><span class="config-wrap">Creates a `*_split` folder next to each source file</span></div>
+    <div><strong>Output rule</strong><span class="config-wrap">Creates a `*_indbills` folder next to the source batch</span></div>
+    <div><strong>Selection</strong><span class="config-wrap">Drag across pages or use shift+click to add and remove pages</span></div>
   </div>
 </section>
 
 <section class="panel">
   <div class="panel-heading">
-    <h2>Split scanned batches</h2>
-    <span>Registers, checks, cover sheets, and blank pages are ignored. Only bill-like page ranges are exported.</span>
+    <h2>Load a batch</h2>
+    <span>Open a real file path for rename/advance, or upload a staged copy.</span>
   </div>
-  <form method="post" enctype="multipart/form-data" class="splitter-form">
-    <label>
-      <span>Batch scans</span>
-      <input type="file" name="files" accept=".pdf,image/*" multiple required />
-    </label>
-    <label>
-      <span>Original folder</span>
-      <input type="text" name="source_directory" value="{{ form.source_directory }}" placeholder="/Users/ajfarren/Documents/bills" />
-    </label>
-    <label>
-      <span>Register keywords</span>
-      <input type="text" name="register_keywords" value="{{ form.register_keywords }}" />
-    </label>
-    <p class="form-hint">If the originals already live on this machine, enter that folder so the split PDFs are written beside those source files instead of beside a staged upload copy.</p>
-    <button type="submit">Split bills</button>
-  </form>
+  <div class="splitter-open-grid">
+    <form method="post" enctype="multipart/form-data" class="splitter-form">
+      <label>
+        <span>Batch file path</span>
+        <input type="text" name="batch_path" placeholder="/Users/.../batch.pdf" />
+      </label>
+      <button type="submit">Open from disk</button>
+      <p class="form-hint">Use this mode if you want the source file renamed with `_d` and the next file in that folder opened automatically.</p>
+    </form>
+    <form method="post" enctype="multipart/form-data" class="splitter-form" data-upload-form>
+      <label>
+        <span>Batch file upload</span>
+        <input type="file" name="file" accept=".pdf,image/*" data-upload-input />
+      </label>
+      <button type="submit" data-upload-button>Open upload</button>
+      <div class="splitter-loading" hidden data-upload-loading>Loading batch pages...</div>
+      <p class="form-hint">Upload mode stages a copy under `server/scans/bill_split_uploads`, so `_d` rename and auto-advance apply only inside that staging folder.</p>
+    </form>
+  </div>
 </section>
+
+{% if message %}
+<section class="panel panel-message">
+  <p>{{ message }}</p>
+</section>
+{% endif %}
 
 {% if errors %}
 <section class="panel">
@@ -48,41 +57,78 @@
 </section>
 {% endif %}
 
-{% for batch in results %}
+{% if batch %}
 <section class="panel">
   <div class="panel-heading">
-    <h2>{{ batch.source_path }}</h2>
-    <span>{{ batch.outputs|length }} split PDF{{ "" if batch.outputs|length == 1 else "s" }}</span>
+    <h2>{{ batch.original_filename }}</h2>
+    <span>{{ batch.remaining_count }} of {{ batch.total_pages }} pages still in the batch</span>
   </div>
   <div class="splitter-summary">
+    <div><strong>Source</strong><span>{{ batch.source_path }}</span></div>
     <div><strong>Output folder</strong><span>{{ batch.output_dir }}</span></div>
-    <div><strong>Register pages</strong><span>{{ batch.register_pages|join(", ") if batch.register_pages else "None detected" }}</span></div>
-    <div><strong>Ignored pages</strong><span>{{ batch.ignored_pages|join(", ") if batch.ignored_pages else "None" }}</span></div>
-    <div><strong>Keywords</strong><span>{{ batch.register_keywords|join(", ") }}</span></div>
+    <div><strong>Batch id</strong><span>{{ batch.batch_id }}</span></div>
   </div>
-  {% if batch.notes %}
-  <ul class="splitter-notes">
-    {% for note in batch.notes %}
-    <li>{{ note }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-  <div class="splitter-grid">
-    {% for output in batch.outputs %}
-    <article class="splitter-card">
-      <img src="{{ output.thumbnail_data_uri }}" alt="Bill {{ output.bill_index }} thumbnail" />
-      <div class="splitter-card-body">
-        <strong>Bill {{ output.bill_index }}</strong>
-        <span>Pages {{ output.page_numbers|join(", ") }}</span>
-        <a href="{{ output.download_url }}" target="_blank" rel="noreferrer">Open PDF</a>
-        <code>{{ output.path }}</code>
+  <div class="splitter-toolbar" data-splitter-toolbar>
+    <div class="splitter-toolbar-copy">
+      <strong data-selection-count>0 pages selected</strong>
+      <span>Save selected pages as a new bill PDF or remove them from the batch.</span>
+    </div>
+    <div class="splitter-toolbar-actions">
+      <form method="post" action="/bill-splitter/batches/{{ batch.batch_id }}/save" data-selection-form data-save-form>
+        <input type="hidden" name="page_numbers" value="" data-selection-input />
+        <button type="submit" disabled data-selection-button>Save</button>
+      </form>
+      <form method="post" action="/bill-splitter/batches/{{ batch.batch_id }}/remove" data-selection-form data-remove-form>
+        <input type="hidden" name="page_numbers" value="" data-selection-input />
+        <button type="submit" class="button-danger" disabled data-selection-button>Remove</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="page-grid" data-batch-grid>
+    {% for page in batch.pages %}
+    <article
+      class="page-card"
+      data-page-card
+      data-page-number="{{ page.page_number }}"
+      tabindex="0"
+      aria-label="Page {{ page.page_number }}"
+    >
+      <div class="page-card-frame">
+        <img src="{{ page.thumbnail_url }}" alt="Page {{ page.page_number }} thumbnail" class="page-card-image" draggable="false" />
+        <div class="page-card-preview">
+          <img src="{{ page.preview_url }}" alt="Page {{ page.page_number }} preview" draggable="false" />
+        </div>
+      </div>
+      <div class="page-card-meta">
+        <strong>Page {{ page.page_number }}</strong>
       </div>
     </article>
     {% endfor %}
   </div>
-  {% if not batch.outputs %}
-  <p class="form-hint">No invoice-like pages were found in this upload.</p>
+  {% if not batch.pages %}
+  <p class="form-hint">No pages remain in this batch.</p>
   {% endif %}
 </section>
-{% endfor %}
+
+<section class="panel">
+  <div class="panel-heading">
+    <h2>Saved bills</h2>
+    <span>{{ batch.saved_outputs|length }} file{{ "" if batch.saved_outputs|length == 1 else "s" }}</span>
+  </div>
+  <div class="saved-bill-list">
+    {% for output in batch.saved_outputs %}
+    <article class="saved-bill-card">
+      <strong>{{ output.name }}</strong>
+      <span>Pages {{ output.page_numbers|join(", ") }}</span>
+      <a href="{{ output.download_url }}" target="_blank" rel="noreferrer">Open PDF</a>
+    </article>
+    {% else %}
+    <p class="form-hint">No bills have been saved from this batch yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endif %}
+<script src="/static/bill_splitter.js"></script>
 {% endblock %}

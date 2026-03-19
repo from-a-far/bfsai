@@ -18,6 +18,12 @@ rails:
   api_token: ""
   timeout_seconds: 30
   auto_ingest_approved: false
+  auth_name: ""
+  auth_password: ""
+  login_path: /login
+  clients_minimal_path: /clients_minimal
+  payee_accounts_path: /payee_accounts
+  client_cache_ttl_seconds: 900
 extraction:
   active_strategy: legacy_local
   corpus_dir: ./storage/training_corpus

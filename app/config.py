@@ -31,6 +31,12 @@ class RailsSettings:
     api_token: str = ""
     timeout_seconds: int = 30
     auto_ingest_approved: bool = False
+    auth_name: str = ""
+    auth_password: str = ""
+    clients_minimal_path: str = "/clients_minimal"
+    payee_accounts_path: str = "/payee_accounts"
+    login_path: str = "/login"
+    client_cache_ttl_seconds: int = 900
 
 
 @dataclass(slots=True)
@@ -97,6 +103,20 @@ class Settings:
     scan_root: Path = Path("./server/scans")
 
 
+def resolve_active_strategy_name(settings: Settings) -> str:
+    strategy_override_path = settings.extraction.runtime_dir / "active_strategy.json"
+    active_strategy = settings.extraction.active_strategy
+    if strategy_override_path.exists():
+        try:
+            override = _read_yaml(strategy_override_path)
+            candidate = str(override.get("active_strategy", active_strategy)).strip()
+            if candidate in settings.extraction.strategies:
+                return candidate
+        except Exception:
+            pass
+    return active_strategy
+
+
 def _read_yaml(path: Path) -> dict[str, Any]:
     if not path.exists():
         raise FileNotFoundError(f"Missing config file: {path}")
@@ -115,7 +135,6 @@ def load_settings() -> Settings:
     rails = raw.get("rails", {})
     extraction = raw.get("extraction", {})
     runtime_dir = Path(extraction.get("runtime_dir", "./storage/runtime"))
-    strategy_override_path = runtime_dir / "active_strategy.json"
     default_strategies = {
         "legacy_local": {
             "label": "Current Local System",
@@ -138,12 +157,6 @@ def load_settings() -> Settings:
     }
     strategies_raw = default_strategies | dict(extraction.get("strategies", {}))
     active_strategy = str(extraction.get("active_strategy", "legacy_local"))
-    if strategy_override_path.exists():
-        try:
-            override = _read_yaml(strategy_override_path)
-            active_strategy = str(override.get("active_strategy", active_strategy))
-        except Exception:
-            pass
     settings = Settings(
         watch_root=watch_root,
         database_path=database_path,
@@ -166,6 +179,12 @@ def load_settings() -> Settings:
             api_token=str(rails.get("api_token", "")),
             timeout_seconds=int(rails.get("timeout_seconds", 30)),
             auto_ingest_approved=bool(rails.get("auto_ingest_approved", False)),
+            auth_name=str(rails.get("auth_name", "")),
+            auth_password=str(rails.get("auth_password", "")),
+            clients_minimal_path=str(rails.get("clients_minimal_path", "/clients_minimal")),
+            payee_accounts_path=str(rails.get("payee_accounts_path", "/payee_accounts")),
+            login_path=str(rails.get("login_path", "/login")),
+            client_cache_ttl_seconds=int(rails.get("client_cache_ttl_seconds", 900)),
         ),
         extraction=ExtractionSettings(
             active_strategy=active_strategy,
@@ -197,4 +216,5 @@ def load_settings() -> Settings:
     settings.extraction.corpus_dir.mkdir(parents=True, exist_ok=True)
     settings.extraction.runs_dir.mkdir(parents=True, exist_ok=True)
     settings.extraction.runtime_dir.mkdir(parents=True, exist_ok=True)
+    settings.extraction.active_strategy = resolve_active_strategy_name(settings)
     return settings

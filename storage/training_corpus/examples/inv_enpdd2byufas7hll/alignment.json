@@ -1,0 +1,325 @@
+{
+  "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_enpdd2byufas7hll_c.pdf",
+  "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_enpdd2byufas7hll_c.json",
+  "archived_file_path": "storage/document_files/5010095/inv_enpdd2byufas7hll.pdf",
+  "document_type": "b",
+  "field_alignments": {
+    "account_number": {
+      "bbox": {
+        "height": 18,
+        "left": 550,
+        "top": 294,
+        "width": 128
+      },
+      "confidence": 1,
+      "match_text": "White Residence",
+      "normalized_bbox": {
+        "height": 0.0154,
+        "left": 0.6091,
+        "top": 0.2511,
+        "width": 0.1417
+      },
+      "page_number": 1,
+      "value": "White Residence"
+    },
+    "amount_due": {
+      "bbox": {
+        "height": 18,
+        "left": 752,
+        "top": 1029,
+        "width": 73
+      },
+      "confidence": 1,
+      "match_text": "$2,126.80",
+      "normalized_bbox": {
+        "height": 0.0154,
+        "left": 0.8346,
+        "top": 0.881,
+        "width": 0.081
+      },
+      "page_number": 3,
+      "value": 2126.8
+    },
+    "billing_address": {
+      "bbox": {
+        "height": 50,
+        "left": 164,
+        "top": 162,
+        "width": 157
+      },
+      "confidence": 1,
+      "match_text": "2047 47th Street\nVero Beach, FL 32967",
+      "normalized_bbox": {
+        "height": 0.0427,
+        "left": 0.1816,
+        "top": 0.1383,
+        "width": 0.1739
+      },
+      "page_number": 1,
+      "value": "2047 47th Street\nVero Beach, FL 32967"
+    },
+    "currency": null,
+    "due_date": {
+      "bbox": {
+        "height": 18,
+        "left": 764,
+        "top": 226,
+        "width": 66
+      },
+      "confidence": 1,
+      "match_text": "3/1/2026",
+      "normalized_bbox": {
+        "height": 0.0154,
+        "left": 0.8461,
+        "top": 0.193,
+        "width": 0.0731
+      },
+      "page_number": 1,
+      "value": "3/1/2026"
+    },
+    "friendly_name": {
+      "bbox": {
+        "height": 68,
+        "left": 153,
+        "top": 70,
+        "width": 177
+      },
+      "confidence": 1,
+      "match_text": "aiella",
+      "normalized_bbox": {
+        "height": 0.0581,
+        "left": 0.1694,
+        "top": 0.0598,
+        "width": 0.196
+      },
+      "page_number": 1,
+      "value": "aiella"
+    },
+    "invoice_date": {
+      "bbox": {
+        "height": 13,
+        "left": 880,
+        "top": 198,
+        "width": 61
+      },
+      "confidence": 1,
+      "match_text": "3/1/2026",
+      "normalized_bbox": {
+        "height": 0.0097,
+        "left": 0.8527,
+        "top": 0.148,
+        "width": 0.0591
+      },
+      "page_number": 1,
+      "value": "3/1/2026"
+    },
+    "invoice_number": {
+      "bbox": {
+        "height": 12,
+        "left": 900,
+        "top": 240,
+        "width": 43
+      },
+      "confidence": 1,
+      "match_text": "14922",
+      "normalized_bbox": {
+        "height": 0.009,
+        "left": 0.8721,
+        "top": 0.1794,
+        "width": 0.0417
+      },
+      "page_number": 1,
+      "value": "14922"
+    },
+    "name_on_account": {
+      "bbox": {
+        "height": 12,
+        "left": 641,
+        "top": 341,
+        "width": 121
+      },
+      "confidence": 1,
+      "match_text": "White Residence",
+      "normalized_bbox": {
+        "height": 0.009,
+        "left": 0.6211,
+        "top": 0.2549,
+        "width": 0.1172
+      },
+      "page_number": 1,
+      "value": "White Residence"
+    },
+    "payable_to": {
+      "bbox": {
+        "height": 19,
+        "left": 409,
+        "top": 1111,
+        "width": 106
+      },
+      "confidence": 1,
+      "match_text": "AielloLandscape.",
+      "normalized_bbox": {
+        "height": 0.0162,
+        "left": 0.4529,
+        "top": 0.9488,
+        "width": 0.1174
+      },
+      "page_number": 1,
+      "value": "AielloLandscape."
+    },
+    "payment_terms": {
+      "bbox": {
+        "height": 16,
+        "left": 832,
+        "top": 219,
+        "width": 110
+      },
+      "confidence": 1,
+      "match_text": "Due on Receipt",
+      "normalized_bbox": {
+        "height": 0.012,
+        "left": 0.8062,
+        "top": 0.1637,
+        "width": 0.1066
+      },
+      "page_number": 1,
+      "value": "Due on Receipt"
+    },
+    "physical_billing_address": {
+      "bbox": {
+        "height": 62,
+        "left": 99,
+        "top": 292,
+        "width": 207
+      },
+      "confidence": 1,
+      "match_text": "Aquilance Attn Linda LaRocca\nP.O. Box 5010\nMonroe, CT 06468",
+      "normalized_bbox": {
+        "height": 0.0529,
+        "left": 0.1096,
+        "top": 0.2494,
+        "width": 0.2292
+      },
+      "page_number": 1,
+      "value": "Aquilance Attn Linda LaRocca\nP.O. Box 5010\nMonroe, CT 06468"
+    },
+    "previous_amount_due": null,
+    "previous_payment_amount": null,
+    "previous_payment_date": null,
+    "remittance_address": {
+      "bbox": {
+        "height": 47,
+        "left": 168,
+        "top": 164,
+        "width": 149
+      },
+      "confidence": 1,
+      "match_text": "2047 47th Street\nVero Beach, FL 32967",
+      "normalized_bbox": {
+        "height": 0.0401,
+        "left": 0.186,
+        "top": 0.1401,
+        "width": 0.165
+      },
+      "page_number": 1,
+      "value": "2047 47th Street\nVero Beach, FL 32967"
+    },
+    "service_address": {
+      "bbox": {
+        "height": 62,
+        "left": 552,
+        "top": 292,
+        "width": 155
+      },
+      "confidence": 1,
+      "match_text": "White Residence\n800 Manatee Inlet\nVero Beach, FL 32963",
+      "normalized_bbox": {
+        "height": 0.0529,
+        "left": 0.6113,
+        "top": 0.2494,
+        "width": 0.1717
+      },
+      "page_number": 1,
+      "value": "White Residence\n800 Manatee Inlet\nVero Beach, FL 32963"
+    },
+    "subtotal": {
+      "bbox": {
+        "height": 20,
+        "left": 754,
+        "top": 938,
+        "width": 78
+      },
+      "confidence": 1,
+      "match_text": "$2,126.80",
+      "normalized_bbox": {
+        "height": 0.0171,
+        "left": 0.8368,
+        "top": 0.8031,
+        "width": 0.0866
+      },
+      "page_number": 3,
+      "value": 2126.8
+    },
+    "tax": {
+      "bbox": {
+        "height": 20,
+        "left": 770,
+        "top": 960,
+        "width": 58
+      },
+      "confidence": 1,
+      "match_text": "$0.00",
+      "normalized_bbox": {
+        "height": 0.0171,
+        "left": 0.8546,
+        "top": 0.8219,
+        "width": 0.0644
+      },
+      "page_number": 3,
+      "value": 0
+    },
+    "total": {
+      "bbox": {
+        "height": 20,
+        "left": 757,
+        "top": 982,
+        "width": 72
+      },
+      "confidence": 1,
+      "match_text": "$2,126.80",
+      "normalized_bbox": {
+        "height": 0.0171,
+        "left": 0.8402,
+        "top": 0.8408,
+        "width": 0.0799
+      },
+      "page_number": 3,
+      "value": 2126.8
+    },
+    "vendor": {
+      "bbox": {
+        "height": 17,
+        "left": 409,
+        "top": 1114,
+        "width": 106
+      },
+      "confidence": 1,
+      "match_text": "AielloLandscape.",
+      "normalized_bbox": {
+        "height": 0.0145,
+        "left": 0.4529,
+        "top": 0.9513,
+        "width": 0.1174
+      },
+      "page_number": 1,
+      "value": "AielloLandscape."
+    }
+  },
+  "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_enpdd2byufas7hll.json",
+  "page_count": 3,
+  "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_enpdd2byufas7hll.pdf",
+  "routed_copy_path": null,
+  "routing_reason": "defaulted to bill because amount due was detected",
+  "sha256": "55888353b46a97dc9e46ddeb44484e492a2f29d15534699b20ef13d8c80aa308",
+  "source_filename": "f25qhyym_indbill_1.pdf"
+}

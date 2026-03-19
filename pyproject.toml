@@ -33,4 +33,4 @@ build-backend = "setuptools.build_meta"
 include = ["app*"]
 
 [tool.setuptools.package-data]
-app = ["templates/*.html", "static/*.css"]
+app = ["templates/*.html", "static/*.css", "static/*.js"]

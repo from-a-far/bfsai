@@ -1,0 +1,11 @@
+{
+  "alignment_path": "storage/training_corpus/examples/inv_tvr5fye3t5bynaq4/alignment.json",
+  "approved_file_path": "storage/training_corpus/examples/inv_tvr5fye3t5bynaq4/inv_tvr5fye3t5bynaq4_c.pdf",
+  "approved_json_path": "storage/training_corpus/examples/inv_tvr5fye3t5bynaq4/inv_tvr5fye3t5bynaq4_c.json",
+  "document_id": "inv_tvr5fye3t5bynaq4",
+  "ground_truth_path": "storage/training_corpus/examples/inv_tvr5fye3t5bynaq4/ground_truth.json",
+  "po_box": "5010095",
+  "strategy_source": "ppstruct_layoutlm_qwen:fallback+confirmed",
+  "updated_at": "2026-03-18T12:11:17+00:00",
+  "vendor": "AielloLandscape"
+}

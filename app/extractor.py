@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 from pathlib import Path
@@ -11,7 +12,8 @@ import pypdfium2 as pdfium
 import pytesseract
 from PIL import Image
 
-from .config import Settings
+from .config import Settings, resolve_active_strategy_name
+from .pdfium_guard import PDFIUM_LOCK
 from .schemas import InvoiceExtraction, InvoiceLineItem, OcrPage, OcrResult, OcrWord
 from .utils import as_float, compact_excerpt, normalize_text
 
@@ -50,11 +52,34 @@ DATE_LABELS = {
     "previous_payment_date": ["previous payment date", "last payment date", "payment received date"],
 }
 
+TESSERACT_ENV_VARS = ("BFSAI_TESSERACT_CMD", "TESSERACT_CMD")
+TESSERACT_FALLBACK_PATHS = (
+    "/opt/homebrew/bin/tesseract",
+    "/usr/local/bin/tesseract",
+)
+
+
+def resolve_tesseract_cmd() -> str | None:
+    for env_name in TESSERACT_ENV_VARS:
+        candidate = os.environ.get(env_name, "").strip()
+        if candidate and Path(candidate).is_file():
+            return candidate
+    detected = shutil.which("tesseract")
+    if detected:
+        return detected
+    for candidate in TESSERACT_FALLBACK_PATHS:
+        if Path(candidate).is_file():
+            return candidate
+    return None
+
 
 class Extractor:
     def __init__(self, settings: Settings):
         self.settings = settings
-        self.has_tesseract = shutil.which("tesseract") is not None
+        self.tesseract_cmd = resolve_tesseract_cmd()
+        self.has_tesseract = self.tesseract_cmd is not None
+        if self.tesseract_cmd:
+            pytesseract.pytesseract.tesseract_cmd = self.tesseract_cmd
 
     def read_text(self, file_path: Path) -> OcrResult:
         if file_path.suffix.lower() == ".pdf":
@@ -62,7 +87,8 @@ class Extractor:
         return self._read_image(file_path)
 
     def extract(self, po_box: str, text: str, hints: dict[str, Any]) -> InvoiceExtraction:
-        strategy = self.settings.extraction.strategies.get(self.settings.extraction.active_strategy)
+        active_strategy_name = resolve_active_strategy_name(self.settings)
+        strategy = self.settings.extraction.strategies.get(active_strategy_name)
         if strategy and strategy.kind == "experimental":
             experimental_result = self._extract_with_experimental_strategy(po_box, text, hints, strategy)
             if experimental_result:
@@ -71,7 +97,7 @@ class Extractor:
             llm_result = self._extract_with_ollama(po_box, text, hints)
             if llm_result:
                 return llm_result.model_copy(
-                    update={"model_source": f"{self.settings.extraction.active_strategy}:{llm_result.model_source}"}
+                    update={"model_source": f"{active_strategy_name}:{llm_result.model_source}"}
                 )
         heuristic = self._heuristic_extract(po_box, text, hints)
         if strategy and strategy.name != "legacy_local":
@@ -79,36 +105,43 @@ class Extractor:
         return heuristic
 
     def _read_pdf(self, file_path: Path) -> OcrResult:
-        document = pdfium.PdfDocument(str(file_path))
         pages: list[OcrPage] = []
-        for page_number in range(len(document)):
-            page = document[page_number]
-            textpage = page.get_textpage()
-            native_text = textpage.get_text_range().strip()
-            if native_text:
-                width = int(page.get_width())
-                height = int(page.get_height())
-                words = []
-                if self.has_tesseract:
-                    bitmap = page.render(scale=2).to_pil()
-                    ocr_page = self._ocr_image(bitmap, page_number + 1)
-                    width = ocr_page.width
-                    height = ocr_page.height
-                    words = ocr_page.words
-                pages.append(
-                    OcrPage(
-                        page_number=page_number + 1,
-                        width=width,
-                        height=height,
-                        text=native_text,
-                        words=words,
+        with PDFIUM_LOCK:
+            document = pdfium.PdfDocument(str(file_path))
+            for page_number in range(len(document)):
+                page = document[page_number]
+                textpage = page.get_textpage()
+                native_text = textpage.get_text_range().strip()
+                if native_text:
+                    width = int(page.get_width())
+                    height = int(page.get_height())
+                    words = []
+                    if self.has_tesseract:
+                        bitmap = page.render(scale=2).to_pil().convert("RGB")
+                        try:
+                            ocr_page = self._ocr_image(bitmap, page_number + 1)
+                        finally:
+                            bitmap.close()
+                        width = ocr_page.width
+                        height = ocr_page.height
+                        words = ocr_page.words
+                    pages.append(
+                        OcrPage(
+                            page_number=page_number + 1,
+                            width=width,
+                            height=height,
+                            text=native_text,
+                            words=words,
+                        )
                     )
-                )
-                continue
-            if not self.has_tesseract:
-                raise RuntimeError("Tesseract is not installed and this PDF does not contain selectable text")
-            bitmap = page.render(scale=2).to_pil()
-            pages.append(self._ocr_image(bitmap, page_number + 1))
+                    continue
+                if not self.has_tesseract:
+                    raise RuntimeError("Tesseract is not installed and this PDF does not contain selectable text")
+                bitmap = page.render(scale=2).to_pil().convert("RGB")
+                try:
+                    pages.append(self._ocr_image(bitmap, page_number + 1))
+                finally:
+                    bitmap.close()
         return OcrResult(
             text="\n\n".join(page.text for page in pages),
             page_count=len(pages),
@@ -119,7 +152,11 @@ class Extractor:
         if not self.has_tesseract:
             raise RuntimeError("Tesseract is not installed and is required for image OCR")
         with Image.open(file_path) as image:
-            page = self._ocr_image(image.convert("RGB"), 1)
+            rgb_image = image.convert("RGB")
+            try:
+                page = self._ocr_image(rgb_image, 1)
+            finally:
+                rgb_image.close()
         return OcrResult(text=page.text, page_count=1, pages=[page])
 
     def _ocr_image(self, image: Image.Image, page_number: int) -> OcrPage:

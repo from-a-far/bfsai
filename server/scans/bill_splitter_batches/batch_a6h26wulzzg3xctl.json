@@ -1,0 +1,133 @@
+{
+  "batch_id": "batch_a6h26wulzzg3xctl",
+  "source_path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11.pdf",
+  "output_dir": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills",
+  "original_filename": "2024.01.11.pdf",
+  "total_pages": 57,
+  "remaining_pages": [],
+  "saved_outputs": [
+    {
+      "name": "wq6lo3qi_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/wq6lo3qi_indbill.pdf",
+      "page_numbers": [
+        38
+      ]
+    },
+    {
+      "name": "y6p3fqbw_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/y6p3fqbw_indbill.pdf",
+      "page_numbers": [
+        39
+      ]
+    },
+    {
+      "name": "zutzl4fw_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/zutzl4fw_indbill.pdf",
+      "page_numbers": [
+        40
+      ]
+    },
+    {
+      "name": "li7eyqku_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/li7eyqku_indbill.pdf",
+      "page_numbers": [
+        41,
+        42
+      ]
+    },
+    {
+      "name": "uwpyqnbk_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/uwpyqnbk_indbill.pdf",
+      "page_numbers": [
+        43
+      ]
+    },
+    {
+      "name": "u5wbvwqp_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/u5wbvwqp_indbill.pdf",
+      "page_numbers": [
+        44,
+        45
+      ]
+    },
+    {
+      "name": "vmceh6l5_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/vmceh6l5_indbill.pdf",
+      "page_numbers": [
+        46
+      ]
+    },
+    {
+      "name": "hektj3wm_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/hektj3wm_indbill.pdf",
+      "page_numbers": [
+        47
+      ]
+    },
+    {
+      "name": "k3inbadr_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/k3inbadr_indbill.pdf",
+      "page_numbers": [
+        48
+      ]
+    },
+    {
+      "name": "zibk46jf_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/zibk46jf_indbill.pdf",
+      "page_numbers": [
+        49
+      ]
+    },
+    {
+      "name": "xrbgqu6w_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/xrbgqu6w_indbill.pdf",
+      "page_numbers": [
+        55,
+        56
+      ]
+    },
+    {
+      "name": "alvtsw7n_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/alvtsw7n_indbill.pdf",
+      "page_numbers": [
+        50
+      ]
+    },
+    {
+      "name": "pe7qqx32_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/pe7qqx32_indbill.pdf",
+      "page_numbers": [
+        51
+      ]
+    },
+    {
+      "name": "2xio36yj_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/2xio36yj_indbill.pdf",
+      "page_numbers": [
+        52
+      ]
+    },
+    {
+      "name": "hqvuhzuz_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/hqvuhzuz_indbill.pdf",
+      "page_numbers": [
+        53
+      ]
+    },
+    {
+      "name": "aqqyalw3_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/aqqyalw3_indbill.pdf",
+      "page_numbers": [
+        54
+      ]
+    },
+    {
+      "name": "uktvfigd_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t06471_2024.01.11_indbills/uktvfigd_indbill.pdf",
+      "page_numbers": [
+        57
+      ]
+    }
+  ],
+  "created_at": "2026-03-17T06:47:19+00:00"
+}

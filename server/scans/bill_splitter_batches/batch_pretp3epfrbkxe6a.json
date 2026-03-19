@@ -1,0 +1,71 @@
+{
+  "batch_id": "batch_pretp3epfrbkxe6a",
+  "source_path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07054_1_13_20261302301427083.pdf",
+  "output_dir": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07054_1_13_20261302301427083_indbills",
+  "original_filename": "1_13_20261302301427083.pdf",
+  "total_pages": 28,
+  "remaining_pages": [],
+  "saved_outputs": [
+    {
+      "name": "62ki26dc_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07054_1_13_20261302301427083_indbills/62ki26dc_indbill.pdf",
+      "page_numbers": [
+        10,
+        11
+      ]
+    },
+    {
+      "name": "lgpfwubx_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07054_1_13_20261302301427083_indbills/lgpfwubx_indbill.pdf",
+      "page_numbers": [
+        13
+      ]
+    },
+    {
+      "name": "cubfpldg_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07054_1_13_20261302301427083_indbills/cubfpldg_indbill.pdf",
+      "page_numbers": [
+        14
+      ]
+    },
+    {
+      "name": "aro5olul_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07054_1_13_20261302301427083_indbills/aro5olul_indbill.pdf",
+      "page_numbers": [
+        15,
+        16,
+        17,
+        18
+      ]
+    },
+    {
+      "name": "l32lx72s_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07054_1_13_20261302301427083_indbills/l32lx72s_indbill.pdf",
+      "page_numbers": [
+        19,
+        20,
+        21
+      ]
+    },
+    {
+      "name": "ukbomb2q_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07054_1_13_20261302301427083_indbills/ukbomb2q_indbill.pdf",
+      "page_numbers": [
+        26,
+        27,
+        28
+      ]
+    },
+    {
+      "name": "bdzyezb4_indbill.pdf",
+      "path": "/Users/ajfarren/Projects/aq/bfsai/server/scans/bill_split_uploads/20260317t07054_1_13_20261302301427083_indbills/bdzyezb4_indbill.pdf",
+      "page_numbers": [
+        22,
+        23,
+        24,
+        25
+      ]
+    }
+  ],
+  "created_at": "2026-03-17T07:05:46+00:00"
+}

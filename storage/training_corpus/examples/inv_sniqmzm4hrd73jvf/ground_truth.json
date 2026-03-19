@@ -1,0 +1,60 @@
+{
+  "account_number": "WHITM",
+  "amount_due": 287.5,
+  "billing_address": "LINDA LAROCCA\r\nRE: MIKE WHITE\r\nP.O. BOX 5010\r\nMonroe, CT 06468",
+  "confidence": 0.99,
+  "currency": "USD",
+  "due_date": null,
+  "friendly_name": "TREASURE COAST POOLS",
+  "invoice_date": "03/03/26",
+  "invoice_number": null,
+  "learning_hints": {},
+  "line_items": [
+    {
+      "amount": 230.0,
+      "description": "02/01/26 155560 POOL MAINT Feb/26 230.00 0.00 0.00",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 0.0,
+      "description": "02/13/26 Payment, chk#10945 0.00 -230.00 0.00",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 57.5,
+      "description": "03/01/26 156080 WEEK FIVE CLEANING 57.50 0.00 57.50",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 287.5,
+      "description": "03/01/26 156081 POOL MAINT Mar/26 230.00 0.00 230.00",
+      "quantity": null,
+      "unit_price": null
+    },
+    {
+      "amount": 287.5,
+      "description": "287.50 0.00 0.00 0.00 0.00 7",
+      "quantity": null,
+      "unit_price": null
+    }
+  ],
+  "model_source": "ppstruct_layoutlm_qwen:fallback+confirmed",
+  "name_on_account": "MIKE WHITE",
+  "payable_to": "TREASURE COAST POOLS",
+  "payment_terms": null,
+  "physical_billing_address": "LINDA LAROCCA\r\nRE: MIKE WHITE\r\nP.O. BOX 5010\r\nMonroe, CT 06468",
+  "po_box": "5010095",
+  "previous_amount_due": 230.0,
+  "previous_payment_amount": -230.0,
+  "previous_payment_date": "02/13/26",
+  "raw_text_excerpt": "TREASURE COAST POOLS 1835 Wilbur Avenue Vero Beach, FL 32960 Statement of Account LINDA LAROCCA STATEMENT DATE RE: MIKE WHITE 03/03/26 P.O. BOX 5010 Monroe, CT 06468 ACCOUNT NO. WHITM DATE | INVOICE DESCRIPTION CHARGES | CREDITS | AMOUNTODUE | AMOUNT DUE 02/01/26 155560 POOL MAINT Feb/26 230.00 0.00 0.00 230.00 02/13/26 Payment, chk#10945 0.00 -230.00 0.00 0.00 03/01/26 156080 WEEK FIVE CLEANING 57.50 0.00 57.50 57.50 03/01/26 156081 POOL MAINT Mar/26 230.00 0.00 230.00 287.50 Does Your \"Pool\" Need a Facelift! Call today 772 569-5650 Current 1 to 30 31 to 60 61 to 90 Over 90 287.50 0.00 0.00 0.00 0.00 7 287.50",
+  "remittance_address": "TREASURE COAST POOLS\r\n1835 Wilbur Avenue\r\nVero Beach, FL 32960",
+  "service_address": null,
+  "subtotal": null,
+  "tax": null,
+  "total": 287.5,
+  "vendor": "TREASURE COAST POOLS"
+}

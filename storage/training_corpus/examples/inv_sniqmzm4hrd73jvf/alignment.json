@@ -1,0 +1,274 @@
+{
+  "approved_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/processed/inv_sniqmzm4hrd73jvf_c.pdf",
+  "approved_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_sniqmzm4hrd73jvf_c.json",
+  "archived_file_path": "storage/document_files/5010095/inv_sniqmzm4hrd73jvf.pdf",
+  "document_type": "b",
+  "field_alignments": {
+    "account_number": {
+      "bbox": {
+        "height": 24,
+        "left": 649,
+        "top": 262,
+        "width": 72
+      },
+      "confidence": 1,
+      "match_text": "WHITM",
+      "normalized_bbox": {
+        "height": 0.0207,
+        "left": 0.7219,
+        "top": 0.2257,
+        "width": 0.0801
+      },
+      "page_number": 1,
+      "value": "WHITM"
+    },
+    "amount_due": {
+      "bbox": {
+        "height": 36,
+        "left": 778,
+        "top": 1069,
+        "width": 73
+      },
+      "confidence": 1,
+      "match_text": "287.50",
+      "normalized_bbox": {
+        "height": 0.031,
+        "left": 0.8654,
+        "top": 0.9208,
+        "width": 0.0812
+      },
+      "page_number": 1,
+      "value": 287.5
+    },
+    "billing_address": {
+      "bbox": {
+        "height": 88,
+        "left": 87,
+        "top": 186,
+        "width": 179
+      },
+      "confidence": 1,
+      "match_text": "LINDA LAROCCA\nRE: MIKE WHITE\nP.O. BOX 5010\nMonroe, CT 06468",
+      "normalized_bbox": {
+        "height": 0.0758,
+        "left": 0.0968,
+        "top": 0.1602,
+        "width": 0.1991
+      },
+      "page_number": 1,
+      "value": "LINDA LAROCCA\nRE: MIKE WHITE\nP.O. BOX 5010\nMonroe, CT 06468"
+    },
+    "currency": null,
+    "due_date": null,
+    "friendly_name": {
+      "bbox": {
+        "height": 31,
+        "left": 86,
+        "top": 35,
+        "width": 257
+      },
+      "confidence": 1,
+      "match_text": "TREASURE COAST POOLS",
+      "normalized_bbox": {
+        "height": 0.0267,
+        "left": 0.0957,
+        "top": 0.0301,
+        "width": 0.2859
+      },
+      "page_number": 1,
+      "value": "TREASURE COAST POOLS"
+    },
+    "invoice_date": {
+      "bbox": {
+        "height": 12,
+        "left": 747,
+        "top": 246,
+        "width": 64
+      },
+      "confidence": 1,
+      "match_text": "03/03/26",
+      "normalized_bbox": {
+        "height": 0.009,
+        "left": 0.7267,
+        "top": 0.1855,
+        "width": 0.0623
+      },
+      "page_number": 1,
+      "value": "03/03/26"
+    },
+    "invoice_number": null,
+    "name_on_account": {
+      "bbox": {
+        "height": 27,
+        "left": 118,
+        "top": 211,
+        "width": 110
+      },
+      "confidence": 1,
+      "match_text": "MIKE WHITE",
+      "normalized_bbox": {
+        "height": 0.0233,
+        "left": 0.1313,
+        "top": 0.1817,
+        "width": 0.1224
+      },
+      "page_number": 1,
+      "value": "MIKE WHITE"
+    },
+    "payable_to": {
+      "bbox": {
+        "height": 25,
+        "left": 92,
+        "top": 42,
+        "width": 239
+      },
+      "confidence": 1,
+      "match_text": "TREASURE COAST POOLS",
+      "normalized_bbox": {
+        "height": 0.0215,
+        "left": 0.1023,
+        "top": 0.0362,
+        "width": 0.2659
+      },
+      "page_number": 1,
+      "value": "TREASURE COAST POOLS"
+    },
+    "payment_terms": null,
+    "physical_billing_address": {
+      "bbox": {
+        "height": 88,
+        "left": 88,
+        "top": 186,
+        "width": 177
+      },
+      "confidence": 1,
+      "match_text": "LINDA LAROCCA\nRE: MIKE WHITE\nP.O. BOX 5010\nMonroe, CT 06468",
+      "normalized_bbox": {
+        "height": 0.0758,
+        "left": 0.0979,
+        "top": 0.1602,
+        "width": 0.1969
+      },
+      "page_number": 1,
+      "value": "LINDA LAROCCA\nRE: MIKE WHITE\nP.O. BOX 5010\nMonroe, CT 06468"
+    },
+    "previous_amount_due": {
+      "bbox": {
+        "height": 18,
+        "left": 786,
+        "top": 408,
+        "width": 66
+      },
+      "confidence": 1,
+      "match_text": "230.00",
+      "normalized_bbox": {
+        "height": 0.0155,
+        "left": 0.8743,
+        "top": 0.3514,
+        "width": 0.0734
+      },
+      "page_number": 1,
+      "value": 230
+    },
+    "previous_payment_amount": {
+      "bbox": {
+        "height": 19,
+        "left": 579,
+        "top": 425,
+        "width": 65
+      },
+      "confidence": 1,
+      "match_text": "-230.00",
+      "normalized_bbox": {
+        "height": 0.0164,
+        "left": 0.644,
+        "top": 0.3661,
+        "width": 0.0723
+      },
+      "page_number": 1,
+      "value": -230
+    },
+    "previous_payment_date": {
+      "bbox": {
+        "height": 21,
+        "left": 45,
+        "top": 421,
+        "width": 68
+      },
+      "confidence": 1,
+      "match_text": "02/13/26",
+      "normalized_bbox": {
+        "height": 0.0181,
+        "left": 0.0501,
+        "top": 0.3626,
+        "width": 0.0756
+      },
+      "page_number": 1,
+      "value": "02/13/26"
+    },
+    "remittance_address": {
+      "bbox": {
+        "height": 80,
+        "left": 89,
+        "top": 37,
+        "width": 253
+      },
+      "confidence": 1,
+      "match_text": "TREASURE COAST POOLS\n\n1835 Wilbur Avenue\nVero Beach, FL 32960",
+      "normalized_bbox": {
+        "height": 0.0689,
+        "left": 0.099,
+        "top": 0.0319,
+        "width": 0.2814
+      },
+      "page_number": 1,
+      "value": "TREASURE COAST POOLS\n1835 Wilbur Avenue\nVero Beach, FL 32960"
+    },
+    "service_address": null,
+    "subtotal": null,
+    "tax": null,
+    "total": {
+      "bbox": {
+        "height": 13,
+        "left": 909,
+        "top": 529,
+        "width": 49
+      },
+      "confidence": 1,
+      "match_text": "287.50",
+      "normalized_bbox": {
+        "height": 0.0098,
+        "left": 0.8842,
+        "top": 0.3989,
+        "width": 0.0477
+      },
+      "page_number": 1,
+      "value": 287.5
+    },
+    "vendor": {
+      "bbox": {
+        "height": 16,
+        "left": 109,
+        "top": 52,
+        "width": 262
+      },
+      "confidence": 1,
+      "match_text": "TREASURE COAST POOLS",
+      "normalized_bbox": {
+        "height": 0.0121,
+        "left": 0.106,
+        "top": 0.0392,
+        "width": 0.2549
+      },
+      "page_number": 1,
+      "value": "TREASURE COAST POOLS"
+    }
+  },
+  "output_json_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/output/inv_sniqmzm4hrd73jvf.json",
+  "page_count": 1,
+  "review_file_path": "/Users/ajfarren/Projects/aq/bfscdx/server/clients/5010095/review/inv_sniqmzm4hrd73jvf.pdf",
+  "routed_copy_path": null,
+  "routing_reason": "matched s keyword",
+  "sha256": "40468c6d5914c8a2905a5548e9c27ee60547d2b6bea69f2045e8ebde38960be6",
+  "source_filename": "vfir33bj_indbill.pdf"
+}

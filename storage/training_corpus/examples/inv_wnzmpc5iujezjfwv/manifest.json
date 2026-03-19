@@ -1,0 +1,11 @@
+{
+  "alignment_path": "storage/training_corpus/examples/inv_wnzmpc5iujezjfwv/alignment.json",
+  "approved_file_path": "storage/training_corpus/examples/inv_wnzmpc5iujezjfwv/inv_wnzmpc5iujezjfwv_c.pdf",
+  "approved_json_path": "storage/training_corpus/examples/inv_wnzmpc5iujezjfwv/inv_wnzmpc5iujezjfwv_c.json",
+  "document_id": "inv_wnzmpc5iujezjfwv",
+  "ground_truth_path": "storage/training_corpus/examples/inv_wnzmpc5iujezjfwv/ground_truth.json",
+  "po_box": "5010095",
+  "strategy_source": "ppstruct_layoutlm_qwen:fallback+confirmed",
+  "updated_at": "2026-03-18T12:14:26+00:00",
+  "vendor": "TREASURE COAST POOLS"
+}
